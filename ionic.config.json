@@ -1,0 +1,7 @@
+{
+  "name": "rubicount",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
