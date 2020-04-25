@@ -9,8 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,8 +16,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
   providers: [
     StatusBar,
     SplashScreen, 
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    NativeStorage
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,33 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Timer
+      Rubicount
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" (click)="clickTimer()">
 
-  
-
-  <div><p class="timer">{{elapsed.m}}:{{elapsed.s}},{{elapsed.hs}}</p></div>
-        <!--ion-grid class="timer ion-text-center">
-          <ion-row>
-            <ion-col class="ion-text-right">
-              {{elapsed.m}}:
-            </ion-col>
-            <ion-col class="ion-text-center">
-              {{elapsed.s}}
-            </ion-col>
-            <ion-col class="ion-text-left">
-              ,{{elapsed.hs}}
-            </ion-col>
-          </ion-row>
-        </ion-grid-->
-  <p>{{testVar}}</p>
+  <ion-row>
     
-
+    <ion-col >
+      <div class="ion-text-center"><ion-label class="timer">{{currentTimeDisplay}}</ion-label></div>
+      
+    </ion-col>
+  </ion-row>
+  
+  
+    <div class="ion-text-center">Best time: {{ bestTime }}</div>
+    
+  
+  
   <app-explore-container name="Timer"></app-explore-container>
-
 </ion-content>
+
 

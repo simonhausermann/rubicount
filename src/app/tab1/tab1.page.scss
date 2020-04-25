@@ -2,9 +2,9 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 
-p.timer {
+.timer {
   font-size: 3em !important;
-  letter-spacing: 3px;
   width: 100%;
+  margin-top: 30px; margin-bottom: 15px; 
   text-align: center;
 }

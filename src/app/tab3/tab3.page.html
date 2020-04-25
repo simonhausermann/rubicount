@@ -6,14 +6,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="false">
   <ion-list>
     
     <!-- Sliding item with expandable options on both sides -->
 
-      <ion-item-sliding *ngFor="let item of listTimes">
+      <ion-item-sliding *ngFor="let item of listTimes; let i = index; ">
         <ion-item-options side="end">
-          <ion-item-option color="danger" expandable>
+          <ion-item-option color="danger" expandable (click)="deleteTime(item)">
             Delete
           </ion-item-option>
           <ion-item-option color="warning" expandable>
@@ -26,13 +26,13 @@
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  {{ item.tryNr }}
+                  {{ item.id }}
                 </ion-col>
                 <ion-col>
-                  {{ item.tryDate }}
+                  {{ item.timeStamp | date: 'dd.MM.yy' }}
                 </ion-col>
                 <ion-col>
-                  {{ item.tryTime }}
+                  {{ item.tryTimeFormat }}
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -42,6 +42,18 @@
         </ion-item-sliding>
     
   </ion-list>
+  
+  <ion-fab vertical="bottom" horizontal="end" sedge slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="importOne();"><ion-icon name="add"></ion-icon></ion-fab-button>
+      <ion-fab-button (click)="importMany();"><ion-icon name="download"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  
+
+  <app-explore-container name="Times"></app-explore-container>
 </ion-content>
