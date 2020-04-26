@@ -1,5 +1,5 @@
 {
-  "name": "matheo",
+  "name": "rubicount",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -66,5 +66,18 @@
     "plugins": {
       "cordova-plugin-insomnia": {}
     }
+  },
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonhausermann/rubicount.git"
+  },
+  "keywords": [
+    "rubiks",
+    "cube"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simonhausermann/rubicount/issues"
   }
 }
