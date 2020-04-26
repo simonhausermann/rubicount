@@ -2,7 +2,13 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('/assets/fonts/RobotoMono-Regular.ttf');
+}
+
 .timer {
+  font-family: 'Roboto Mono';
   font-size: 3em !important;
   width: 100%;
   margin-top: 30px; margin-bottom: 15px; 

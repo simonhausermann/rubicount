@@ -1,58 +1,57 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Settings
+      Profiles
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <ion-list>
+  <!--ion-list>
     <ion-item>
       <ion-label>Sound</ion-label>
       <ion-toggle [(ngModel)]="sound" (ngModelChange)="updateUser();"></ion-toggle>
     </ion-item>
-  
     <ion-item>
       <ion-label>Dark Mode</ion-label>
       <ion-toggle [(ngModel)]="darkmode" (ngModelChange)="updateUser();"></ion-toggle>
     </ion-item>
-
-    
-
-  </ion-list>
+  </ion-list-->
   
-  <ion-list>
+  <!--ion-list>
     <ion-item>
       <ion-title class="medium">Profiles</ion-title>
     </ion-item>
-  </ion-list>
+  </ion-list-->
 
   <ion-list>
     <ion-item-sliding *ngFor="let item of userList; let i = index; ">
-      <ion-item-options side="end">
-        <ion-item-option color="danger" expandable (click)="deleteUSer(item)">
-          Delete
-        </ion-item-option>
-        <ion-item-option color="warning" expandable (click)="deleteUSer(item)">
-          Edit
-        </ion-item-option>
-      </ion-item-options>
-
-      <ion-item (click)="selectUser(item.userName)">
+      <ion-item>
         <ion-label>
           <ion-grid>
+            <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
             <ion-row>
-              <ion-col>
-                <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
-                <ng-template #thenBlock><b>» {{ item.userName }}  «</b></ng-template>
-                <ng-template #elseBlock>{{ item.userName }}</ng-template>
+              <ion-col (click)="selectUser(item.userName)">
+                <b>» {{ item.userName }}  «</b>
               </ion-col>
               <ion-col class="ion-text-end">
-                <ion-button fill="clear"><ion-icon slot="start" name="star"></ion-icon></ion-button>
+                <ion-button fill="clear" (click)="changeUserName();" size="small"><ion-icon slot="start" name="create-outline"></ion-icon></ion-button>
               </ion-col>
             </ion-row>
+            </ng-template>
+            <ng-template #elseBlock>
+              <ion-row>
+                <ion-col (click)="selectUser(item.userName)" class="vertical-align-content">
+                  {{ item.userName }}
+                </ion-col>
+                <ion-col class="ion-text-end">
+                  <ion-button fill="clear" (click)="deleteUser(item.userName);" size="small"><ion-icon slot="start" name="trash-outline"></ion-icon></ion-button>
+                </ion-col>
+              </ion-row>
+            </ng-template>
+            
           </ion-grid>
         </ion-label>
       </ion-item>

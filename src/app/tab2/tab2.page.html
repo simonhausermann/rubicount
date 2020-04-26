@@ -15,11 +15,54 @@
 
   <div class="ion-padding">
     <ion-card>
-      <!--ion-card-header>
-        Line Chart
-      </ion-card-header-->
       <ion-card-content>
         <canvas #lineCanvas></canvas>
+      </ion-card-content>
+      <ion-card-header></ion-card-header>
+      <ion-card-content>
+        <b>Personal</b>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Best (PB):</ion-col>
+            <ion-col>{{ bestTime }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Average:</ion-col><ion-col>{{ averageTime }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Count:</ion-col><ion-col>{{ countTimes }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+      <b>Average of 5</b>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Ao5</ion-col><ion-col>{{ ao5 }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Best</ion-col><ion-col>{{ ao5Best }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Worst</ion-col><ion-col>{{ ao5Worst }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+      <b>Average of 12</b>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Ao12</ion-col><ion-col>{{ ao12 }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Best</ion-col><ion-col>{{ ao12Best }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Worst</ion-col><ion-col>{{ ao12Worst }}</ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
   </div>

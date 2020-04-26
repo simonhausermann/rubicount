@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
+import { FormatTimeService } from '../services/format-time.service';
 
 @Component({
   selector: 'app-tab2',
@@ -17,25 +18,46 @@ export class Tab2Page implements OnInit {
  private logLevel: number = 0;
 
  // Start localStorage variables
- private userObject: {
-   userName: string, 
-   bestTime: string, 
-   listTimes: Array<any>,
-   sound: boolean,
-   darkmode: boolean,
-   changedTimes: boolean
- };
- private actualUser: string;
- // End localStorage variables
+  private userObject: {
+    userName: string, 
+    bestTime: string, 
+    listTimes: Array<any>,
+    sound: boolean,
+    darkmode: boolean,
+    changedTimes: boolean
+  };
+  private actualUser: string;
+  // End localStorage variables
+
+  public bestTime: string;
+  public bestDate: string;
+  public averageTime: string;
+  public ao5: string;
+  public ao5Best: string;
+  public ao5Worst: string;
+  public ao12: string;
+  public ao12Best: string;
+  public ao12Worst: string;
+  public countTimes: number;
 
   private lineChart: Chart;
   private nrItemsInGraph: any = 10;
 
-  constructor() {}
+  constructor(private myFormat: FormatTimeService) {}
 
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);
     this.ngOnInit();
+    this.bestTime = '-';
+    this.bestDate = '-';
+    this.averageTime = 'no solves';
+    this.ao5 = '-';
+    this.ao5Best = '-';
+    this.ao5Worst = '-';
+    this.ao12 = '-';
+    this.ao12Best = '-';
+    this.ao12Worst = '-';
+    this.getStatistics();
   }
 
   ngOnInit() {
@@ -100,6 +122,67 @@ export class Tab2Page implements OnInit {
     return tmpAr;
   }
 
+  private getStatistics() {
+    /*public bestTime: string = '-';
+    public bestDate: string = '-';
+    public averageTime: string = '-';
+    public ao5: string = '-';
+    public ao5Best: string = '-';
+    public ao5Worst: string = '-';
+    public ao12: string = '-';
+    public ao12Best: string = '-';
+    public ao12Worst: string = '-';*/
+    this.bestTime = this.userObject.bestTime;
+    if (this.userObject.listTimes.length > 0) {
+      let ao5Ar = [];
+      let ao12Ar = [];
+      let ao5Best = 600000;
+      let ao12Best = 600000;
+      let ao5Worst = 0;
+      let ao12Worst = 0;
+      let sumTimes = 0;
+      let count = 0;
+      this.userObject.listTimes.forEach(function (item) {
+        if (count < 5) { 
+          ao5Ar.push(item.tryTime);
+          if (item.tryTime < ao5Best) ao5Best = item.tryTime; 
+          if (item.tryTime > ao5Worst) ao5Worst = item.tryTime;
+        }
+        if (count <12) {
+          ao12Ar.push(item.tryTime);
+          if (item.tryTime < ao12Best) ao12Best = item.tryTime; 
+          if (item.tryTime > ao12Worst) ao12Worst = item.tryTime; 
+        }
+        sumTimes += parseInt(item.tryTime);
+        count++;
+      });
+      this.averageTime = this.myFormat.formateTime(Math.floor(sumTimes/(this.userObject.listTimes.length)));
+
+      if (ao5Ar.length == 5) {
+        let ao5Sum = 0;
+        for (count = 0; count < ao5Ar.length; count++) {
+          if (ao5Ar[count] != ao5Best && ao5Ar[count] != ao5Worst)
+            ao5Sum += parseInt(ao5Ar[count]);
+        }
+        this.ao5 = this.myFormat.formateTime(Math.floor(ao5Sum/3));
+        this.ao5Best = this.myFormat.formateTime(ao5Best);
+        this.ao5Worst = this.myFormat.formateTime(ao5Worst);
+      }
+
+      if (ao12Ar.length == 12) {
+        let ao12Sum = 0;
+        for (count = 0; count < ao12Ar.length; count++) {
+          if (ao12Ar[count] != ao12Best && ao12Ar[count] != ao12Worst)
+            ao12Sum += parseInt(ao12Ar[count]);
+        }
+        this.ao12 = this.myFormat.formateTime(Math.floor(ao12Sum/10));
+        this.ao12Best = this.myFormat.formateTime(ao12Best);
+        this.ao12Worst = this.myFormat.formateTime(ao12Worst);
+      }
+    }
+    this.countTimes = this.userObject.listTimes.length;
+  }
+
   private myLog(consoleText: string, level: number) {
     if (this.logLevel >= level) {
       console.log('statistics: '+consoleText);
@@ -107,3 +190,4 @@ export class Tab2Page implements OnInit {
     return;
   }
 }
+
