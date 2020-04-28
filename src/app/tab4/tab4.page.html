@@ -7,67 +7,63 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="11">
+        <ion-list>
+          <ion-item-sliding *ngFor="let item of userList; let i = index; ">
+            <ion-item>
+              <ion-label>
+                <ion-grid>
+                  <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock>
+                  <ion-row>
+                    <ion-col center text-center (click)="selectUser(item.userName)">
+                      <b>{{ item.userName }}</b>
+                    </ion-col>
+                    <ion-col center text-center class="ion-text-end">
+                      <ion-button fill="clear" (click)="changeUserName();" size="small"><ion-icon slot="start" name="create-outline"></ion-icon></ion-button>
+                    </ion-col>
+                  </ion-row>
+                  </ng-template>
+                  <ng-template #elseBlock>
+                    <ion-row>
+                      <ion-col center text-center (click)="selectUser(item.userName)" class="vertical-align-content">
+                        {{ item.userName }}
+                      </ion-col>
+                      <ion-col class="ion-text-end">
+                        <ion-button fill="clear" (click)="deleteUser(item.userName);" size="small"><ion-icon slot="start" name="trash-outline"></ion-icon></ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ng-template>
+                  
+                </ion-grid>
+              </ion-label>
+            </ion-item>
+          </ion-item-sliding>
+        </ion-list>
+        
+        <ion-button type="clear" color="primary" (click)="clearUserHistory()" expand="full">Clear user history</ion-button>
+        <ion-button color="primary" (click)="clearLocalStorage()" expand="full">Clear localStorage</ion-button>
 
-  <!--ion-list>
-    <ion-item>
-      <ion-label>Sound</ion-label>
-      <ion-toggle [(ngModel)]="sound" (ngModelChange)="updateUser();"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Dark Mode</ion-label>
-      <ion-toggle [(ngModel)]="darkmode" (ngModelChange)="updateUser();"></ion-toggle>
-    </ion-item>
-  </ion-list-->
-  
-  <!--ion-list>
-    <ion-item>
-      <ion-title class="medium">Profiles</ion-title>
-    </ion-item>
-  </ion-list-->
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let item of userList; let i = index; ">
-      <ion-item>
-        <ion-label>
-          <ion-grid>
-            <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
-            <ng-template #thenBlock>
-            <ion-row>
-              <ion-col center text-center (click)="selectUser(item.userName)">
-                <b>{{ item.userName }}</b>
-              </ion-col>
-              <ion-col center text-center class="ion-text-end">
-                <ion-button fill="clear" (click)="changeUserName();" size="small"><ion-icon slot="start" name="create-outline"></ion-icon></ion-button>
-              </ion-col>
-            </ion-row>
-            </ng-template>
-            <ng-template #elseBlock>
-              <ion-row>
-                <ion-col center text-center (click)="selectUser(item.userName)" class="vertical-align-content">
-                  {{ item.userName }}
-                </ion-col>
-                <ion-col class="ion-text-end">
-                  <ion-button fill="clear" (click)="deleteUser(item.userName);" size="small"><ion-icon slot="start" name="trash-outline"></ion-icon></ion-button>
-                </ion-col>
-              </ion-row>
-            </ng-template>
-            
-          </ion-grid>
-        </ion-label>
-      </ion-item>
-    </ion-item-sliding>
-  </ion-list>
-
-  <ion-list>
-    <ion-item>
-    <ion-button color="primary" (click)="clearUserHistory()">Clear user history</ion-button>
-    <ion-button color="primary" (click)="clearLocalStorage()">Clear localStorage</ion-button>
-    </ion-item>
-  </ion-list>
-
-  <ion-fab vertical="bottom" horizontal="end" sedge slot="fixed">
-    <ion-fab-button (click)="addUser()"><ion-icon name="add"></ion-icon></ion-fab-button>
-  </ion-fab>
+        <ion-fab vertical="bottom" horizontal="end" sedge slot="fixed">
+          <ion-fab-button (click)="addUser()"><ion-icon name="add"></ion-icon></ion-fab-button>
+        </ion-fab>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col size="10" text-center>
+        <h4>credits</h4>
+        Simon Häusermann & Daniel Schmidt<br>
+        2020 during Corona in SW Australia
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
   <app-explore-container name="Settings"></app-explore-container>
 </ion-content>
 
