@@ -24,7 +24,7 @@ export class Tab3Page {
   private actualUser: string;
   // End localStorage variables
 
-  private listTimes: any = [];
+  public listTimes: any = [];
 
   constructor(private alertCtrl: AlertController, private myFormat: FormatTimeService, private myArrayFunctions: ArrayFunctionsService) {}
 

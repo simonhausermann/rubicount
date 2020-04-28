@@ -33,17 +33,17 @@
             <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
             <ng-template #thenBlock>
             <ion-row>
-              <ion-col (click)="selectUser(item.userName)">
-                <b>» {{ item.userName }}  «</b>
+              <ion-col center text-center (click)="selectUser(item.userName)">
+                <b>{{ item.userName }}</b>
               </ion-col>
-              <ion-col class="ion-text-end">
+              <ion-col center text-center class="ion-text-end">
                 <ion-button fill="clear" (click)="changeUserName();" size="small"><ion-icon slot="start" name="create-outline"></ion-icon></ion-button>
               </ion-col>
             </ion-row>
             </ng-template>
             <ng-template #elseBlock>
               <ion-row>
-                <ion-col (click)="selectUser(item.userName)" class="vertical-align-content">
+                <ion-col center text-center (click)="selectUser(item.userName)" class="vertical-align-content">
                   {{ item.userName }}
                 </ion-col>
                 <ion-col class="ion-text-end">

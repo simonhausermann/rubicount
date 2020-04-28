@@ -21,12 +21,12 @@ export class Tab4Page {
     darkmode: boolean,
     changedTimes: boolean
   };
-  private actualUser: string;
+  public actualUser: string;
   public userList: { userName: string }[] = [];
   // End localStorage variables
 
-  private sound: boolean;
-  private darkmode: boolean;
+  public sound: boolean;
+  public darkmode: boolean;
 
   constructor(private alertCtrl: AlertController) {}
 
