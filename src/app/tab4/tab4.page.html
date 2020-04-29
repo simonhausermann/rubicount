@@ -48,10 +48,6 @@
         <ion-button type="clear" color="primary" (click)="clearUserHistory()" expand="full">Clear user history</ion-button>
         <ion-button color="primary" (click)="clearLocalStorage()" expand="full">Clear localStorage</ion-button>
 
-
-        <ion-fab vertical="bottom" horizontal="end" sedge slot="fixed">
-          <ion-fab-button (click)="addUser()"><ion-icon name="add"></ion-icon></ion-fab-button>
-        </ion-fab>
       </ion-col>
       <ion-col></ion-col>
     </ion-row>
@@ -65,6 +61,9 @@
       <ion-col></ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" sedge slot="fixed">
+    <ion-fab-button (click)="addUser()"><ion-icon name="add"></ion-icon></ion-fab-button>
+  </ion-fab>
 
 
   <app-explore-container name="Settings"></app-explore-container>

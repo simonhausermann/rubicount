@@ -10,7 +10,7 @@ import { TextAst } from '@angular/compiler';
 })
 export class Tab4Page {
 
-  private logLevel: number = 2;
+  private logLevel: number = 0;
 
   // Start localStorage variables
   private userObject: {

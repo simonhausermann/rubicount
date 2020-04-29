@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Rubicount\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\" (click)=\"clickTimer()\">\n\n  <ion-row>\n    \n    <ion-col >\n      <div class=\"ion-text-center\"><ion-label class=\"timer\">{{currentTimeDisplay}}</ion-label></div>\n      \n    </ion-col>\n  </ion-row>\n  \n  \n    <div class=\"ion-text-center\">Best time: {{ bestTime }}</div>\n   \n  <ion-content class=\"funfact\">\n    {{ funFact }}\n</ion-content>\n  \n  \n  <app-explore-container name=\"Timer\"></app-explore-container>\n</ion-content>\n\n\n";
+    __webpack_exports__["default"] = "<ion-content [fullscreen]=\"true\" (click)=\"clickTimer()\">\n\n  <ion-grid style=\"border-color: black;\">\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n      <br><br><ion-img [src]=\"logo\"></ion-img>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n      <div class=\"timer\">{{currentTimeDisplay}}</div>\n      <div class=\"ion-text-center\">Best time: {{ bestTime }}</div>\n      <ion-img [src]=\"hands\"></ion-img>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col></ion-col>\n    <ion-col size=\"10\">\n      <div class=\"funfact\">{{ funFact }}</div>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n</ion-grid>\n  \n  <app-explore-container name=\"Timer\"></app-explore-container>\n</ion-content>\n\n\n";
     /***/
   },
 
@@ -196,7 +196,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.overallTimerFunc = false; // running timer function
 
         this.funFact = '';
+        this.logo = '../assets/images/logo.png';
+        this.hands = '../assets/images/hands.png';
         this.funFacts = this.getFunfacts();
+        console.log('log level: ' + this.logLevel);
       }
 
       _createClass(Tab1Page, [{
@@ -252,7 +255,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             clearInterval(this.overallTimerFunc);
             this.finishTry();
             this.startTime = false;
-            this.funFact = this.funFacts[Math.floor(Math.random() * this.funFacts.length)];
+            var randomNr = Math.floor(Math.random() * this.funFacts.length);
+            this.myLog('display fun fact nr ' + randomNr, 2);
+            this.funFact = this.funFacts[randomNr];
           }
         }
       }, {
