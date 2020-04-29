@@ -1,18 +1,10 @@
-<!--ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Rubicount
-    </ion-title>
-  </ion-toolbar>
-</ion-header-->
-
 <ion-content [fullscreen]="true" (click)="clickTimer()">
 
-  <ion-grid>
+  <ion-grid style="border-color: black;">
     <ion-row>
       <ion-col></ion-col>
       <ion-col size="11">
-      <div class="timer"><ion-img [src]="logo.png"></ion-img></div>
+      <ion-img [src]="logo"></ion-img>
       </ion-col>
     <ion-col></ion-col>
   </ion-row>
@@ -20,15 +12,9 @@
       <ion-col></ion-col>
       <ion-col size="11">
       <div class="timer">{{currentTimeDisplay}}</div>
-      <ion-img [src]="hands.png"></ion-img>
-      </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col></ion-col>
-    <ion-col size="11">
       <div class="ion-text-center">Best time: {{ bestTime }}</div>
-    </ion-col>
+      <ion-img [src]="hands"></ion-img>
+      </ion-col>
     <ion-col></ion-col>
   </ion-row>
   <ion-row>

@@ -52,6 +52,9 @@ export class Tab1Page {
   private funFacts: Array<string>;
   public funFact: string = '';
 
+  public logo: string = '../assets/images/logo.png';
+  public hands: string = '../assets/images/hands.png';
+
   constructor(private myFormat: FormatTimeService) {
     this.funFacts = this.getFunfacts();
     console.log('log level: '+this.logLevel);
