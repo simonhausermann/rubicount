@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
   <ion-grid>
     <ion-row>
       <ion-col></ion-col>
@@ -18,7 +19,7 @@
                 <ion-grid>
                   <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
                   <ng-template #thenBlock>
-                  <ion-row>
+                  <ion-row class="ion-justify-content-center">
                     <ion-col center text-center (click)="selectUser(item.userName)">
                       <b>{{ item.userName }}</b>
                     </ion-col>
@@ -28,7 +29,7 @@
                   </ion-row>
                   </ng-template>
                   <ng-template #elseBlock>
-                    <ion-row>
+                    <ion-row class="ion-justify-content-center">
                       <ion-col center text-center (click)="selectUser(item.userName)" class="vertical-align-content">
                         {{ item.userName }}
                       </ion-col>
@@ -64,6 +65,8 @@
       <ion-col></ion-col>
     </ion-row>
   </ion-grid>
+
+
   <app-explore-container name="Settings"></app-explore-container>
 </ion-content>
 

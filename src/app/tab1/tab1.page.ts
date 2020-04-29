@@ -54,6 +54,7 @@ export class Tab1Page {
 
   constructor(private myFormat: FormatTimeService) {
     this.funFacts = this.getFunfacts();
+    console.log('log level: '+this.logLevel);
   }
 
   ionViewWillEnter() {
@@ -111,7 +112,9 @@ export class Tab1Page {
       clearInterval(this.overallTimerFunc);
       this.finishTry();
       this.startTime = false;
-      this.funFact = this.funFacts[Math.floor(Math.random() * this.funFacts.length)];
+      let randomNr = Math.floor(Math.random() * this.funFacts.length);
+      this.myLog('display fun fact nr '+randomNr,2)
+      this.funFact = this.funFacts[randomNr];
     }
   }
 
@@ -156,7 +159,7 @@ export class Tab1Page {
     localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
   }
 
-  private myLog(consoleText: string, level: number) {
+  private myLog(consoleText: string, level: number) {    
     if (this.logLevel >= level) {
       console.log('timer: '+consoleText);
     }
