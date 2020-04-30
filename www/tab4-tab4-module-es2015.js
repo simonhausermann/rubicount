@@ -857,7 +857,7 @@ __webpack_require__.r(__webpack_exports__);
 let Tab4Page = class Tab4Page {
     constructor(alertCtrl) {
         this.alertCtrl = alertCtrl;
-        this.logLevel = 2;
+        this.logLevel = 0;
         this.userList = [];
     }
     ngOnInit() {

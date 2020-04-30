@@ -156,7 +156,7 @@ let Tab3Page = class Tab3Page {
         this.alertCtrl = alertCtrl;
         this.myFormat = myFormat;
         this.myArrayFunctions = myArrayFunctions;
-        this.logLevel = 2;
+        this.logLevel = 0;
         // End localStorage variables
         this.listTimes = [];
     }

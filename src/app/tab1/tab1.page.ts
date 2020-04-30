@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { isString, isNull } from 'util';
 import { FormatTimeService } from '../services/format-time.service';
+import { Insomnia } from '@ionic-native/insomnia/ngx';
 
 
 @Component({
@@ -55,7 +56,7 @@ export class Tab1Page {
   public logo: string = '../assets/images/logo.png';
   public hands: string = '../assets/images/hands.png';
 
-  constructor(private myFormat: FormatTimeService) {
+  constructor(private insomnia: Insomnia, private myFormat: FormatTimeService) {
     this.funFacts = this.getFunfacts();
     console.log('log level: '+this.logLevel);
   }
@@ -93,6 +94,10 @@ export class Tab1Page {
       stopp it an call function to process result.
     */
     if (!this.startTime) { // start new timer
+      this.insomnia.keepAwake().then(
+        () => this.myLog('success keep awake',2),
+        () => this.myLog('error keep awake',2)
+      );
       this.startTime = new Date().getTime();
       this.funFact = '';
       
@@ -112,6 +117,10 @@ export class Tab1Page {
 
     }
     else { // stop timer
+      this.insomnia.allowSleepAgain().then(
+        () => this.myLog('success allow sleep again',2),
+        () => this.myLog('error allow sleep again',2)
+      );
       clearInterval(this.overallTimerFunc);
       this.finishTry();
       this.startTime = false;

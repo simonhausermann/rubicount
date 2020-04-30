@@ -270,7 +270,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.alertCtrl = alertCtrl;
         this.myFormat = myFormat;
         this.myArrayFunctions = myArrayFunctions;
-        this.logLevel = 2; // End localStorage variables
+        this.logLevel = 0; // End localStorage variables
 
         this.listTimes = [];
       }

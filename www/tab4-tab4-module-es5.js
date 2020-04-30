@@ -972,7 +972,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, Tab4Page);
 
         this.alertCtrl = alertCtrl;
-        this.logLevel = 2;
+        this.logLevel = 0;
         this.userList = [];
       }
 
