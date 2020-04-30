@@ -197,7 +197,31 @@ export class Tab4Page {
     
   }
 
-  public deleteUser(deleteName) {
+  async deleteUser(deleteName) {
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm!',
+      message: 'Do you really want to delete user '+deleteName,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            // cancel
+          }
+        }, {
+          text: 'Delete',
+          handler: () => {
+            this.reallyDeleteUser(deleteName);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  public reallyDeleteUser(deleteName) {
     this.myLog('method deleteUser',1);
     let tmpAr = [];
     this.userList.forEach(function (item) {

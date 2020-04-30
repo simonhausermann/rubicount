@@ -46,6 +46,8 @@ export class Tab1Page {
   private startTime: any = false; // timer start
   private overallTimerFunc: any = false; // running timer function
   private elapsedTime: any; // ms after startTime
+  private sleepModeFunction: any = false;
+  private maxRunningTime = 1200000;
 
   private sound: string;
   private darkmode: string;
@@ -102,15 +104,20 @@ export class Tab1Page {
       this.funFact = '';
       
       let countDownDate = new Date();
+      this.sleepModeFunction = setInterval(() => {
+        this.insomnia.allowSleepAgain().then(
+          () => this.myLog('success allow sleep again',2),
+          () => this.myLog('error allow sleep again',2)
+        );
+        this.clickTimer();
+      },this.maxRunningTime+1000);
 
       this.overallTimerFunc = setInterval(() => {
         let now = new Date().getTime();
 
         // Find the distance between now an the count down date
         this.elapsedTime = now - this.startTime;
-
         // Time calculations for hours, minutes and seconds
-        
         this.currentTimeDisplay = this.myFormat.formateTime(this.elapsedTime);
 
       },10)
@@ -194,8 +201,8 @@ export class Tab1Page {
       "The best speed cubers* can solve the cube in under six seconds.",
       "The current world record holder is Mats Valk from the Netherlands. Who completed the puzzle in 5.55 seconds.",
       "Some speed-cubers go for style points over raw speed.",
-      "A <a href='https://youtu.be/tSqUcrFJ498'>three-year-old in China</a> solved the puzzle in under two minutes.",
-      "Legos & smartphone <a href='https://www.reddit.com/r/gifs/comments/lgy6c/legos_smartphone_solve_rubiks_cube_faster_than/'>solve Rubik's cube</a> faster than human record"
+      "A three-year-old in China solved the puzzle in under two minutes.",
+      "Legos & smartphone solve Rubik's cube faster than human record"
     ]
   }
 
