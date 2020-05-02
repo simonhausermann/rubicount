@@ -62,10 +62,12 @@ export class Tab1Page {
   public hands: string = '../assets/images/hands.png';
 
   constructor(
-    private scrambler: ScramblesService, private insomnia: Insomnia, private myFormat: FormatTimeService) {
-    this.funFacts = this.getFunfacts();
-    console.log('log level: '+this.logLevel);
-  }
+    private scrambler: ScramblesService, 
+    private insomnia: Insomnia, 
+    private myFormat: FormatTimeService) {
+      this.funFacts = this.getFunfacts();
+      console.log('log level: '+this.logLevel);
+    }
 
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);

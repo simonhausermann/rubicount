@@ -19,7 +19,7 @@ import { Insomnia } from '@ionic-native/insomnia/ngx';
     StatusBar,
     SplashScreen, 
     Insomnia,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })

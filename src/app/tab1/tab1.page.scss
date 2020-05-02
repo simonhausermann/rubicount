@@ -9,21 +9,22 @@ ion-content ion-toolbar {
 
 .timer {
   font-family: 'Roboto Mono';
-  font-size: 3em !important;
+  font-size: 10vw !important;
   width: 100%;
-  margin-top: 10px; margin-bottom: 5px; 
+  margin-top: 20px; margin-bottom: 15px; 
   text-align: center;
 }
 
 .user {
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 1.2em !important;
+  //margin-top: 15px;
+  //font-weight: bold;
+  font-size: 3.5vw !important;
   text-align: center;
 }
 
 .funfact
 {
+  font-size: 3.5vw !important;
   text-align: center;
   padding-top: 10px;
   padding-right: 25px;
