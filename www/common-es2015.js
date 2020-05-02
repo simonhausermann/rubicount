@@ -516,6 +516,62 @@ ExploreContainerComponentModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate
 
 /***/ }),
 
+/***/ "./src/app/services/array-functions.service.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/services/array-functions.service.ts ***!
+  \*****************************************************/
+/*! exports provided: ArrayFunctionsService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArrayFunctionsService", function() { return ArrayFunctionsService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+
+
+let ArrayFunctionsService = class ArrayFunctionsService {
+    constructor() { }
+    compareValues(key, order = 'asc') {
+        return function innerSort(a, b) {
+            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                return 0;
+            }
+            const varA = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key];
+            const varB = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key];
+            let comparison = 0;
+            if (varA > varB) {
+                comparison = 1;
+            }
+            else if (varA < varB) {
+                comparison = -1;
+            }
+            return ((order === 'desc') ? (comparison * -1) : comparison);
+        };
+    }
+    addIdToArrayOfObjects(myArray) {
+        if (!Array.isArray(myArray)) {
+            return [];
+        }
+        let counter = 0;
+        myArray.forEach(function (item) {
+            item.id = myArray.length - counter;
+            counter++;
+        });
+        return myArray;
+    }
+};
+ArrayFunctionsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+], ArrayFunctionsService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/format-time.service.ts":
 /*!*************************************************!*\
   !*** ./src/app/services/format-time.service.ts ***!

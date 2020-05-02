@@ -42,7 +42,7 @@ export class Tab3Page {
 
     const prompt = await this.alertCtrl.create({
       header: 'New solve time',
-      message: "Enter Time (MM:SS.00",
+      message: "Enter Time (MM:SS.00)",
       inputs: [
         {
           name: 'time',
@@ -54,7 +54,7 @@ export class Tab3Page {
         {
           text: 'Cancel',
           handler: data => {
-            console.log('Cancel clicked');
+            this.myLog('Cancel clicked',2);
           }
         },
         {
@@ -82,11 +82,11 @@ export class Tab3Page {
 
   private checkImportTimeFormat(importTime: string): boolean {
     let firstAr = importTime.split(':');
-    if (firstAr.length == 2 && firstAr[0].length == 2 && parseInt(firstAr[0])>0 && parseInt(firstAr[0])<60) {
+    if (firstAr.length == 2 && firstAr[0].length >= 1 && !isNaN(parseInt(firstAr[0])) && parseInt(firstAr[0])<60) {
       let secondAr = firstAr[1].split('.');
       if (secondAr.length == 2) {
-        if (secondAr[0].length == 2 && parseInt(secondAr[0])>0 && parseInt(secondAr[0])<60) {
-          if (secondAr[1].length == 2 && parseInt(secondAr[1])>0 && parseInt(secondAr[1])<100) {
+        if (secondAr[0].length == 2 && !isNaN(parseInt(secondAr[0])) && parseInt(secondAr[0])<60) {
+          if (secondAr[1].length == 2 && !isNaN(parseInt(secondAr[1])) && parseInt(secondAr[1])<100) {
             return true;
           }
         }
@@ -103,15 +103,57 @@ export class Tab3Page {
     localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
   }
 
-  public importMany() {
+  async importMany() {
     this.myLog('method importMany',1);
 
+    const prompt = await this.alertCtrl.create({
+      header: 'Import multiple times',
+      message: "List of times (split by nl) format MM:SS.00",
+      inputs: [
+        {
+          name: 'date',
+          type: 'date',
+          placeholder: 'DD.MM.YYYY'
+        },
+        {
+          name: 'times',
+          type: 'text',
+          placeholder: '15:13.11 16:12.33 ...'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            this.myLog('Cancel clicked',2);
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            let myArray;
+            myArray = data.times.split(' ');
+            let tryTimestamp;
+            if (myArray.length > 0) {
+              for (let i = 0; i < myArray.length; i++) {
+                if (this.checkImportTimeFormat(myArray[i])) {
+                  tryTimestamp = this.getTSfromString(myArray[i]);
+                  this.addTimeToResults(new Date(Date.parse(data.date)).getTime()+1000*(myArray.length-i),tryTimestamp);
+                }
+              }
+              this.calculateNewBestTime();
+              localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
+              this.displayTimes();
+            }
+          }
+        }
+      ]
+    });
+    await prompt.present();
   }
 
   private displayTimes() {
     this.myLog('method displayTimes',1);
-    //this.myLog('userObject: '+JSON.stringify(this.userObject),2);
-    //this.myLog('userObject.listTimes: '+JSON.stringify(this.userObject.listTimes),2);
     let tempArray = [];
     let tempTimes = this.userObject.listTimes;
     if (tempTimes.length > 0) {
@@ -148,11 +190,7 @@ export class Tab3Page {
   private calculateNewBestTime() {
     this.myLog('method calculateNewBestTime',2);
     let best = 999999999;
-    this.userObject.listTimes.forEach(function (item) {
-      if (item.tryTime < best) {
-        best = item.tryTime;
-      }
-    });
+    this.userObject.listTimes.forEach(function (item) { if (item.tryTime < best) best = item.tryTime; });
     this.userObject.bestTime = this.myFormat.formateTime(best);
   }
 

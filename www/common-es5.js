@@ -783,6 +783,90 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
 
   /***/
+  "./src/app/services/array-functions.service.ts":
+  /*!*****************************************************!*\
+    !*** ./src/app/services/array-functions.service.ts ***!
+    \*****************************************************/
+
+  /*! exports provided: ArrayFunctionsService */
+
+  /***/
+  function srcAppServicesArrayFunctionsServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ArrayFunctionsService", function () {
+      return ArrayFunctionsService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var ArrayFunctionsService = /*#__PURE__*/function () {
+      function ArrayFunctionsService() {
+        _classCallCheck(this, ArrayFunctionsService);
+      }
+
+      _createClass(ArrayFunctionsService, [{
+        key: "compareValues",
+        value: function compareValues(key) {
+          var order = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'asc';
+          return function innerSort(a, b) {
+            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+              return 0;
+            }
+
+            var varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+            var varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+            var comparison = 0;
+
+            if (varA > varB) {
+              comparison = 1;
+            } else if (varA < varB) {
+              comparison = -1;
+            }
+
+            return order === 'desc' ? comparison * -1 : comparison;
+          };
+        }
+      }, {
+        key: "addIdToArrayOfObjects",
+        value: function addIdToArrayOfObjects(myArray) {
+          if (!Array.isArray(myArray)) {
+            return [];
+          }
+
+          var counter = 0;
+          myArray.forEach(function (item) {
+            item.id = myArray.length - counter;
+            counter++;
+          });
+          return myArray;
+        }
+      }]);
+
+      return ArrayFunctionsService;
+    }();
+
+    ArrayFunctionsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+      providedIn: 'root'
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])], ArrayFunctionsService);
+    /***/
+  },
+
+  /***/
   "./src/app/services/format-time.service.ts":
   /*!*************************************************!*\
     !*** ./src/app/services/format-time.service.ts ***!

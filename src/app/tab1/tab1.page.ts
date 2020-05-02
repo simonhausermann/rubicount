@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { isString, isNull } from 'util';
 import { FormatTimeService } from '../services/format-time.service';
+import { ScramblesService } from '../services/scrambles.service';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
-
 
 @Component({
   selector: 'app-tab1',
@@ -35,13 +35,16 @@ export class Tab1Page {
       darkmode: false,
       changedTimes: true
   };
-  private actualUser: string;
+  public actualUser: string;
   private userListAr: Array<string> = [];
   // End localStorage Variables
 
   public timesArray: Array<Object> = [];
   public bestTime: any = '-';
   public currentTimeDisplay: any = '00:00.00';
+
+  public scrambleTournament: string = '';
+  public scrambleString: string = '';
 
   private startTime: any = false; // timer start
   private overallTimerFunc: any = false; // running timer function
@@ -58,13 +61,18 @@ export class Tab1Page {
   public logo: string = '../assets/images/logo.png';
   public hands: string = '../assets/images/hands.png';
 
-  constructor(private insomnia: Insomnia, private myFormat: FormatTimeService) {
+  constructor(
+    private scrambler: ScramblesService, private insomnia: Insomnia, private myFormat: FormatTimeService) {
     this.funFacts = this.getFunfacts();
     console.log('log level: '+this.logLevel);
   }
 
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);
+
+    let randIndex = Math.floor(Math.random() * this.scrambler.scrambles.length);
+    this.scrambleTournament = this.scrambler.scrambles[randIndex].tournament;
+    this.scrambleString = this.scrambler.scrambles[randIndex].scramble;
     
     this.actualUser = String(localStorage.getItem('actualUser'));
     if (!this.actualUser || this.actualUser == '' || this.actualUser == 'null') { 
@@ -102,6 +110,7 @@ export class Tab1Page {
       );
       this.startTime = new Date().getTime();
       this.funFact = '';
+
       
       let countDownDate = new Date();
       this.sleepModeFunction = setInterval(() => {
@@ -129,6 +138,7 @@ export class Tab1Page {
         () => this.myLog('error allow sleep again',2)
       );
       clearInterval(this.overallTimerFunc);
+      clearInterval(this.sleepModeFunction);
       this.finishTry();
       this.startTime = false;
       let randomNr = Math.floor(Math.random() * this.funFacts.length);

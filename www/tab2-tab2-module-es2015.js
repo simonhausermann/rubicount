@@ -33775,7 +33775,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Statistics\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <!--ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Statistics</ion-title>\n    </ion-toolbar>\n  </ion-header-->\n\n  <div class=\"ion-padding\">\n    <ion-card>\n      <ion-card-content>\n        <canvas #lineCanvas></canvas>\n      </ion-card-content>\n      <ion-card-header></ion-card-header>\n      <ion-card-content>\n        <b>Personal</b>\n        <ion-grid>\n          <ion-row>\n            <ion-col>Best (PB):</ion-col>\n            <ion-col>{{ bestTime }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Average:</ion-col><ion-col>{{ averageTime }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Count:</ion-col><ion-col>{{ countTimes }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col></ion-col>\n          </ion-row>\n        </ion-grid>\n      <b>Average of 5</b>\n        <ion-grid>\n          <ion-row>\n            <ion-col>Ao5</ion-col><ion-col>{{ ao5 }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Best</ion-col><ion-col>{{ ao5Best }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Worst</ion-col><ion-col>{{ ao5Worst }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col></ion-col>\n          </ion-row>\n        </ion-grid>\n      <b>Average of 12</b>\n        <ion-grid>\n          <ion-row>\n            <ion-col>Ao12</ion-col><ion-col>{{ ao12 }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Best</ion-col><ion-col>{{ ao12Best }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Worst</ion-col><ion-col>{{ ao12Worst }}</ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card-content>\n    </ion-card>\n  </div>\n\n  <app-explore-container name=\"Statistics\"></app-explore-container>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Statistics\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <!--ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Statistics</ion-title>\n    </ion-toolbar>\n  </ion-header-->\n\n  <div class=\"ion-padding\">\n    <ion-card>\n      <ion-card-content>\n        <canvas #lineCanvas></canvas>\n      </ion-card-content>\n      <ion-card-header></ion-card-header>\n      <ion-card-content>\n        <b>Personal</b>\n        <ion-grid>\n          <ion-row>\n            <ion-col>Best (PB):</ion-col>\n            <ion-col>{{ bestTime }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Average:</ion-col><ion-col>{{ averageTime }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>S Deviation:</ion-col><ion-col>{{ sDeviation }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Count:</ion-col><ion-col>{{ countTimes }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col></ion-col>\n          </ion-row>\n        </ion-grid>\n      <b>Average of 5</b>\n        <ion-grid>\n          <ion-row>\n            <ion-col>Ao5</ion-col><ion-col>{{ ao5 }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Best</ion-col><ion-col>{{ ao5Best }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Worst</ion-col><ion-col>{{ ao5Worst }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col></ion-col>\n          </ion-row>\n        </ion-grid>\n      <b>Average of 12</b>\n        <ion-grid>\n          <ion-row>\n            <ion-col>Ao12</ion-col><ion-col>{{ ao12 }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Best</ion-col><ion-col>{{ ao12Best }}</ion-col>\n          </ion-row>\n          <ion-row>\n            <ion-col>Worst</ion-col><ion-col>{{ ao12Worst }}</ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-card-content>\n    </ion-card>\n  </div>\n\n  <app-explore-container name=\"Statistics\"></app-explore-container>\n</ion-content>\n");
 
 /***/ }),
 
@@ -33885,13 +33885,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _services_format_time_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/format-time.service */ "./src/app/services/format-time.service.ts");
+/* harmony import */ var _services_array_functions_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/array-functions.service */ "./src/app/services/array-functions.service.ts");
+
 
 
 
 
 let Tab2Page = class Tab2Page {
-    constructor(myFormat) {
+    constructor(myFormat, myArrayFunctions) {
         this.myFormat = myFormat;
+        this.myArrayFunctions = myArrayFunctions;
         /*
           Graph component: https://www.joshmorony.com/adding-responsive-charts-graphs-to-ionic-2-applications/
           Docs: https://www.chartjs.org/docs/latest/
@@ -33911,12 +33914,15 @@ let Tab2Page = class Tab2Page {
         this.ao12 = '-';
         this.ao12Best = '-';
         this.ao12Worst = '-';
+        this.userObject.listTimes.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
         this.getStatistics();
     }
     ngOnInit() {
         this.myLog('method ngOnInit', 1);
         this.loadVars();
-        let myArray = this.getYFromArray(this.userObject.listTimes);
+        let myArray = this.userObject.listTimes;
+        myArray.sort(this.myArrayFunctions.compareValues('timeStamp', 'asc'));
+        myArray = this.getYFromArray(myArray);
         this.lineChart = new chart_js__WEBPACK_IMPORTED_MODULE_2__["Chart"](this.lineCanvas.nativeElement, {
             type: "line",
             data: {
@@ -33971,15 +33977,6 @@ let Tab2Page = class Tab2Page {
         return tmpAr;
     }
     getStatistics() {
-        /*public bestTime: string = '-';
-        public bestDate: string = '-';
-        public averageTime: string = '-';
-        public ao5: string = '-';
-        public ao5Best: string = '-';
-        public ao5Worst: string = '-';
-        public ao12: string = '-';
-        public ao12Best: string = '-';
-        public ao12Worst: string = '-';*/
         this.bestTime = this.userObject.bestTime;
         if (this.userObject.listTimes.length > 0) {
             let ao5Ar = [];
@@ -33990,7 +33987,9 @@ let Tab2Page = class Tab2Page {
             let ao12Worst = 0;
             let sumTimes = 0;
             let count = 0;
+            let allAr = [];
             this.userObject.listTimes.forEach(function (item) {
+                allAr.push(item.tryTime);
                 if (count < 5) {
                     ao5Ar.push(item.tryTime);
                     if (item.tryTime < ao5Best)
@@ -34008,12 +34007,29 @@ let Tab2Page = class Tab2Page {
                 sumTimes += parseInt(item.tryTime);
                 count++;
             });
-            this.averageTime = this.myFormat.formateTime(Math.floor(sumTimes / (this.userObject.listTimes.length)));
+            this.averageTime = this.myFormat.formateTime(Math.round(sumTimes / (this.userObject.listTimes.length)));
             if (ao5Ar.length == 5) {
                 let ao5Sum = 0;
+                let ao5BestFound = false;
+                let ao5WorstFound = false;
                 for (count = 0; count < ao5Ar.length; count++) {
-                    if (ao5Ar[count] != ao5Best && ao5Ar[count] != ao5Worst)
+                    if (ao5Ar[count] != ao5Best && ao5Ar[count] != ao5Worst) {
                         ao5Sum += parseInt(ao5Ar[count]);
+                    }
+                    else {
+                        if (ao5Ar[count] == ao5Best) {
+                            if (ao5BestFound) {
+                                ao5Sum += parseInt(ao5Ar[count]);
+                            }
+                            ao5BestFound = true;
+                        }
+                        if (ao5Ar[count] == ao5Worst) {
+                            if (ao5WorstFound) {
+                                ao5Sum += parseInt(ao5Ar[count]);
+                            }
+                            ao5WorstFound = true;
+                        }
+                    }
                 }
                 this.ao5 = this.myFormat.formateTime(Math.floor(ao5Sum / 3));
                 this.ao5Best = this.myFormat.formateTime(ao5Best);
@@ -34021,14 +34037,32 @@ let Tab2Page = class Tab2Page {
             }
             if (ao12Ar.length == 12) {
                 let ao12Sum = 0;
+                let ao12BestFound = false;
+                let ao12WorstFound = false;
                 for (count = 0; count < ao12Ar.length; count++) {
-                    if (ao12Ar[count] != ao12Best && ao12Ar[count] != ao12Worst)
+                    if (ao12Ar[count] != ao12Best && ao12Ar[count] != ao12Worst) {
                         ao12Sum += parseInt(ao12Ar[count]);
+                    }
+                    else {
+                        if (ao12Ar[count] == ao12Best) {
+                            if (ao12BestFound) {
+                                ao12Sum += parseInt(ao12Ar[count]);
+                            }
+                            ao12BestFound = true;
+                        }
+                        if (ao12Ar[count] == ao12Worst) {
+                            if (ao12WorstFound) {
+                                ao12Sum += parseInt(ao12Ar[count]);
+                            }
+                            ao12WorstFound = true;
+                        }
+                    }
                 }
                 this.ao12 = this.myFormat.formateTime(Math.floor(ao12Sum / 10));
                 this.ao12Best = this.myFormat.formateTime(ao12Best);
                 this.ao12Worst = this.myFormat.formateTime(ao12Worst);
             }
+            this.sDeviation = standardDeviation(allAr).toFixed(2);
         }
         this.countTimes = this.userObject.listTimes.length;
     }
@@ -34040,7 +34074,8 @@ let Tab2Page = class Tab2Page {
     }
 };
 Tab2Page.ctorParameters = () => [
-    { type: _services_format_time_service__WEBPACK_IMPORTED_MODULE_3__["FormatTimeService"] }
+    { type: _services_format_time_service__WEBPACK_IMPORTED_MODULE_3__["FormatTimeService"] },
+    { type: _services_array_functions_service__WEBPACK_IMPORTED_MODULE_4__["ArrayFunctionsService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])("lineCanvas", { static: true }),
@@ -34052,9 +34087,27 @@ Tab2Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./tab2.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/tab2/tab2.page.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./tab2.page.scss */ "./src/app/tab2/tab2.page.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_format_time_service__WEBPACK_IMPORTED_MODULE_3__["FormatTimeService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_format_time_service__WEBPACK_IMPORTED_MODULE_3__["FormatTimeService"], _services_array_functions_service__WEBPACK_IMPORTED_MODULE_4__["ArrayFunctionsService"]])
 ], Tab2Page);
 
+function standardDeviation(values) {
+    var avg = average(values);
+    var squareDiffs = values.map(function (value) {
+        var diff = value - avg;
+        var sqrDiff = diff * diff;
+        return sqrDiff;
+    });
+    var avgSquareDiff = average(squareDiffs);
+    var stdDev = Math.sqrt(avgSquareDiff);
+    return Math.round(stdDev / 10) / 100;
+}
+function average(data) {
+    var sum = data.reduce(function (sum, value) {
+        return sum + value;
+    }, 0);
+    var avg = sum / data.length;
+    return avg;
+}
 
 
 /***/ })

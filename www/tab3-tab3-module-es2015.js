@@ -9,67 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Times\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"false\">\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n            <ion-item-sliding *ngFor=\"let item of listTimes; let i = index; \">\n              <ion-item-options side=\"end\">\n                <ion-item-option color=\"danger\" expandable (click)=\"deleteTime(item)\">\n                  Delete\n                </ion-item-option>\n                <ion-item-option color=\"warning\" expandable>\n                  DNF\n                </ion-item-option>\n              </ion-item-options>\n          \n              <ion-item>\n                <ion-label>\n                  <ion-grid>\n                    <ion-row>\n                      <ion-col style=\"text-align: left\">\n                        {{ item.id }}\n                      </ion-col>\n                      <ion-col style=\"text-align: center;\">\n                        {{ item.timeStamp | date: 'dd.MM.yy' }}\n                      </ion-col>\n                      <ion-col style=\"text-align: right;\">\n                        {{ item.tryTimeFormat }}\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n                </ion-label>\n              </ion-item>\n            \n              </ion-item-sliding>\n          \n        </ion-list>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button>\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n    <ion-fab-list side=\"top\">\n      <ion-fab-button (click)=\"importOne();\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n      <ion-fab-button (click)=\"importMany();\"><ion-icon name=\"download\"></ion-icon></ion-fab-button>\n    </ion-fab-list>\n  </ion-fab>\n\n  \n\n  <app-explore-container name=\"Times\"></app-explore-container>\n</ion-content>\n");
-
-/***/ }),
-
-/***/ "./src/app/services/array-functions.service.ts":
-/*!*****************************************************!*\
-  !*** ./src/app/services/array-functions.service.ts ***!
-  \*****************************************************/
-/*! exports provided: ArrayFunctionsService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ArrayFunctionsService", function() { return ArrayFunctionsService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let ArrayFunctionsService = class ArrayFunctionsService {
-    constructor() { }
-    compareValues(key, order = 'asc') {
-        console.log('compare ' + key + ' order ' + order);
-        return function innerSort(a, b) {
-            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
-                return 0;
-            }
-            const varA = (typeof a[key] === 'string')
-                ? a[key].toUpperCase() : a[key];
-            const varB = (typeof b[key] === 'string')
-                ? b[key].toUpperCase() : b[key];
-            let comparison = 0;
-            if (varA > varB) {
-                comparison = 1;
-            }
-            else if (varA < varB) {
-                comparison = -1;
-            }
-            return ((order === 'desc') ? (comparison * -1) : comparison);
-        };
-    }
-    addIdToArrayOfObjects(myArray) {
-        if (!Array.isArray(myArray)) {
-            return [];
-        }
-        let counter = 0;
-        console.log(JSON.stringify(myArray));
-        myArray.forEach(function (item) {
-            item.id = myArray.length - counter;
-            counter++;
-        });
-        return myArray;
-    }
-};
-ArrayFunctionsService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], ArrayFunctionsService);
-
-
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Times\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"false\">\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n            <ion-item-sliding *ngFor=\"let item of listTimes; let i = index; \">\n              <ion-item-options side=\"end\">\n                <ion-item-option color=\"danger\" expandable (click)=\"deleteTime(item)\">\n                  Delete\n                </ion-item-option>\n                <!--ion-item-option color=\"warning\" expandable>\n                  DNF\n                </ion-item-option-->\n              </ion-item-options>\n          \n              <ion-item>\n                <ion-label>\n                  <ion-grid>\n                    <ion-row>\n                      <ion-col style=\"text-align: left\">\n                        {{ item.id }}\n                      </ion-col>\n                      <ion-col style=\"text-align: center;\">\n                        {{ item.timeStamp | date: 'dd.MM.yy' }}\n                      </ion-col>\n                      <ion-col style=\"text-align: right;\">\n                        {{ item.tryTimeFormat }}\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n                </ion-label>\n              </ion-item>\n            \n              </ion-item-sliding>\n          \n        </ion-list>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button>\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n    <ion-fab-list side=\"top\">\n      <ion-fab-button (click)=\"importOne();\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n      <ion-fab-button (click)=\"importMany();\"><ion-icon name=\"download\"></ion-icon></ion-fab-button>\n    </ion-fab-list>\n  </ion-fab>\n\n  \n\n  <app-explore-container name=\"Times\"></app-explore-container>\n</ion-content>\n");
 
 /***/ }),
 
@@ -172,7 +112,7 @@ let Tab3Page = class Tab3Page {
             this.myLog('method importOne', 1);
             const prompt = yield this.alertCtrl.create({
                 header: 'New solve time',
-                message: "Enter Time (MM:SS.00",
+                message: "Enter Time (MM:SS.00)",
                 inputs: [
                     {
                         name: 'time',
@@ -184,7 +124,7 @@ let Tab3Page = class Tab3Page {
                     {
                         text: 'Cancel',
                         handler: data => {
-                            console.log('Cancel clicked');
+                            this.myLog('Cancel clicked', 2);
                         }
                     },
                     {
@@ -211,11 +151,11 @@ let Tab3Page = class Tab3Page {
     }
     checkImportTimeFormat(importTime) {
         let firstAr = importTime.split(':');
-        if (firstAr.length == 2 && firstAr[0].length == 2 && parseInt(firstAr[0]) > 0 && parseInt(firstAr[0]) < 60) {
+        if (firstAr.length == 2 && firstAr[0].length >= 1 && !isNaN(parseInt(firstAr[0])) && parseInt(firstAr[0]) < 60) {
             let secondAr = firstAr[1].split('.');
             if (secondAr.length == 2) {
-                if (secondAr[0].length == 2 && parseInt(secondAr[0]) > 0 && parseInt(secondAr[0]) < 60) {
-                    if (secondAr[1].length == 2 && parseInt(secondAr[1]) > 0 && parseInt(secondAr[1]) < 100) {
+                if (secondAr[0].length == 2 && !isNaN(parseInt(secondAr[0])) && parseInt(secondAr[0]) < 60) {
+                    if (secondAr[1].length == 2 && !isNaN(parseInt(secondAr[1])) && parseInt(secondAr[1]) < 100) {
                         return true;
                     }
                 }
@@ -230,12 +170,56 @@ let Tab3Page = class Tab3Page {
         localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
     }
     importMany() {
-        this.myLog('method importMany', 1);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            this.myLog('method importMany', 1);
+            const prompt = yield this.alertCtrl.create({
+                header: 'Import multiple times',
+                message: "List of times (split by nl) format MM:SS.00",
+                inputs: [
+                    {
+                        name: 'date',
+                        type: 'date',
+                        placeholder: 'DD.MM.YYYY'
+                    },
+                    {
+                        name: 'times',
+                        type: 'text',
+                        placeholder: '15:13.11 16:12.33 ...'
+                    },
+                ],
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        handler: data => {
+                            this.myLog('Cancel clicked', 2);
+                        }
+                    },
+                    {
+                        text: 'Save',
+                        handler: data => {
+                            let myArray;
+                            myArray = data.times.split(' ');
+                            let tryTimestamp;
+                            if (myArray.length > 0) {
+                                for (let i = 0; i < myArray.length; i++) {
+                                    if (this.checkImportTimeFormat(myArray[i])) {
+                                        tryTimestamp = this.getTSfromString(myArray[i]);
+                                        this.addTimeToResults(new Date(Date.parse(data.date)).getTime() + 1000 * (myArray.length - i), tryTimestamp);
+                                    }
+                                }
+                                this.calculateNewBestTime();
+                                localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
+                                this.displayTimes();
+                            }
+                        }
+                    }
+                ]
+            });
+            yield prompt.present();
+        });
     }
     displayTimes() {
         this.myLog('method displayTimes', 1);
-        //this.myLog('userObject: '+JSON.stringify(this.userObject),2);
-        //this.myLog('userObject.listTimes: '+JSON.stringify(this.userObject.listTimes),2);
         let tempArray = [];
         let tempTimes = this.userObject.listTimes;
         if (tempTimes.length > 0) {
@@ -265,11 +249,8 @@ let Tab3Page = class Tab3Page {
     calculateNewBestTime() {
         this.myLog('method calculateNewBestTime', 2);
         let best = 999999999;
-        this.userObject.listTimes.forEach(function (item) {
-            if (item.tryTime < best) {
-                best = item.tryTime;
-            }
-        });
+        this.userObject.listTimes.forEach(function (item) { if (item.tryTime < best)
+            best = item.tryTime; });
         this.userObject.bestTime = this.myFormat.formateTime(best);
     }
     myLog(consoleText, level) {

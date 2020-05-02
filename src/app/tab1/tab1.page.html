@@ -11,9 +11,12 @@
     <ion-row>
       <ion-col></ion-col>
       <ion-col size="11">
-      <div class="timer">{{currentTimeDisplay}}</div>
-      <div class="ion-text-center">Best time: {{ bestTime }}</div>
-      <ion-img [src]="hands"></ion-img>
+        <div class="ion-text-center" class="user">{{ actualUser }}</div>
+        <div class="ion-text-center">Best time: {{ bestTime }}</div>
+        <div class="timer">{{ currentTimeDisplay }}</div>
+        <div class="funfact">{{ scrambleTournament }}:<br>
+          <b>{{ scrambleString }}</b></div>
+        <ion-img [src]="hands"></ion-img>
       </ion-col>
     <ion-col></ion-col>
   </ion-row>

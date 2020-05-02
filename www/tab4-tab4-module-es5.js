@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Profiles\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n          <ion-item-sliding *ngFor=\"let item of userList; let i = index; \">\n            <ion-item>\n              <ion-label>\n                <ion-grid>\n                  <div *ngIf=\"actualUser == item.userName then thenBlock else elseBlock\"></div>\n                  <ng-template #thenBlock>\n                  <ion-row class=\"ion-justify-content-center\">\n                    <ion-col center text-center (click)=\"selectUser(item.userName)\">\n                      <b>{{ item.userName }}</b>\n                    </ion-col>\n                    <ion-col center text-center class=\"ion-text-end\">\n                      <ion-button fill=\"clear\" (click)=\"changeUserName();\" size=\"small\"><ion-icon slot=\"start\" name=\"create-outline\"></ion-icon></ion-button>\n                    </ion-col>\n                  </ion-row>\n                  </ng-template>\n                  <ng-template #elseBlock>\n                    <ion-row class=\"ion-justify-content-center\">\n                      <ion-col center text-center (click)=\"selectUser(item.userName)\" class=\"vertical-align-content\">\n                        {{ item.userName }}\n                      </ion-col>\n                      <ion-col class=\"ion-text-end\">\n                        <ion-button fill=\"clear\" (click)=\"deleteUser(item.userName);\" size=\"small\"><ion-icon slot=\"start\" name=\"trash-outline\"></ion-icon></ion-button>\n                      </ion-col>\n                    </ion-row>\n                  </ng-template>\n                  \n                </ion-grid>\n              </ion-label>\n            </ion-item>\n          </ion-item-sliding>\n        </ion-list>\n        \n        <ion-button type=\"clear\" color=\"primary\" (click)=\"clearUserHistory()\" expand=\"full\">Clear user history</ion-button>\n        <ion-button color=\"primary\" (click)=\"clearLocalStorage()\" expand=\"full\">Clear localStorage</ion-button>\n\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"10\" text-center>\n        <h4>credits</h4>\n        Simon Häusermann & Daniel Schmidt<br>\n        2020 during Corona in SW Australia\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button (click)=\"addUser()\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n  </ion-fab>\n\n\n  <app-explore-container name=\"Settings\"></app-explore-container>\n</ion-content>\n\n";
+    __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Profiles\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n          <ion-item-sliding *ngFor=\"let item of userList; let i = index; \">\n            <ion-item>\n              <ion-label>\n                <ion-grid class=\"vertical-align-content\">\n                  <div *ngIf=\"actualUser == item.userName then thenBlock else elseBlock\"></div>\n                  <ng-template #thenBlock>\n                  <ion-row class=\"ion-justify-content-center\">\n                    <ion-col center text-center (click)=\"selectUser(item.userName)\" style=\"vertical-align: middle;\">\n                      <b>{{ item.userName }} (current)</b>\n                    </ion-col>\n                    <ion-col center text-center class=\"ion-text-end\">\n                      <ion-button fill=\"clear\" (click)=\"changeUserName();\" size=\"small\"><ion-icon slot=\"start\" name=\"create-outline\"></ion-icon></ion-button>\n                    </ion-col>\n                  </ion-row>\n                  </ng-template>\n                  <ng-template #elseBlock>\n                    <ion-row class=\"ion-justify-content-center\">\n                      <ion-col center text-center (click)=\"selectUser(item.userName)\"  style=\"vertical-align: middle;\">\n                        {{ item.userName }}\n                      </ion-col>\n                      <ion-col class=\"ion-text-end\">\n                        <ion-button fill=\"clear\" (click)=\"deleteUser(item.userName);\" size=\"small\"><ion-icon slot=\"start\" name=\"trash-outline\"></ion-icon></ion-button>\n                      </ion-col>\n                    </ion-row>\n                  </ng-template>\n                  \n                </ion-grid>\n              </ion-label>\n            </ion-item>\n          </ion-item-sliding>\n        </ion-list>\n        \n        <ion-button type=\"clear\" color=\"primary\" (click)=\"clearUserHistory()\" expand=\"full\">Clear user history</ion-button>\n        <ion-button color=\"primary\" (click)=\"clearLocalStorage()\" expand=\"full\">Clear localStorage</ion-button>\n\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"10\" text-center>\n        <h4>credits</h4>\n        Simon Häusermann & Daniel Schmidt<br>\n        2020 during Corona in SW Australia\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button (click)=\"addUser()\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n  </ion-fab>\n\n\n  <app-explore-container name=\"Settings\"></app-explore-container>\n</ion-content>\n\n";
     /***/
   },
 
@@ -915,7 +915,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "ion-content ion-toolbar {\n  --background: translucent;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zaW1vbi9pb25pYy9ydWJpY291bnQvc3JjL2FwcC90YWI0L3RhYjQucGFnZS5zY3NzIiwic3JjL2FwcC90YWI0L3RhYjQucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL3RhYjQvdGFiNC5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudCBpb24tdG9vbGJhciB7XG4gIC0tYmFja2dyb3VuZDogdHJhbnNsdWNlbnQ7XG59IiwiaW9uLWNvbnRlbnQgaW9uLXRvb2xiYXIge1xuICAtLWJhY2tncm91bmQ6IHRyYW5zbHVjZW50O1xufSJdfQ== */";
+    __webpack_exports__["default"] = "ion-content ion-toolbar {\n  --background: translucent;\n}\n\n.vertical-align-content > * {\n  display: flex !important;\n  align-content: center !important;\n  align-items: center !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zaW1vbi9pb25pYy9ydWJpY291bnQvc3JjL2FwcC90YWI0L3RhYjQucGFnZS5zY3NzIiwic3JjL2FwcC90YWI0L3RhYjQucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQUE7QUNDRjs7QURFQTtFQUVLLHdCQUFBO0VBQ0EsZ0NBQUE7RUFDQSw4QkFBQTtBQ0FMIiwiZmlsZSI6InNyYy9hcHAvdGFiNC90YWI0LnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImlvbi1jb250ZW50IGlvbi10b29sYmFyIHtcbiAgLS1iYWNrZ3JvdW5kOiB0cmFuc2x1Y2VudDtcbn1cblxuLnZlcnRpY2FsLWFsaWduLWNvbnRlbnQgPiAqXG57XG4gICAgIGRpc3BsYXk6IGZsZXghaW1wb3J0YW50O1xuICAgICBhbGlnbi1jb250ZW50OiBjZW50ZXIhaW1wb3J0YW50O1xuICAgICBhbGlnbi1pdGVtczogY2VudGVyIWltcG9ydGFudDtcbn0iLCJpb24tY29udGVudCBpb24tdG9vbGJhciB7XG4gIC0tYmFja2dyb3VuZDogdHJhbnNsdWNlbnQ7XG59XG5cbi52ZXJ0aWNhbC1hbGlnbi1jb250ZW50ID4gKiB7XG4gIGRpc3BsYXk6IGZsZXggIWltcG9ydGFudDtcbiAgYWxpZ24tY29udGVudDogY2VudGVyICFpbXBvcnRhbnQ7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXIgIWltcG9ydGFudDtcbn0iXX0= */";
     /***/
   },
 
@@ -1171,6 +1171,48 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteUser",
         value: function deleteUser(deleteName) {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+            var _this2 = this;
+
+            var alert;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    _context2.next = 2;
+                    return this.alertCtrl.create({
+                      header: 'Confirm!',
+                      message: 'Do you really want to delete user ' + deleteName,
+                      buttons: [{
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: function handler(blah) {// cancel
+                        }
+                      }, {
+                        text: 'Delete',
+                        handler: function handler() {
+                          _this2.reallyDeleteUser(deleteName);
+                        }
+                      }]
+                    });
+
+                  case 2:
+                    alert = _context2.sent;
+                    _context2.next = 5;
+                    return alert.present();
+
+                  case 5:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2, this);
+          }));
+        }
+      }, {
+        key: "reallyDeleteUser",
+        value: function reallyDeleteUser(deleteName) {
           this.myLog('method deleteUser', 1);
           var tmpAr = [];
           this.userList.forEach(function (item) {

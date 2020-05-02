@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { FormatTimeService } from '../services/format-time.service';
+import { ArrayFunctionsService } from '../services/array-functions.service';
 
 @Component({
   selector: 'app-tab2',
@@ -32,6 +33,7 @@ export class Tab2Page implements OnInit {
   public bestTime: string;
   public bestDate: string;
   public averageTime: string;
+  public sDeviation: string;
   public ao5: string;
   public ao5Best: string;
   public ao5Worst: string;
@@ -43,7 +45,7 @@ export class Tab2Page implements OnInit {
   private lineChart: Chart;
   private nrItemsInGraph: any = 10;
 
-  constructor(private myFormat: FormatTimeService) {}
+  constructor(private myFormat: FormatTimeService, private myArrayFunctions: ArrayFunctionsService) {}
 
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);
@@ -57,14 +59,16 @@ export class Tab2Page implements OnInit {
     this.ao12 = '-';
     this.ao12Best = '-';
     this.ao12Worst = '-';
+    this.userObject.listTimes.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
     this.getStatistics();
   }
 
   ngOnInit() {
     this.myLog('method ngOnInit',1);
     this.loadVars();
-    let myArray = this.getYFromArray(this.userObject.listTimes);
-    
+    let myArray = this.userObject.listTimes;
+    myArray.sort(this.myArrayFunctions.compareValues('timeStamp', 'asc'));
+    myArray = this.getYFromArray(myArray);
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: "line",
       data: {
@@ -123,15 +127,6 @@ export class Tab2Page implements OnInit {
   }
 
   private getStatistics() {
-    /*public bestTime: string = '-';
-    public bestDate: string = '-';
-    public averageTime: string = '-';
-    public ao5: string = '-';
-    public ao5Best: string = '-';
-    public ao5Worst: string = '-';
-    public ao12: string = '-';
-    public ao12Best: string = '-';
-    public ao12Worst: string = '-';*/
     this.bestTime = this.userObject.bestTime;
     if (this.userObject.listTimes.length > 0) {
       let ao5Ar = [];
@@ -142,7 +137,10 @@ export class Tab2Page implements OnInit {
       let ao12Worst = 0;
       let sumTimes = 0;
       let count = 0;
+      let allAr = [];
+      
       this.userObject.listTimes.forEach(function (item) {
+        allAr.push(item.tryTime);
         if (count < 5) { 
           ao5Ar.push(item.tryTime);
           if (item.tryTime < ao5Best) ao5Best = item.tryTime; 
@@ -156,13 +154,25 @@ export class Tab2Page implements OnInit {
         sumTimes += parseInt(item.tryTime);
         count++;
       });
-      this.averageTime = this.myFormat.formateTime(Math.floor(sumTimes/(this.userObject.listTimes.length)));
+      this.averageTime = this.myFormat.formateTime(Math.round(sumTimes/(this.userObject.listTimes.length)));
 
       if (ao5Ar.length == 5) {
         let ao5Sum = 0;
+        let ao5BestFound = false;
+        let ao5WorstFound = false;
         for (count = 0; count < ao5Ar.length; count++) {
-          if (ao5Ar[count] != ao5Best && ao5Ar[count] != ao5Worst)
+          if (ao5Ar[count] != ao5Best && ao5Ar[count] != ao5Worst) {
             ao5Sum += parseInt(ao5Ar[count]);
+          } else {
+            if (ao5Ar[count] == ao5Best) {
+              if (ao5BestFound) { ao5Sum += parseInt(ao5Ar[count]); }
+              ao5BestFound = true;
+            }
+            if (ao5Ar[count] == ao5Worst) {
+              if (ao5WorstFound) { ao5Sum += parseInt(ao5Ar[count]); }
+              ao5WorstFound = true;
+            }
+          }
         }
         this.ao5 = this.myFormat.formateTime(Math.floor(ao5Sum/3));
         this.ao5Best = this.myFormat.formateTime(ao5Best);
@@ -171,14 +181,27 @@ export class Tab2Page implements OnInit {
 
       if (ao12Ar.length == 12) {
         let ao12Sum = 0;
+        let ao12BestFound = false;
+        let ao12WorstFound = false;
         for (count = 0; count < ao12Ar.length; count++) {
-          if (ao12Ar[count] != ao12Best && ao12Ar[count] != ao12Worst)
+          if (ao12Ar[count] != ao12Best && ao12Ar[count] != ao12Worst) {
             ao12Sum += parseInt(ao12Ar[count]);
+          } else {
+            if (ao12Ar[count] == ao12Best) {
+              if (ao12BestFound) { ao12Sum += parseInt(ao12Ar[count]); }
+              ao12BestFound = true;
+            }
+            if (ao12Ar[count] == ao12Worst) {
+              if (ao12WorstFound) { ao12Sum += parseInt(ao12Ar[count]); }
+              ao12WorstFound = true;
+            }
+          }
         }
         this.ao12 = this.myFormat.formateTime(Math.floor(ao12Sum/10));
         this.ao12Best = this.myFormat.formateTime(ao12Best);
         this.ao12Worst = this.myFormat.formateTime(ao12Worst);
       }
+      this.sDeviation = standardDeviation(allAr).toFixed(2);
     }
     this.countTimes = this.userObject.listTimes.length;
   }
@@ -191,3 +214,27 @@ export class Tab2Page implements OnInit {
   }
 }
 
+
+function standardDeviation(values){
+  var avg = average(values);
+  
+  var squareDiffs = values.map(function(value){
+    var diff = value - avg;
+    var sqrDiff = diff * diff;
+    return sqrDiff;
+  });
+  
+  var avgSquareDiff = average(squareDiffs);
+
+  var stdDev = Math.sqrt(avgSquareDiff);
+  return Math.round(stdDev/10)/100;
+}
+
+function average(data){
+  var sum = data.reduce(function(sum, value){
+    return sum + value;
+  }, 0);
+
+  var avg = sum / data.length;
+  return avg;
+}
