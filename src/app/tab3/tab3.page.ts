@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { FormatTimeService } from '../services/format-time.service';
 import { ArrayFunctionsService } from '../services/array-functions.service';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -9,6 +10,7 @@ import { ArrayFunctionsService } from '../services/array-functions.service';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  @ViewChild('scroll-infinite', { static : false }) infiniteScroll: IonInfiniteScroll;
 
   private logLevel: number = 0;
 
@@ -25,6 +27,9 @@ export class Tab3Page {
   // End localStorage variables
 
   public listTimes: any = [];
+  public listTimesFull: any = [];
+  private showItemsStep: number = 20;
+  private showItemsCount: number = 20;
 
   constructor(private alertCtrl: AlertController, private myFormat: FormatTimeService, private myArrayFunctions: ArrayFunctionsService) {}
 
@@ -33,8 +38,49 @@ export class Tab3Page {
     this.actualUser = localStorage.getItem('actualUser');
     this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
     this.myLog('user "'+this.actualUser+'" - '+JSON.stringify(this.userObject),2);
+    
+    this.showItemsCount = 20;
+    this.displayTimes(this.showItemsStep);
+  }
 
-    this.displayTimes();
+  private displayTimes(itemsCount) {
+    this.myLog('method displayTimes: '+itemsCount,0);
+    let showItems = Math.min(itemsCount,this.showItemsCount);
+    console.log(showItems);
+    let tempTimes: any = [];
+
+    if (this.userObject.listTimes.length > 0) {
+      this.listTimesFull = this.userObject.listTimes;
+      this.listTimesFull.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
+      this.listTimesFull = this.myArrayFunctions.addIdToArrayOfObjects(this.listTimesFull);
+      tempTimes = this.listTimesFull.slice(0,showItems);
+      
+      for (let i = 0; i < tempTimes.length; i++) {
+        tempTimes[i].tryTimeFormat = this.myFormat.formateTime(tempTimes[i].tryTime);
+      }
+    }
+    console.log(tempTimes.length);
+    this.listTimes = tempTimes;
+
+    this.userObject.changedTimes = false;
+  }
+
+  doInfinite(event): Promise<any> {
+    console.log('Begin async operation');
+    
+    /*if (this.showItemsStep + this.showItemsCount > this.listTimesFull.length)
+      event.target.disabled = true;*/
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        this.showItemsCount = this.showItemsCount + this.showItemsStep;
+        this.displayTimes(this.showItemsCount);
+
+        console.log('Async operation has ended');
+        resolve();
+        event.target.complete();
+      }, 500);
+    })
   }
 
   async importOne() {
@@ -65,7 +111,7 @@ export class Tab3Page {
               this.addTimeToResults(new Date().getTime(),tryTimestamp);
               this.calculateNewBestTime();
               localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
-              this.displayTimes();
+              this.displayTimes(this.showItemsStep);
             }
           }
         }
@@ -143,31 +189,13 @@ export class Tab3Page {
               }
               this.calculateNewBestTime();
               localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
-              this.displayTimes();
+              this.displayTimes(this.showItemsStep);
             }
           }
         }
       ]
     });
     await prompt.present();
-  }
-
-  private displayTimes() {
-    this.myLog('method displayTimes',1);
-    let tempArray = [];
-    let tempTimes = this.userObject.listTimes;
-    if (tempTimes.length > 0) {
-      tempTimes.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
-      tempArray = this.myArrayFunctions.addIdToArrayOfObjects(tempTimes);
-      for (let i = 0; i < tempArray.length; i++) {
-        tempArray[i].tryTimeFormat = this.myFormat.formateTime(tempArray[i].tryTime);
-      }
-    }
-
-    this.myLog('Array this.listTimes: '+JSON.stringify(this.listTimes),2);
-    this.listTimes = tempTimes;
-
-    this.userObject.changedTimes = false;
   }
   
   public deleteTime(delTry) {
@@ -184,7 +212,7 @@ export class Tab3Page {
     }
     localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
     this.userObject.changedTimes = true;
-    this.displayTimes();
+    this.displayTimes(this.showItemsStep);
   }
 
   private calculateNewBestTime() {
