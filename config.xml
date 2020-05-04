@@ -2,7 +2,7 @@
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Rubicount</name>
     <description>Rubik's cube timer app.</description>
-    <author email="simon.haeusermann@gmail.com" href="http://ionicframework.com/">Simon Häusermann</author>
+    <author email="simon.haeusermann@gmail.com" href="http://digitalunterrichten.ch/">Simon Hausermann</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

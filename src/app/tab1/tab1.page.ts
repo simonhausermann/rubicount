@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { isString, isNull } from 'util';
 import { FormatTimeService } from '../services/format-time.service';
 import { ScramblesService } from '../services/scrambles.service';
 import { Insomnia } from '@ionic-native/insomnia/ngx';

@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "Rubicount",
+  "appName": "rubicount",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
