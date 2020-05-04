@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Times\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"false\">\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n            <ion-item-sliding *ngFor=\"let item of listTimes; let i = index; \">\n              <ion-item-options side=\"end\">\n                <ion-item-option color=\"danger\" expandable (click)=\"deleteTime(item)\">\n                  Delete\n                </ion-item-option>\n                <!--ion-item-option color=\"warning\" expandable>\n                  DNF\n                </ion-item-option-->\n              </ion-item-options>\n          \n              <ion-item>\n                <ion-label>\n                  <ion-grid>\n                    <ion-row>\n                      <ion-col style=\"text-align: left\">\n                        {{ item.id }}\n                      </ion-col>\n                      <ion-col style=\"text-align: center;\">\n                        {{ item.timeStamp | date: 'dd.MM.yy' }}\n                      </ion-col>\n                      <ion-col style=\"text-align: right;\">\n                        {{ item.tryTimeFormat }}\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n                </ion-label>\n              </ion-item>\n            \n              </ion-item-sliding>\n          \n        </ion-list>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button>\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n    <ion-fab-list side=\"top\">\n      <ion-fab-button (click)=\"importOne();\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n      <ion-fab-button (click)=\"importMany();\"><ion-icon name=\"download\"></ion-icon></ion-fab-button>\n    </ion-fab-list>\n  </ion-fab>\n\n  \n\n  <app-explore-container name=\"Times\"></app-explore-container>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Times\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"false\">\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n            <ion-item-sliding *ngFor=\"let item of listTimes; let i = index; \">\n              <ion-item-options side=\"end\">\n                <ion-item-option color=\"danger\" expandable (click)=\"deleteTime(item)\">\n                  Delete\n                </ion-item-option>\n                <!--ion-item-option color=\"warning\" expandable>\n                  DNF\n                </ion-item-option-->\n              </ion-item-options>\n          \n              <ion-item>\n                <ion-label>\n                  <ion-grid>\n                    <ion-row>\n                      <ion-col style=\"text-align: left\">\n                        {{ item.id }}\n                      </ion-col>\n                      <ion-col style=\"text-align: center;\">\n                        {{ item.timeStamp | date: 'dd.MM.yy' }}\n                      </ion-col>\n                      <ion-col style=\"text-align: right;\">\n                        {{ item.tryTimeFormat }}\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n                </ion-label>\n              </ion-item>\n            \n              </ion-item-sliding>\n          \n        </ion-list>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  <ion-infinite-scroll (ionInfinite)=\"doInfinite($event)\">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button>\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n    <ion-fab-list side=\"top\">\n      <ion-fab-button (click)=\"importOne();\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n      <ion-fab-button (click)=\"importMany();\"><ion-icon name=\"download\"></ion-icon></ion-fab-button>\n    </ion-fab-list>\n  </ion-fab>\n\n  \n\n  <app-explore-container name=\"Times\"></app-explore-container>\n</ion-content>\n");
 
 /***/ }),
 
@@ -91,6 +91,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 let Tab3Page = class Tab3Page {
     constructor(alertCtrl, myFormat, myArrayFunctions) {
         this.alertCtrl = alertCtrl;
@@ -99,13 +100,49 @@ let Tab3Page = class Tab3Page {
         this.logLevel = 0;
         // End localStorage variables
         this.listTimes = [];
+        this.listTimesFull = [];
+        this.showItemsStep = 20;
+        this.showItemsCount = 20;
     }
     ionViewWillEnter() {
         this.myLog('method ionViewWillEnter', 1);
         this.actualUser = localStorage.getItem('actualUser');
         this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
         this.myLog('user "' + this.actualUser + '" - ' + JSON.stringify(this.userObject), 2);
-        this.displayTimes();
+        this.showItemsCount = 20;
+        this.displayTimes(this.showItemsStep);
+    }
+    displayTimes(itemsCount) {
+        this.myLog('method displayTimes: ' + itemsCount, 0);
+        let showItems = Math.min(itemsCount, this.showItemsCount);
+        console.log(showItems);
+        let tempTimes = [];
+        if (this.userObject.listTimes.length > 0) {
+            this.listTimesFull = this.userObject.listTimes;
+            this.listTimesFull.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
+            this.listTimesFull = this.myArrayFunctions.addIdToArrayOfObjects(this.listTimesFull);
+            tempTimes = this.listTimesFull.slice(0, showItems);
+            for (let i = 0; i < tempTimes.length; i++) {
+                tempTimes[i].tryTimeFormat = this.myFormat.formateTime(tempTimes[i].tryTime);
+            }
+        }
+        console.log(tempTimes.length);
+        this.listTimes = tempTimes;
+        this.userObject.changedTimes = false;
+    }
+    doInfinite(event) {
+        console.log('Begin async operation');
+        /*if (this.showItemsStep + this.showItemsCount > this.listTimesFull.length)
+          event.target.disabled = true;*/
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                this.showItemsCount = this.showItemsCount + this.showItemsStep;
+                this.displayTimes(this.showItemsCount);
+                console.log('Async operation has ended');
+                resolve();
+                event.target.complete();
+            }, 500);
+        });
     }
     importOne() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -135,7 +172,7 @@ let Tab3Page = class Tab3Page {
                                 this.addTimeToResults(new Date().getTime(), tryTimestamp);
                                 this.calculateNewBestTime();
                                 localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
-                                this.displayTimes();
+                                this.displayTimes(this.showItemsStep);
                             }
                         }
                     }
@@ -209,7 +246,7 @@ let Tab3Page = class Tab3Page {
                                 }
                                 this.calculateNewBestTime();
                                 localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
-                                this.displayTimes();
+                                this.displayTimes(this.showItemsStep);
                             }
                         }
                     }
@@ -217,21 +254,6 @@ let Tab3Page = class Tab3Page {
             });
             yield prompt.present();
         });
-    }
-    displayTimes() {
-        this.myLog('method displayTimes', 1);
-        let tempArray = [];
-        let tempTimes = this.userObject.listTimes;
-        if (tempTimes.length > 0) {
-            tempTimes.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
-            tempArray = this.myArrayFunctions.addIdToArrayOfObjects(tempTimes);
-            for (let i = 0; i < tempArray.length; i++) {
-                tempArray[i].tryTimeFormat = this.myFormat.formateTime(tempArray[i].tryTime);
-            }
-        }
-        this.myLog('Array this.listTimes: ' + JSON.stringify(this.listTimes), 2);
-        this.listTimes = tempTimes;
-        this.userObject.changedTimes = false;
     }
     deleteTime(delTry) {
         this.myLog('method deleteTime', 1);
@@ -244,7 +266,7 @@ let Tab3Page = class Tab3Page {
         }
         localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
         this.userObject.changedTimes = true;
-        this.displayTimes();
+        this.displayTimes(this.showItemsStep);
     }
     calculateNewBestTime() {
         this.myLog('method calculateNewBestTime', 2);
@@ -278,6 +300,10 @@ Tab3Page.ctorParameters = () => [
     { type: _services_format_time_service__WEBPACK_IMPORTED_MODULE_3__["FormatTimeService"] },
     { type: _services_array_functions_service__WEBPACK_IMPORTED_MODULE_4__["ArrayFunctionsService"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('scroll-infinite', { static: false }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonInfiniteScroll"])
+], Tab3Page.prototype, "infiniteScroll", void 0);
 Tab3Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-tab3',

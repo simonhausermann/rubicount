@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Times\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"false\">\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n            <ion-item-sliding *ngFor=\"let item of listTimes; let i = index; \">\n              <ion-item-options side=\"end\">\n                <ion-item-option color=\"danger\" expandable (click)=\"deleteTime(item)\">\n                  Delete\n                </ion-item-option>\n                <!--ion-item-option color=\"warning\" expandable>\n                  DNF\n                </ion-item-option-->\n              </ion-item-options>\n          \n              <ion-item>\n                <ion-label>\n                  <ion-grid>\n                    <ion-row>\n                      <ion-col style=\"text-align: left\">\n                        {{ item.id }}\n                      </ion-col>\n                      <ion-col style=\"text-align: center;\">\n                        {{ item.timeStamp | date: 'dd.MM.yy' }}\n                      </ion-col>\n                      <ion-col style=\"text-align: right;\">\n                        {{ item.tryTimeFormat }}\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n                </ion-label>\n              </ion-item>\n            \n              </ion-item-sliding>\n          \n        </ion-list>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button>\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n    <ion-fab-list side=\"top\">\n      <ion-fab-button (click)=\"importOne();\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n      <ion-fab-button (click)=\"importMany();\"><ion-icon name=\"download\"></ion-icon></ion-fab-button>\n    </ion-fab-list>\n  </ion-fab>\n\n  \n\n  <app-explore-container name=\"Times\"></app-explore-container>\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Times\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"false\">\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n            <ion-item-sliding *ngFor=\"let item of listTimes; let i = index; \">\n              <ion-item-options side=\"end\">\n                <ion-item-option color=\"danger\" expandable (click)=\"deleteTime(item)\">\n                  Delete\n                </ion-item-option>\n                <!--ion-item-option color=\"warning\" expandable>\n                  DNF\n                </ion-item-option-->\n              </ion-item-options>\n          \n              <ion-item>\n                <ion-label>\n                  <ion-grid>\n                    <ion-row>\n                      <ion-col style=\"text-align: left\">\n                        {{ item.id }}\n                      </ion-col>\n                      <ion-col style=\"text-align: center;\">\n                        {{ item.timeStamp | date: 'dd.MM.yy' }}\n                      </ion-col>\n                      <ion-col style=\"text-align: right;\">\n                        {{ item.tryTimeFormat }}\n                      </ion-col>\n                    </ion-row>\n                  </ion-grid>\n                </ion-label>\n              </ion-item>\n            \n              </ion-item-sliding>\n          \n        </ion-list>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  \n  <ion-infinite-scroll (ionInfinite)=\"doInfinite($event)\">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button>\n      <ion-icon name=\"add\"></ion-icon>\n    </ion-fab-button>\n    <ion-fab-list side=\"top\">\n      <ion-fab-button (click)=\"importOne();\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n      <ion-fab-button (click)=\"importMany();\"><ion-icon name=\"download\"></ion-icon></ion-fab-button>\n    </ion-fab-list>\n  </ion-fab>\n\n  \n\n  <app-explore-container name=\"Times\"></app-explore-container>\n</ion-content>\n";
     /***/
   },
 
@@ -187,6 +187,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.logLevel = 0; // End localStorage variables
 
         this.listTimes = [];
+        this.listTimesFull = [];
+        this.showItemsStep = 20;
+        this.showItemsCount = 20;
       }
 
       _createClass(Tab3Page, [{
@@ -196,13 +199,58 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.actualUser = localStorage.getItem('actualUser');
           this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
           this.myLog('user "' + this.actualUser + '" - ' + JSON.stringify(this.userObject), 2);
-          this.displayTimes();
+          this.showItemsCount = 20;
+          this.displayTimes(this.showItemsStep);
+        }
+      }, {
+        key: "displayTimes",
+        value: function displayTimes(itemsCount) {
+          this.myLog('method displayTimes: ' + itemsCount, 0);
+          var showItems = Math.min(itemsCount, this.showItemsCount);
+          console.log(showItems);
+          var tempTimes = [];
+
+          if (this.userObject.listTimes.length > 0) {
+            this.listTimesFull = this.userObject.listTimes;
+            this.listTimesFull.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
+            this.listTimesFull = this.myArrayFunctions.addIdToArrayOfObjects(this.listTimesFull);
+            tempTimes = this.listTimesFull.slice(0, showItems);
+
+            for (var i = 0; i < tempTimes.length; i++) {
+              tempTimes[i].tryTimeFormat = this.myFormat.formateTime(tempTimes[i].tryTime);
+            }
+          }
+
+          console.log(tempTimes.length);
+          this.listTimes = tempTimes;
+          this.userObject.changedTimes = false;
+        }
+      }, {
+        key: "doInfinite",
+        value: function doInfinite(event) {
+          var _this = this;
+
+          console.log('Begin async operation');
+          /*if (this.showItemsStep + this.showItemsCount > this.listTimesFull.length)
+            event.target.disabled = true;*/
+
+          return new Promise(function (resolve) {
+            setTimeout(function () {
+              _this.showItemsCount = _this.showItemsCount + _this.showItemsStep;
+
+              _this.displayTimes(_this.showItemsCount);
+
+              console.log('Async operation has ended');
+              resolve();
+              event.target.complete();
+            }, 500);
+          });
         }
       }, {
         key: "importOne",
         value: function importOne() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var _this = this;
+            var _this2 = this;
 
             var prompt;
             return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -222,21 +270,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       buttons: [{
                         text: 'Cancel',
                         handler: function handler(data) {
-                          _this.myLog('Cancel clicked', 2);
+                          _this2.myLog('Cancel clicked', 2);
                         }
                       }, {
                         text: 'Save',
                         handler: function handler(data) {
-                          if (_this.checkImportTimeFormat(data.time)) {
-                            var tryTimestamp = _this.getTSfromString(data.time);
+                          if (_this2.checkImportTimeFormat(data.time)) {
+                            var tryTimestamp = _this2.getTSfromString(data.time);
 
-                            _this.addTimeToResults(new Date().getTime(), tryTimestamp);
+                            _this2.addTimeToResults(new Date().getTime(), tryTimestamp);
 
-                            _this.calculateNewBestTime();
+                            _this2.calculateNewBestTime();
 
-                            localStorage.setItem(_this.actualUser, JSON.stringify(_this.userObject));
+                            localStorage.setItem(_this2.actualUser, JSON.stringify(_this2.userObject));
 
-                            _this.displayTimes();
+                            _this2.displayTimes(_this2.showItemsStep);
                           }
                         }
                       }]
@@ -296,7 +344,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "importMany",
         value: function importMany() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-            var _this2 = this;
+            var _this3 = this;
 
             var prompt;
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -320,7 +368,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       buttons: [{
                         text: 'Cancel',
                         handler: function handler(data) {
-                          _this2.myLog('Cancel clicked', 2);
+                          _this3.myLog('Cancel clicked', 2);
                         }
                       }, {
                         text: 'Save',
@@ -331,18 +379,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                           if (myArray.length > 0) {
                             for (var i = 0; i < myArray.length; i++) {
-                              if (_this2.checkImportTimeFormat(myArray[i])) {
-                                tryTimestamp = _this2.getTSfromString(myArray[i]);
+                              if (_this3.checkImportTimeFormat(myArray[i])) {
+                                tryTimestamp = _this3.getTSfromString(myArray[i]);
 
-                                _this2.addTimeToResults(new Date(Date.parse(data.date)).getTime() + 1000 * (myArray.length - i), tryTimestamp);
+                                _this3.addTimeToResults(new Date(Date.parse(data.date)).getTime() + 1000 * (myArray.length - i), tryTimestamp);
                               }
                             }
 
-                            _this2.calculateNewBestTime();
+                            _this3.calculateNewBestTime();
 
-                            localStorage.setItem(_this2.actualUser, JSON.stringify(_this2.userObject));
+                            localStorage.setItem(_this3.actualUser, JSON.stringify(_this3.userObject));
 
-                            _this2.displayTimes();
+                            _this3.displayTimes(_this3.showItemsStep);
                           }
                         }
                       }]
@@ -362,26 +410,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
-        key: "displayTimes",
-        value: function displayTimes() {
-          this.myLog('method displayTimes', 1);
-          var tempArray = [];
-          var tempTimes = this.userObject.listTimes;
-
-          if (tempTimes.length > 0) {
-            tempTimes.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
-            tempArray = this.myArrayFunctions.addIdToArrayOfObjects(tempTimes);
-
-            for (var i = 0; i < tempArray.length; i++) {
-              tempArray[i].tryTimeFormat = this.myFormat.formateTime(tempArray[i].tryTime);
-            }
-          }
-
-          this.myLog('Array this.listTimes: ' + JSON.stringify(this.listTimes), 2);
-          this.listTimes = tempTimes;
-          this.userObject.changedTimes = false;
-        }
-      }, {
         key: "deleteTime",
         value: function deleteTime(delTry) {
           this.myLog('method deleteTime', 1);
@@ -396,7 +424,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
           this.userObject.changedTimes = true;
-          this.displayTimes();
+          this.displayTimes(this.showItemsStep);
         }
       }, {
         key: "calculateNewBestTime",
@@ -448,6 +476,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }];
     };
 
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('scroll-infinite', {
+      "static": false
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonInfiniteScroll"])], Tab3Page.prototype, "infiniteScroll", void 0);
     Tab3Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-tab3',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
