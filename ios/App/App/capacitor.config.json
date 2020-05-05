@@ -1,4 +1,4 @@
-{
+AppDelegate.swift{
   "appId": "ch.digitalunterrichten.rubicount",
   "appName": "rubicount",
   "bundledWebRuntime": false,

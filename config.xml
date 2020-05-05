@@ -1,8 +1,8 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="ch.digitalunterrichten.rubicount" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<?xml version='1.1' encoding='utf-8'?>
+<widget id="ch.digitalunterrichten.rubicount" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Rubicount</name>
     <description>Rubik's cube timer app.</description>
-    <author email="simon.haeusermann@gmail.com" href="http://digitalunterrichten.ch/">Simon Hausermann</author>
+    <author email="simon.haeusermann@gmail.com" href="https://rubicount.wordpress.com/">Simon Hausermann</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
