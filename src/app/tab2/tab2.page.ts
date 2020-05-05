@@ -73,18 +73,17 @@ export class Tab2Page implements OnInit {
       type: "line",
       data: {
         labels: myArray['x'],
-        datasets: [
-          {
-            data: myArray['y'],
-            backgroundColor: [
-              "rgba(255, 159, 64, 0.2)"
-            ],
-            borderColor: [
-              "rgba(255, 159, 64, 1)"
-            ],
-            borderWidth: 1
-          }
-        ]
+        datasets: [{
+          data: myArray['y'],
+          borderWidth: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor:  'rgba(255, 0, 0, 0.2)',
+          pointBorderColor:  'rgba(255, 0, 0, 0.9)',
+          showLines: true,
+          pointRadius: 1,
+          pointStyle: 'circle',
+          spanGaps: false
+        }],
       },
       options: {
         legend: {

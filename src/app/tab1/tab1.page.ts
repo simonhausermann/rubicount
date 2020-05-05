@@ -71,9 +71,7 @@ export class Tab1Page {
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);
 
-    let randIndex = Math.floor(Math.random() * this.scrambler.scrambles.length);
-    this.scrambleTournament = this.scrambler.scrambles[randIndex].tournament;
-    this.scrambleString = this.scrambler.scrambles[randIndex].scramble;
+    this.setNewScramble();
     
     this.actualUser = String(localStorage.getItem('actualUser'));
     if (!this.actualUser || this.actualUser == '' || this.actualUser == 'null') { 
@@ -96,6 +94,12 @@ export class Tab1Page {
 
     this.bestTime = this.userObject.bestTime;
     
+  }
+
+  private setNewScramble() {
+    let randIndex = Math.floor(Math.random() * this.scrambler.scrambles.length);
+    this.scrambleTournament = this.scrambler.scrambles[randIndex].tournament;
+    this.scrambleString = this.scrambler.scrambles[randIndex].scramble;
   }
 
   clickTimer() {

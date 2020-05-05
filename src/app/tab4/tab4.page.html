@@ -45,8 +45,8 @@
           </ion-item-sliding>
         </ion-list>
         
-        <ion-button type="clear" color="primary" (click)="clearUserHistory()" expand="full">Clear user history</ion-button>
-        <ion-button color="primary" (click)="clearLocalStorage()" expand="full">Clear localStorage</ion-button>
+        <ion-button size="small" fill="clear" color="primary" (click)="clearUserHistory()" expand="block">Clear user history</ion-button>
+        <!--ion-button color="primary" (click)="clearLocalStorage()" expand="full">Clear users and data</ion-button-->
 
       </ion-col>
       <ion-col></ion-col>
@@ -54,9 +54,9 @@
     <ion-row>
       <ion-col></ion-col>
       <ion-col size="10" text-center>
-        <h4>credits</h4>
-        Simon Häusermann & Daniel Schmidt<br>
-        2020 during Corona in SW Australia
+        <div style="font-size: 3vw; text-align: center;"><b>credits</b><br>
+        Simon Hausermann & Daniel Schmidt<br>
+        2020 during Corona in SW Australia</div>
       </ion-col>
       <ion-col></ion-col>
     </ion-row>

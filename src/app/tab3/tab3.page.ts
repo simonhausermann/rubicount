@@ -44,11 +44,10 @@ export class Tab3Page {
   }
 
   private displayTimes(itemsCount) {
-    this.myLog('method displayTimes: '+itemsCount,0);
+    this.myLog('method displayTimes: '+itemsCount,1);
     let showItems = Math.min(itemsCount,this.showItemsCount);
-    console.log(showItems);
     let tempTimes: any = [];
-
+    this.myLog('userList Array '+JSON.stringify(this.userObject.listTimes),2);
     if (this.userObject.listTimes.length > 0) {
       this.listTimesFull = this.userObject.listTimes;
       this.listTimesFull.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
@@ -59,24 +58,16 @@ export class Tab3Page {
         tempTimes[i].tryTimeFormat = this.myFormat.formateTime(tempTimes[i].tryTime);
       }
     }
-    console.log(tempTimes.length);
     this.listTimes = tempTimes;
 
     this.userObject.changedTimes = false;
   }
 
   doInfinite(event): Promise<any> {
-    console.log('Begin async operation');
-    
-    /*if (this.showItemsStep + this.showItemsCount > this.listTimesFull.length)
-      event.target.disabled = true;*/
-
     return new Promise((resolve) => {
       setTimeout(() => {
         this.showItemsCount = this.showItemsCount + this.showItemsStep;
         this.displayTimes(this.showItemsCount);
-
-        console.log('Async operation has ended');
         resolve();
         event.target.complete();
       }, 500);
@@ -154,7 +145,7 @@ export class Tab3Page {
 
     const prompt = await this.alertCtrl.create({
       header: 'Import multiple times',
-      message: "List of times (split by nl) format MM:SS.00",
+      message: "List of times (split by space, you can copy from text list or excel) format MM:SS.00",
       inputs: [
         {
           name: 'date',

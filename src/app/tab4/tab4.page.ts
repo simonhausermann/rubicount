@@ -48,10 +48,12 @@ export class Tab4Page {
   }
 
   private createNewUserlist() {
+    this.myLog('method createNewUserList',1);
     this.userList = [];
     this.userList.push({userName: 'User 1'});
     this.setNewUserObject('User 1');
     this.saveUser();
+    this.myLog('set userList '+JSON.stringify(this.userList),2);
     localStorage.setItem('userList',JSON.stringify(this.userList));
   }
 
@@ -67,28 +69,38 @@ export class Tab4Page {
     }
   }
 
-  public clearUserHistory() {
+  async clearUserHistory() {
     this.myLog('method clearUserHistory',1);
-
-    let listTimes: Array<Object> = [{}];
-    this.setNewUserObject(this.actualUser);
-    this.saveUser();
+    const alert = await this.alertCtrl.create({
+      header: 'Confirm!',
+      message: 'Do you really want to delete all times of user '+this.actualUser,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            // cancel
+          }
+        }, {
+          text: 'Delete',
+          handler: () => {
+            this.userObject.listTimes = [];
+            this.saveUser();
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   public clearLocalStorage() {
     this.myLog('method clearLocalStorage',1);
 
-    this.actualUser = 'User 1';
-    this.setNewUserObject('User 1');
-
     localStorage.clear();
-    this.saveUser();
+    this.actualUser = 'User 1';
+    localStorage.setItem('actualUser',this.actualUser);
     this.createNewUserlist();
-  }
-
-  public updateUser() {
-    this.userObject.sound = this.sound;
-    this.userObject.darkmode = this.darkmode;
     this.saveUser();
   }
 
@@ -121,8 +133,9 @@ export class Tab4Page {
       userNameCheck = this.checkUniqueUsername('User '+i);
       
     }
-    this.userList.push({userName: 'User '+i});
-    this.setNewUserObject('User '+i);
+    this.actualUser = 'User '+i;
+    this.userList.push({userName: this.actualUser});
+    this.setNewUserObject(this.actualUser);
     this.saveUser();
     localStorage.setItem('userList',JSON.stringify(this.userList));
   }
@@ -131,7 +144,6 @@ export class Tab4Page {
     this.myLog('method checkUniqueUsername',1); 
     let check = true;
     this.userList.forEach(function (item) {
-      console.log('compare '+item.userName+' with '+userName);
       if (item.userName == userName) {
         check = false;
       }

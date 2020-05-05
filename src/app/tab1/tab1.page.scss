@@ -11,13 +11,12 @@ ion-content ion-toolbar {
   font-family: 'Roboto Mono';
   font-size: 10vw !important;
   width: 100%;
-  margin-top: 20px; margin-bottom: 15px; 
+  margin-top: 25px; 
+  margin-bottom: 20px; 
   text-align: center;
 }
 
 .user {
-  //margin-top: 15px;
-  //font-weight: bold;
   font-size: 3.5vw !important;
   text-align: center;
 }
@@ -28,6 +27,6 @@ ion-content ion-toolbar {
   text-align: center;
   padding-top: 10px;
   padding-right: 25px;
-  padding-bottom: 10px;
+  padding-bottom: 25px;
   padding-left: 25px;
 }
