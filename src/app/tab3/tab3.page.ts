@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { FormatTimeService } from '../services/format-time.service';
 import { ArrayFunctionsService } from '../services/array-functions.service';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -31,7 +32,7 @@ export class Tab3Page {
   private showItemsStep: number = 20;
   private showItemsCount: number = 20;
 
-  constructor(private alertCtrl: AlertController, private myFormat: FormatTimeService, private myArrayFunctions: ArrayFunctionsService) {}
+  constructor(private router: Router, private alertCtrl: AlertController, private myFormat: FormatTimeService, private myArrayFunctions: ArrayFunctionsService) {}
 
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);
@@ -41,6 +42,10 @@ export class Tab3Page {
     
     this.showItemsCount = 20;
     this.displayTimes(this.showItemsStep);
+  }
+
+  private goExport() {
+    this.router.navigate(['export']);
   }
 
   private displayTimes(itemsCount) {

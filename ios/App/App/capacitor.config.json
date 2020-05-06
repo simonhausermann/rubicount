@@ -1,6 +1,6 @@
-AppDelegate.swift{
-  "appId": "ch.digitalunterrichten.rubicount",
-  "appName": "rubicount",
+{
+  "appId": "io.ionic.starter",
+  "appName": "Rubicount",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
