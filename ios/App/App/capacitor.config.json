@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "ch.digitalunterrichten.rubicount",
   "appName": "Rubicount",
   "bundledWebRuntime": false,
   "npmClient": "npm",

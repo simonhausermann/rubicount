@@ -44,7 +44,7 @@ export class Tab3Page {
     this.displayTimes(this.showItemsStep);
   }
 
-  private goExport() {
+  public goExport() {
     this.router.navigate(['export']);
   }
 

@@ -32,16 +32,13 @@ export class ExportPage implements OnInit {
   }
 
   public ionViewWillEnter() {
-    console.log('ionViewWillEnter');
     this.actualUser = localStorage.getItem('actualUser');
     this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
     //this.listAr = this.getTimeAr(false);
     this.exportArea = this.getTimeString(true,'\n');
-    console.log('listAr: '+JSON.stringify(this.listAr));
   }
 
   public segmentChanged(event) {
-    console.log('segmentChanged');
     if (event.detail.value == 'time') {
       console.log('time');
       this.listAr = this.getTimeAr(false);
@@ -54,11 +51,9 @@ export class ExportPage implements OnInit {
   }
 
   private getTimeString(withDate: boolean, separator: string = '') {
-    console.log('getTimeString');
     let timesAr = this.getTimeAr(withDate);
     let stringAr = [];
     let tmpString = '';
-    console.log('start');
     for (let i = 0; i < timesAr.length; i++) {
       console.log(timesAr[i].tryTime);
       tmpString = timesAr[i].tryTimeFormat;
@@ -67,12 +62,10 @@ export class ExportPage implements OnInit {
       }
       stringAr.push(tmpString);
     }
-    console.log('getTimesString returns: '+stringAr.join(separator));
     return stringAr.join(separator);
   }
 
   private getTimeAr(withDate: boolean) {
-    console.log('getTimeAr');
     let tmpAr: { tryTimeFormat: string, dateFormat: string };
     let timesAr = this.userObject.listTimes.sort(this.myArrayFunctions.compareValues('timeStamp', 'desc'));
     let stringAr = [];
@@ -84,7 +77,6 @@ export class ExportPage implements OnInit {
       }
       stringAr.push(tmpAr);
     } 
-    console.log('getTimeAr returns: '+JSON.stringify(stringAr));
     return stringAr;
   }
 }
