@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "rubicount",
+  "appId": "ch.digitalunterrichten.rubicount",
+  "appName": "Rubicount",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -10,7 +10,7 @@
       "android-minSdkVersion": "19",
       "BackupWebStorage": "none",
       "SplashMaintainAspectRatio": "true",
-      "FadeSplashScreenDuration": "300",
+      "FadeSplashScreenDuration": "0",
       "SplashShowOnlyFirstTime": "false",
       "SplashScreen": "screen",
       "SplashScreenDelay": "3000"
