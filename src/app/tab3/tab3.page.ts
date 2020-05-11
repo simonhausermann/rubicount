@@ -4,6 +4,7 @@ import { FormatTimeService } from '../services/format-time.service';
 import { ArrayFunctionsService } from '../services/array-functions.service';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab3',
@@ -20,6 +21,7 @@ export class Tab3Page {
     userName: string, 
     bestTime: string, 
     listTimes: Array<any>,
+    language: string,
     sound: boolean,
     darkmode: boolean,
     changedTimes: boolean
@@ -32,7 +34,13 @@ export class Tab3Page {
   private showItemsStep: number = 20;
   private showItemsCount: number = 20;
 
-  constructor(private router: Router, private alertCtrl: AlertController, private myFormat: FormatTimeService, private myArrayFunctions: ArrayFunctionsService) {}
+  constructor(
+    private router: Router, 
+    private alertCtrl: AlertController, 
+    private myFormat: FormatTimeService, 
+    private myArrayFunctions: ArrayFunctionsService,
+    private translate: TranslateService
+  ) {}
 
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);
@@ -40,6 +48,7 @@ export class Tab3Page {
     this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
     this.myLog('user "'+this.actualUser+'" - '+JSON.stringify(this.userObject),2);
     
+    this.translate.use(this.userObject.language);
     this.showItemsCount = 20;
     this.displayTimes(this.showItemsStep);
   }

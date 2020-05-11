@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormatTimeService } from '../../services/format-time.service';
 import { ArrayFunctionsService } from '../../services/array-functions.service';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-export',
@@ -17,6 +17,7 @@ export class ExportPage implements OnInit {
     userName: string, 
     bestTime: string, 
     listTimes: Array<any>,
+    language: string,
     sound: boolean,
     darkmode: boolean,
     changedTimes: boolean
@@ -26,7 +27,11 @@ export class ExportPage implements OnInit {
 
   public listAr: any = [];
 
-  constructor(private myFormat: FormatTimeService, private myArrayFunctions: ArrayFunctionsService) { }
+  constructor(
+    private myFormat: FormatTimeService, 
+    private myArrayFunctions: ArrayFunctionsService,
+    private translate: TranslateService
+  ) { }
 
   ngOnInit() {
   }
@@ -34,7 +39,7 @@ export class ExportPage implements OnInit {
   public ionViewWillEnter() {
     this.actualUser = localStorage.getItem('actualUser');
     this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
-    //this.listAr = this.getTimeAr(false);
+    this.translate.use(this.userObject.language);
     this.exportArea = this.getTimeString(true,'\n');
   }
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { isArray, isObject } from 'util';
 import { AlertController } from '@ionic/angular';
-import { TextAst } from '@angular/compiler';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab4',
@@ -10,25 +10,30 @@ import { TextAst } from '@angular/compiler';
 })
 export class Tab4Page {
 
-  private logLevel: number = 0;
+  private logLevel: number = 2;
 
   // Start localStorage variables
   private userObject: {
     userName: string, 
     bestTime: string, 
     listTimes: Array<any>,
+    language: string,
     sound: boolean,
     darkmode: boolean,
     changedTimes: boolean
   };
   public actualUser: string;
-  public userList: { userName: string }[] = [];
+  public userList: { userName: string, language: string }[] = [];
   // End localStorage variables
 
   public sound: boolean;
   public darkmode: boolean;
+  public language: string;
 
-  constructor(private alertCtrl: AlertController) {}
+  constructor(
+    private alertCtrl: AlertController,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit() {
     this.myLog('method ngOnInit',1);
@@ -38,6 +43,13 @@ export class Tab4Page {
     
     this.sound = this.userObject.sound;
     this.darkmode = this.userObject.darkmode;
+    
+    if (!this.userObject.language) {
+      this.userObject.language = 'en';
+      this.saveUser();
+    }
+    this.language = this.userObject.language;
+    this.translate.use(this.userObject.language);
 
     let tmpList = JSON.parse(localStorage.getItem('userList'));
     if (!isArray(tmpList)) {
@@ -45,12 +57,18 @@ export class Tab4Page {
     } else {
       this.userList = tmpList;
     }
+
+    for (let i=0; i<this.userList.length; i++) {
+      if (!this.userList[i].language) this.userList[i].language = 'en';
+    }
+
+    this.myLog(JSON.stringify(this.userList),2);
   }
 
   private createNewUserlist() {
     this.myLog('method createNewUserList',1);
     this.userList = [];
-    this.userList.push({userName: 'User 1'});
+    this.userList.push({userName: 'User 1', language: 'en'});
     this.setNewUserObject('User 1');
     this.saveUser();
     this.myLog('set userList '+JSON.stringify(this.userList),2);
@@ -63,10 +81,17 @@ export class Tab4Page {
       userName: userName,
       bestTime: '59:59.99',
       listTimes: [],
+      language: 'en',
       sound: true,
       darkmode: false,
       changedTimes: true
     }
+  }
+
+  public languageChange(event) {
+    this.myLog('event: '+JSON.stringify(event),2);
+    this.userObject.language = this.language;
+    this.saveUser();
   }
 
   async clearUserHistory() {
@@ -107,6 +132,7 @@ export class Tab4Page {
   public updateSettings() {
     this.sound = this.userObject.sound;
     this.darkmode = this.userObject.darkmode;
+    this.language = this.userObject.language;
   }
 
   public selectUser(userName) {
@@ -134,7 +160,7 @@ export class Tab4Page {
       
     }
     this.actualUser = 'User '+i;
-    this.userList.push({userName: this.actualUser});
+    this.userList.push({ userName: this.actualUser, language: this.userObject.language});
     this.setNewUserObject(this.actualUser);
     this.saveUser();
     localStorage.setItem('userList',JSON.stringify(this.userList));
@@ -197,7 +223,7 @@ export class Tab4Page {
         tmpAr.push(item);
       }
     });
-    tmpAr.push({userName: newName});
+    tmpAr.push({ userName: newName, language: this.userObject.language });
     this.userList = tmpAr;
     localStorage.setItem('userList',JSON.stringify(this.userList));
     
@@ -247,6 +273,7 @@ export class Tab4Page {
 
   private saveUser() {
     this.myLog('method saveUser',1);
+    this.userObject.language = this.language;
     localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
   }
 

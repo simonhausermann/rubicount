@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Profiles
+      {{ 'TAB4.title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,15 +13,19 @@
       <ion-col></ion-col>
       <ion-col size="11">
         <ion-list>
-          <ion-item-sliding *ngFor="let item of userList; let i = index; ">
-            <ion-item>
-              <ion-label>
+          <ion-item *ngFor="let item of userList; let i = index; ">
                 <ion-grid class="vertical-align-content">
                   <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
                   <ng-template #thenBlock>
                   <ion-row class="ion-justify-content-center">
                     <ion-col center text-center (click)="selectUser(item.userName)" style="vertical-align: middle;">
-                      <b>{{ item.userName }} (current)</b>
+                      
+                        <ion-label><b>{{ item.userName }} ({{ 'TAB3.current' | translate }})</b></ion-label>
+                        <ion-select placeholder="{{ 'TAB4.selectOne' | translate }}" value="{{ language }}" [(ngModel)]="language" (ionChange)="languageChange($event)">
+                          <ion-select-option value="en">English</ion-select-option>
+                          <ion-select-option value="de">Deutsch</ion-select-option>
+                        </ion-select>
+                      
                     </ion-col>
                     <ion-col center text-center class="ion-text-end">
                       <ion-button fill="clear" (click)="changeUserName();" size="small"><ion-icon slot="start" name="create-outline"></ion-icon></ion-button>
@@ -40,13 +44,11 @@
                   </ng-template>
                   
                 </ion-grid>
-              </ion-label>
             </ion-item>
-          </ion-item-sliding>
         </ion-list>
         
-        <ion-button size="small" fill="clear" color="primary" (click)="clearUserHistory()" expand="block">Clear user history</ion-button>
-        <!--ion-button color="primary" (click)="clearLocalStorage()" expand="full">Clear users and data</ion-button-->
+        <ion-button size="small" fill="clear" color="primary" (click)="clearUserHistory()" expand="block">{{ 'TAB4.btnClearUserHistory' | translate }}</ion-button>
+        <!--ion-button color="primary" (click)="clearLocalStorage()" expand="full">{{ 'TAB4.btnClearUserAndData' | translate }}</ion-button-->
 
       </ion-col>
       <ion-col></ion-col>
@@ -54,7 +56,7 @@
     <ion-row>
       <ion-col></ion-col>
       <ion-col size="10" text-center>
-        <div style="ßtext-align: center;"><b>credits</b><br>
+        <div style="text-align: center;"><b>credits</b><br>
         Simon Hausermann & Daniel Schmidt<br>
         2020 during Corona in SW Australia</div>
       </ion-col>

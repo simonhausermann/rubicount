@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Statistics
+      {{ 'TAB2.title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,50 +20,50 @@
       </ion-card-content>
       <ion-card-header></ion-card-header>
       <ion-card-content>
-        <b>Personal</b>
+        <b>{{ 'TAB2.personalTitle' | translate }}</b>
         <ion-grid>
           <ion-row>
-            <ion-col>Best (PB):</ion-col>
+            <ion-col>{{ 'TAB2.personalBest' | translate }}:</ion-col>
             <ion-col>{{ bestTime }}</ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>Average:</ion-col><ion-col>{{ averageTime }}</ion-col>
+            <ion-col>{{ 'TAB2.personalAverage' | translate }}:</ion-col><ion-col>{{ averageTime }}</ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>S Deviation:</ion-col><ion-col>{{ sDeviation }}</ion-col>
+            <ion-col>{{ 'TAB2.personalSDeviation' | translate }}:</ion-col><ion-col>{{ sDeviation }}</ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>Count:</ion-col><ion-col>{{ countTimes }}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col></ion-col>
-          </ion-row>
-        </ion-grid>
-      <b>Average of 5</b>
-        <ion-grid>
-          <ion-row>
-            <ion-col>Ao5</ion-col><ion-col>{{ ao5 }}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>Best</ion-col><ion-col>{{ ao5Best }}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>Worst</ion-col><ion-col>{{ ao5Worst }}</ion-col>
+            <ion-col>{{ 'TAB2.personalCount' | translate }}:</ion-col><ion-col>{{ countTimes }}</ion-col>
           </ion-row>
           <ion-row>
             <ion-col></ion-col>
           </ion-row>
         </ion-grid>
-      <b>Average of 12</b>
+      <b>{{ 'TAB2.ao5Title' | translate }}</b>
         <ion-grid>
           <ion-row>
-            <ion-col>Ao12</ion-col><ion-col>{{ ao12 }}</ion-col>
+            <ion-col>{{ 'TAB2.ao5Ao5' | translate }}</ion-col><ion-col>{{ ao5 }}</ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>Best</ion-col><ion-col>{{ ao12Best }}</ion-col>
+            <ion-col>{{ 'TAB2.ao5Best' | translate }}</ion-col><ion-col>{{ ao5Best }}</ion-col>
           </ion-row>
           <ion-row>
-            <ion-col>Worst</ion-col><ion-col>{{ ao12Worst }}</ion-col>
+            <ion-col>{{ 'TAB2.ao5Worst' | translate }}</ion-col><ion-col>{{ ao5Worst }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+      <b>{{ 'TAB2.ao12Title' | translate }}</b>
+        <ion-grid>
+          <ion-row>
+            <ion-col>{{ 'TAB2.ao12Ao12' | translate }}</ion-col><ion-col>{{ ao12 }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{ 'TAB2.ao12Best' | translate }}</ion-col><ion-col>{{ ao12Best }}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{ 'TAB2.ao12Worst' | translate }}</ion-col><ion-col>{{ ao12Worst }}</ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>

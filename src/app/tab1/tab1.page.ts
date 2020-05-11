@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormatTimeService } from '../services/format-time.service';
 import { ScramblesService } from '../services/scrambles.service';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab1',
@@ -23,6 +24,7 @@ export class Tab1Page {
     userName: string, 
     bestTime: string, 
     listTimes: Array<any>,
+    language: string,
     sound: boolean,
     darkmode: boolean,
     changedTimes: boolean
@@ -30,12 +32,12 @@ export class Tab1Page {
       userName: 'User 1',
       bestTime: '59:59.99',
       listTimes: [],
+      language: 'en',
       sound: true,
       darkmode: false,
       changedTimes: true
   };
   public actualUser: string;
-  private userListAr: Array<string> = [];
   // End localStorage Variables
 
   public timesArray: Array<Object> = [];
@@ -63,9 +65,12 @@ export class Tab1Page {
   constructor(
     private scrambler: ScramblesService, 
     private insomnia: Insomnia, 
+    public translate: TranslateService,
     private myFormat: FormatTimeService) {
       this.funFacts = this.getFunfacts();
       console.log('log level: '+this.logLevel);
+      this.translate.setDefaultLang('en');
+      this.translate.use('en');
     }
 
   ionViewWillEnter() {
@@ -74,24 +79,9 @@ export class Tab1Page {
     this.setNewScramble();
     
     this.actualUser = String(localStorage.getItem('actualUser'));
-    if (!this.actualUser || this.actualUser == '' || this.actualUser == 'null') { 
-      this.myLog('no user found in storage, store defaul User 1: '+JSON.stringify(this.userObject),2);
-      this.myLog('this.userObject.userName:'+this.userObject.userName,2);
-      this.actualUser = this.userObject.userName;
-      this.userListAr.push(this.actualUser);
-    } else {
-      this.myLog('user found: '+this.actualUser,2);
-      this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
-      this.userListAr = JSON.parse(localStorage.getItem('userListAr'));
-    }
+    this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
 
-    this.myLog('set actual User in Storage: '+this.actualUser,2);
-    localStorage.setItem('actualUser',this.actualUser);
-    this.myLog('current userListAr: '+JSON.stringify(this.userListAr),2);
-    localStorage.setItem('userListAr',JSON.stringify(this.userListAr));
-    localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
-    this.myLog('userObject = '+JSON.stringify(this.userObject),2);
-
+    this.translate.use(this.userObject.language);
     this.bestTime = this.userObject.bestTime;
     
   }
@@ -178,12 +168,8 @@ export class Tab1Page {
     this.myLog('refreshBestTime',1);
     
     if (this.userObject.bestTime == '00:00,00' || this.myFormat.formateTime(this.elapsedTime) < this.userObject.bestTime) {
-      console.log('faster');
       this.bestTime = this.myFormat.formateTime(this.elapsedTime);
-    } else {
-      console.log('slower');
     }
-    
     this.userObject.bestTime = this.bestTime;
   }
 

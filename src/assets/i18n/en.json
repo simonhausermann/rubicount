@@ -1,0 +1,43 @@
+{
+    "TAB1": {
+        "bestTime": "Personal best"
+    },
+    "TAB2": {
+        "title": "Statistics",
+        "personalTitle": "Personal",
+        "personalBest": "Best (PB)",
+        "personalAverage": "Average",
+        "personalSDeviation": "S Deviation",
+        "personalCount": "Count",
+        "ao5Title": "Average of 5",
+        "ao5Ao5": "Ao5",
+        "ao5Best": "Best",
+        "ao5Worst": "Worst",
+        "ao12Title": "Average of 12",
+        "ao12Ao5": "Ao12",
+        "ao125Best": "Best",
+        "ao12Worst": "Worst"
+    },
+    "TAB3": {
+        "title": "Times",
+        "btnDelete": "Delete"
+    },
+    "EXPORT": {
+        "title": "Export",
+        "withDate": "with daten",
+        "justTime": "just time"
+    },
+    "TAB4": {
+        "title": "Users",
+        "current": "current",
+        "selectOne": "select",
+        "btnClearUserHistory": "Clear user history",
+        "btnClearUserAndData": "Clear users and data"
+    },
+    "TABS": {
+        "btnTimer": "Timer",
+        "btnStatistics": "Statistics",
+        "btnTimes": "Times",
+        "btnUsers": "Users"
+    }
+}

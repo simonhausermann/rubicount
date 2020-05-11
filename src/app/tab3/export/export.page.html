@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Export</ion-title>
+    <ion-title>{{ 'EXPORT.title' | translate }}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,10 +8,10 @@
   <ion-toolbar>
     <ion-segment value="date" (ionChange)="segmentChanged($event)">
       <ion-segment-button value="date">
-        <ion-label>with date</ion-label>
+        <ion-label>{{ 'EXPORT.withDate' | translate }}</ion-label>
       </ion-segment-button>
       <ion-segment-button value="time">
-        <ion-label>just time</ion-label>
+        <ion-label>{{ 'EXPORT.justTime' | translate }}</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -19,18 +19,7 @@
 
 <ion-content>
   <ion-item>
-    <ion-label position="stacked">Export</ion-label>
+    <ion-label position="stacked">{{ 'EXPORT.title' | translate }}</ion-label>
     <ion-textarea [(ngModel)]="exportArea" rows="20"></ion-textarea>
   </ion-item>
-  <!-- ion-grid>
-    <ion-row *ngFor="let item of listAr; let i = index;">
-      <ion-col></ion-col>
-        <ion-col size="11" style="user-select: text;" class="export">
-          <div style="user-select: text;">
-        {{ item.timeStamp | date: 'dd.MM.yy' }}
-        {{ item.tryTimeFormat }}</div>  
-        </ion-col>
-      <ion-col></ion-col>
-    </ion-row> 
-  </ion-grid -->
 </ion-content>

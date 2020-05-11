@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { FormatTimeService } from '../services/format-time.service';
 import { ArrayFunctionsService } from '../services/array-functions.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab2',
@@ -23,6 +24,7 @@ export class Tab2Page implements OnInit {
     userName: string, 
     bestTime: string, 
     listTimes: Array<any>,
+    language: string,
     sound: boolean,
     darkmode: boolean,
     changedTimes: boolean
@@ -45,7 +47,11 @@ export class Tab2Page implements OnInit {
   private lineChart: Chart;
   private nrItemsInGraph: any = 10;
 
-  constructor(private myFormat: FormatTimeService, private myArrayFunctions: ArrayFunctionsService) {}
+  constructor(
+    private myFormat: FormatTimeService, 
+    private myArrayFunctions: ArrayFunctionsService,
+    public translate: TranslateService
+  ) {}
 
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);
@@ -66,6 +72,7 @@ export class Tab2Page implements OnInit {
   ngOnInit() {
     this.myLog('method ngOnInit',1);
     this.loadVars();
+    this.translate.use(this.userObject.language);
     let myArray = this.userObject.listTimes;
     myArray.sort(this.myArrayFunctions.compareValues('timeStamp', 'asc'));
     myArray = this.getYFromArray(myArray);

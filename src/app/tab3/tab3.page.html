@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Times
+      {{ 'TAB3.title' | translate }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +15,7 @@
             <ion-item-sliding *ngFor="let item of listTimes; let i = index; ">
               <ion-item-options side="end">
                 <ion-item-option color="danger" expandable (click)="deleteTime(item)">
-                  Delete
+                  {{ 'TAB3.btnDelete' | translate }}
                 </ion-item-option>
                 <!--ion-item-option color="warning" expandable>
                   DNF
