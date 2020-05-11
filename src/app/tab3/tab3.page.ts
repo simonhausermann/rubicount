@@ -238,7 +238,6 @@ export class Tab3Page {
     tmpAr = this.myArrayFunctions.addIdToArrayOfObjects(tmpAr);
 
     this.userObject.listTimes = tmpAr;
-  
     return;
   }
 
