@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>Export</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n  <ion-toolbar>\n    <ion-segment value=\"date\" (ionChange)=\"segmentChanged($event)\">\n      <ion-segment-button value=\"date\">\n        <ion-label>with date</ion-label>\n      </ion-segment-button>\n      <ion-segment-button value=\"time\">\n        <ion-label>just time</ion-label>\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-item>\n    <ion-label position=\"stacked\">Export</ion-label>\n    <ion-textarea [(ngModel)]=\"exportArea\" rows=\"20\"></ion-textarea>\n  </ion-item>\n  <!-- ion-grid>\n    <ion-row *ngFor=\"let item of listAr; let i = index;\">\n      <ion-col></ion-col>\n        <ion-col size=\"11\" style=\"user-select: text;\" class=\"export\">\n          <div style=\"user-select: text;\">\n        {{ item.timeStamp | date: 'dd.MM.yy' }}\n        {{ item.tryTimeFormat }}</div>  \n        </ion-col>\n      <ion-col></ion-col>\n    </ion-row> \n  </ion-grid -->\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>{{ 'EXPORT.title' | translate }}</ion-title>\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n  </ion-toolbar>\n  <ion-toolbar>\n    <ion-segment value=\"date\" (ionChange)=\"segmentChanged($event)\">\n      <ion-segment-button value=\"date\">\n        <ion-label>{{ 'EXPORT.withDate' | translate }}</ion-label>\n      </ion-segment-button>\n      <ion-segment-button value=\"time\">\n        <ion-label>{{ 'EXPORT.justTime' | translate }}</ion-label>\n      </ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-item>\n    <ion-label position=\"stacked\">{{ 'EXPORT.title' | translate }}</ion-label>\n    <ion-textarea [(ngModel)]=\"exportArea\" rows=\"20\"></ion-textarea>\n  </ion-item>\n</ion-content>\n");
 
 /***/ }),
 
@@ -67,6 +67,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
 /* harmony import */ var _export_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./export-routing.module */ "./src/app/tab3/export/export-routing.module.ts");
 /* harmony import */ var _export_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./export.page */ "./src/app/tab3/export/export.page.ts");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
+
 
 
 
@@ -82,6 +84,7 @@ ExportPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__["TranslateModule"],
             _export_routing_module__WEBPACK_IMPORTED_MODULE_5__["ExportPageRoutingModule"]
         ],
         declarations: [_export_page__WEBPACK_IMPORTED_MODULE_6__["ExportPage"]]
@@ -119,14 +122,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/format-time.service */ "./src/app/services/format-time.service.ts");
 /* harmony import */ var _services_array_functions_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/array-functions.service */ "./src/app/services/array-functions.service.ts");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
+
 
 
 
 
 let ExportPage = class ExportPage {
-    constructor(myFormat, myArrayFunctions) {
+    constructor(myFormat, myArrayFunctions, translate) {
         this.myFormat = myFormat;
         this.myArrayFunctions = myArrayFunctions;
+        this.translate = translate;
         this.exportArea = 'asdfasdf\nsdfasfasd\ndsfsasfasdfa\nsdfadfasdf';
         // End localStorage variables
         this.listAr = [];
@@ -136,7 +142,7 @@ let ExportPage = class ExportPage {
     ionViewWillEnter() {
         this.actualUser = localStorage.getItem('actualUser');
         this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
-        //this.listAr = this.getTimeAr(false);
+        this.translate.use(this.userObject.language);
         this.exportArea = this.getTimeString(true, '\n');
     }
     segmentChanged(event) {
@@ -181,7 +187,8 @@ let ExportPage = class ExportPage {
 };
 ExportPage.ctorParameters = () => [
     { type: _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"] },
-    { type: _services_array_functions_service__WEBPACK_IMPORTED_MODULE_3__["ArrayFunctionsService"] }
+    { type: _services_array_functions_service__WEBPACK_IMPORTED_MODULE_3__["ArrayFunctionsService"] },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"] }
 ];
 ExportPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -189,7 +196,9 @@ ExportPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./export.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/tab3/export/export.page.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./export.page.scss */ "./src/app/tab3/export/export.page.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"], _services_array_functions_service__WEBPACK_IMPORTED_MODULE_3__["ArrayFunctionsService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"],
+        _services_array_functions_service__WEBPACK_IMPORTED_MODULE_3__["ArrayFunctionsService"],
+        _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"]])
 ], ExportPage);
 
 

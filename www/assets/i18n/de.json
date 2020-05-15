@@ -1,0 +1,57 @@
+{
+    "TAB1": {
+        "bestTime": "Bestzeit"
+    },
+    "TAB2": {
+        "title": "Statistik",
+        "graphShows": "Diagramm: ",
+        "personalTitle": "Persönlich",
+        "personalBest": "Bestzeit (PB)",
+        "personalAverage": "Durchschnitt",
+        "personalSDeviation": "Standard-Abweichung",
+        "personalCount": "Anzahl",
+        "ao5Title": "Average of 5",
+        "ao5Ao5": "Ao5",
+        "ao5Best": "Bester",
+        "ao5Worst": "Schlechtester",
+        "ao12Title": "Average of 12",
+        "ao12Ao12": "Ao12",
+        "ao12Best": "Bester",
+        "ao12Worst": "Schlechtester"
+    },
+    "TAB3": {
+        "title": "Zeiten",
+        "btnDelete": "Löschen"
+    },
+    "EXPORT": {
+        "title": "Export",
+        "withDate": "mit Datum",
+        "justTime": "nur Zeiten"
+    },
+    "TAB4": {
+        "title": "Benutzer",
+        "current": "aktuell",
+        "selectOne": "wählen",
+        "btnClearUserHistory": "Benutzerzeiten löschen",
+        "btnClearUserAndData": "Alle Benutzer löschen",
+        "creditTitle": "Credits",
+        "creditNames": "Simon Häusermann & Daniel Schmidt",
+        "creditCopyright": "2020 zu Corona-Zeiten Australien",
+        "alertConfirm": "Bestätigung!",
+        "alertQuestion": "Willst du wirklich alle Zeiten löschen von",
+        "alertCancel": "abbrechen",
+        "alertSave": "SPEICHERN",
+        "alertDelete": "LÖSCHEN",
+        "alertChangeTitle": "Benutzername ändern",
+        "alertChangeEnter": "Neuen Benutzernamen eingeben",
+        "alertChangeUsername": "Benutzername",
+        "alertChangePlaceholder": "Superman",
+        "alertQuestionUser": "Möchtest du wirklich löschen Benutzer"
+    },
+    "TABS": {
+        "btnTimer": "Timer",
+        "btnStatistics": "Statistik",
+        "btnTimes": "Zeiten",
+        "btnUsers": "Benutzer"
+    }
+}

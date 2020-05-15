@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Profiles\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n          <ion-item-sliding *ngFor=\"let item of userList; let i = index; \">\n            <ion-item>\n              <ion-label>\n                <ion-grid class=\"vertical-align-content\">\n                  <div *ngIf=\"actualUser == item.userName then thenBlock else elseBlock\"></div>\n                  <ng-template #thenBlock>\n                  <ion-row class=\"ion-justify-content-center\">\n                    <ion-col center text-center (click)=\"selectUser(item.userName)\" style=\"vertical-align: middle;\">\n                      <b>{{ item.userName }} (current)</b>\n                    </ion-col>\n                    <ion-col center text-center class=\"ion-text-end\">\n                      <ion-button fill=\"clear\" (click)=\"changeUserName();\" size=\"small\"><ion-icon slot=\"start\" name=\"create-outline\"></ion-icon></ion-button>\n                    </ion-col>\n                  </ion-row>\n                  </ng-template>\n                  <ng-template #elseBlock>\n                    <ion-row class=\"ion-justify-content-center\">\n                      <ion-col center text-center (click)=\"selectUser(item.userName)\"  style=\"vertical-align: middle;\">\n                        {{ item.userName }}\n                      </ion-col>\n                      <ion-col class=\"ion-text-end\">\n                        <ion-button fill=\"clear\" (click)=\"deleteUser(item.userName);\" size=\"small\"><ion-icon slot=\"start\" name=\"trash-outline\"></ion-icon></ion-button>\n                      </ion-col>\n                    </ion-row>\n                  </ng-template>\n                  \n                </ion-grid>\n              </ion-label>\n            </ion-item>\n          </ion-item-sliding>\n        </ion-list>\n        \n        <ion-button size=\"small\" fill=\"clear\" color=\"primary\" (click)=\"clearUserHistory()\" expand=\"block\">Clear user history</ion-button>\n        <!--ion-button color=\"primary\" (click)=\"clearLocalStorage()\" expand=\"full\">Clear users and data</ion-button-->\n\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"10\" text-center>\n        <div style=\"ßtext-align: center;\"><b>credits</b><br>\n        Simon Hausermann & Daniel Schmidt<br>\n        2020 during Corona in SW Australia</div>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button (click)=\"addUser()\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n  </ion-fab>\n\n\n  <app-explore-container name=\"Settings\"></app-explore-container>\n</ion-content>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      {{ 'TAB4.title' | translate }}\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n\n  <ion-grid>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <ion-list>\n          <ion-item *ngFor=\"let item of userList; let i = index; \">\n            <div *ngIf=\"actualUser == item.userName then thenBlock else elseBlock\"></div>\n              <ng-template #thenBlock>\n                <ion-label (click)=\"selectUser(item.userName)\"><b>{{ item.userName }} ({{ 'TAB4.current' | translate }})</b></ion-label>\n                <ion-select placeholder=\"{{ 'TAB4.selectOne' | translate }}\" value=\"{{ language }}\" [(ngModel)]=\"language\" (ionChange)=\"languageChange($event)\">\n                  <ion-select-option value=\"en\">English</ion-select-option>\n                  <ion-select-option value=\"de\">Deutsch</ion-select-option>\n                </ion-select>\n                <ion-button fill=\"clear\" (click)=\"changeUserName();\" size=\"small\"><ion-icon slot=\"start\" name=\"create-outline\"></ion-icon></ion-button>\n              </ng-template>\n              <ng-template #elseBlock>\n                <ion-label (click)=\"selectUser(item.userName)\">{{ item.userName }}</ion-label>\n                <ion-button fill=\"clear\" (click)=\"deleteUser(item.userName);\" size=\"small\"><ion-icon slot=\"start\" name=\"trash-outline\"></ion-icon></ion-button>\n              </ng-template>\n            </ion-item>\n        </ion-list>\n        <ion-button size=\"small\" fill=\"clear\" color=\"primary\" (click)=\"clearUserHistory()\" expand=\"block\">{{ 'TAB4.btnClearUserHistory' | translate }}</ion-button>\n        <!--ion-button color=\"primary\" (click)=\"clearLocalStorage()\" expand=\"full\">{{ 'TAB4.btnClearUserAndData' | translate }}</ion-button-->\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"10\" text-center>\n        <div style=\"text-align: center;\" class=\"user\"><b>{{ 'TAB4.creditTitle' | translate }}</b><br>\n          {{ 'TAB4.creditNames' | translate }}<br>\n          {{ 'TAB4.creditCopyright' | translate }}\n        </div>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" sedge slot=\"fixed\">\n    <ion-fab-button (click)=\"addUser()\"><ion-icon name=\"add\"></ion-icon></ion-fab-button>\n  </ion-fab>\n\n\n  <app-explore-container name=\"Settings\"></app-explore-container>\n</ion-content>\n\n");
 
 /***/ }),
 
@@ -795,6 +795,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _tab4_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./tab4.page */ "./src/app/tab4/tab4.page.ts");
 /* harmony import */ var _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../explore-container/explore-container.module */ "./src/app/explore-container/explore-container.module.ts");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
+
 
 
 
@@ -812,6 +814,7 @@ Tab4PageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
             _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_7__["ExploreContainerComponentModule"],
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateModule"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild([{ path: '', component: _tab4_page__WEBPACK_IMPORTED_MODULE_6__["Tab4Page"] }])
         ],
         declarations: [_tab4_page__WEBPACK_IMPORTED_MODULE_6__["Tab4Page"]]
@@ -850,13 +853,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! util */ "./node_modules/util/util.js");
 /* harmony import */ var util__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/fesm2015/ionic-angular.js");
+/* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
+
 
 
 
 
 let Tab4Page = class Tab4Page {
-    constructor(alertCtrl) {
+    constructor(alertCtrl, translate) {
         this.alertCtrl = alertCtrl;
+        this.translate = translate;
         this.logLevel = 0;
         this.userList = [];
     }
@@ -866,6 +872,12 @@ let Tab4Page = class Tab4Page {
         this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
         this.sound = this.userObject.sound;
         this.darkmode = this.userObject.darkmode;
+        if (!this.userObject.hasOwnProperty('language')) {
+            this.userObject.language = 'en';
+            this.saveUser();
+        }
+        this.language = this.userObject.language;
+        this.translate.use(this.userObject.language);
         let tmpList = JSON.parse(localStorage.getItem('userList'));
         if (!Object(util__WEBPACK_IMPORTED_MODULE_2__["isArray"])(tmpList)) {
             this.createNewUserlist();
@@ -873,11 +885,16 @@ let Tab4Page = class Tab4Page {
         else {
             this.userList = tmpList;
         }
+        for (let i = 0; i < this.userList.length; i++) {
+            if (!this.userList[i].language)
+                this.userList[i].language = 'en';
+        }
+        this.myLog(JSON.stringify(this.userList), 2);
     }
     createNewUserlist() {
         this.myLog('method createNewUserList', 1);
         this.userList = [];
-        this.userList.push({ userName: 'User 1' });
+        this.userList.push({ userName: 'User 1', language: 'en' });
         this.setNewUserObject('User 1');
         this.saveUser();
         this.myLog('set userList ' + JSON.stringify(this.userList), 2);
@@ -889,27 +906,33 @@ let Tab4Page = class Tab4Page {
             userName: userName,
             bestTime: '59:59.99',
             listTimes: [],
+            language: 'en',
             sound: true,
             darkmode: false,
             changedTimes: true
         };
     }
+    languageChange(event) {
+        this.myLog('event: ' + JSON.stringify(event), 2);
+        this.userObject.language = this.language;
+        this.saveUser();
+    }
     clearUserHistory() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             this.myLog('method clearUserHistory', 1);
             const alert = yield this.alertCtrl.create({
-                header: 'Confirm!',
-                message: 'Do you really want to delete all times of user ' + this.actualUser,
+                header: this.translate.instant('TAB4.alertConfirm'),
+                message: this.translate.instant('TAB4.alertQuestion') + ' ' + this.actualUser,
                 buttons: [
                     {
-                        text: 'Cancel',
+                        text: this.translate.instant('TAB4.alertCancel'),
                         role: 'cancel',
                         cssClass: 'secondary',
                         handler: (blah) => {
                             // cancel
                         }
                     }, {
-                        text: 'Delete',
+                        text: this.translate.instant('TAB4.alertDelete'),
                         handler: () => {
                             this.userObject.listTimes = [];
                             this.saveUser();
@@ -931,6 +954,7 @@ let Tab4Page = class Tab4Page {
     updateSettings() {
         this.sound = this.userObject.sound;
         this.darkmode = this.userObject.darkmode;
+        this.language = this.userObject.language;
     }
     selectUser(userName) {
         this.myLog('method selectUser', 1);
@@ -952,7 +976,7 @@ let Tab4Page = class Tab4Page {
             userNameCheck = this.checkUniqueUsername('User ' + i);
         }
         this.actualUser = 'User ' + i;
-        this.userList.push({ userName: this.actualUser });
+        this.userList.push({ userName: this.actualUser, language: this.userObject.language });
         this.setNewUserObject(this.actualUser);
         this.saveUser();
         localStorage.setItem('userList', JSON.stringify(this.userList));
@@ -971,25 +995,26 @@ let Tab4Page = class Tab4Page {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             this.myLog('method changeUserName', 1);
             const prompt = yield this.alertCtrl.create({
-                header: 'Change username',
-                message: "Enter new username",
+                header: this.translate.instant('TAB4.alertChangeTitle'),
+                message: this.translate.instant('TAB4.alertChangeEnter'),
                 inputs: [
                     {
                         name: 'username',
                         type: 'text',
-                        placeholder: 'Superman'
+                        placeholder: this.translate.instant('TAB4.alertChangePlaceholder')
                     },
                 ],
                 buttons: [
                     {
-                        text: 'Cancel',
+                        text: this.translate.instant('TAB4.alertCancel'),
                         handler: data => {
-                            console.log('Cancel clicked');
+                            // Cancel clicked
                         }
                     },
                     {
-                        text: 'Save',
+                        text: this.translate.instant('TAB4.alertSave'),
                         handler: data => {
+                            console.log(JSON.stringify(data));
                             if (this.checkUniqueUsername(data.username)) {
                                 this.changeName(data.username);
                             }
@@ -1013,7 +1038,7 @@ let Tab4Page = class Tab4Page {
                 tmpAr.push(item);
             }
         });
-        tmpAr.push({ userName: newName });
+        tmpAr.push({ userName: newName, language: this.userObject.language });
         this.userList = tmpAr;
         localStorage.setItem('userList', JSON.stringify(this.userList));
         localStorage.setItem(newName, localStorage.getItem(this.actualUser));
@@ -1024,18 +1049,18 @@ let Tab4Page = class Tab4Page {
     deleteUser(deleteName) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
             const alert = yield this.alertCtrl.create({
-                header: 'Confirm!',
-                message: 'Do you really want to delete user ' + deleteName,
+                header: this.translate.instant('TAB4.alertConfirm'),
+                message: this.translate.instant('TAB4.alertQuestionUser') + ' ' + deleteName,
                 buttons: [
                     {
-                        text: 'Cancel',
+                        text: this.translate.instant('TAB4.alertCancel'),
                         role: 'cancel',
                         cssClass: 'secondary',
                         handler: (blah) => {
                             // cancel
                         }
                     }, {
-                        text: 'Delete',
+                        text: this.translate.instant('TAB4.alertDelete'),
                         handler: () => {
                             this.reallyDeleteUser(deleteName);
                         }
@@ -1054,9 +1079,11 @@ let Tab4Page = class Tab4Page {
             }
         });
         this.userList = tmpAr;
+        localStorage.setItem('userList', JSON.stringify(this.userList));
     }
     saveUser() {
         this.myLog('method saveUser', 1);
+        this.userObject.language = this.language;
         localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
     }
     myLog(consoleText, level) {
@@ -1067,7 +1094,8 @@ let Tab4Page = class Tab4Page {
     }
 };
 Tab4Page.ctorParameters = () => [
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
+    { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"] }
 ];
 Tab4Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1075,7 +1103,8 @@ Tab4Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./tab4.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/tab4/tab4.page.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./tab4.page.scss */ "./src/app/tab4/tab4.page.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+        _ngx_translate_core__WEBPACK_IMPORTED_MODULE_4__["TranslateService"]])
 ], Tab4Page);
 
 

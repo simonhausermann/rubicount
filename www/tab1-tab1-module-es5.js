@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content [fullscreen]=\"true\" (click)=\"clickTimer()\">\n\n  <ion-grid style=\"border-color: black;\">\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n      <br><br><ion-img [src]=\"logo\" style=\"margin-bottom: 10px;\"></ion-img>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <div class=\"ion-text-center\" class=\"user\"><b>{{ actualUser }}</b></div>\n        <div class=\"ion-text-center\" class=\"user\">Best time: {{ bestTime }}</div>\n        <div class=\"timer\">{{ currentTimeDisplay }}</div>\n        <div class=\"funfact\">{{ scrambleTournament }}:<br>\n          <b>{{ scrambleString }}</b></div>\n        <ion-img [src]=\"hands\"></ion-img>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col></ion-col>\n    <ion-col size=\"10\">\n      <div class=\"funfact\">{{ funFact }}</div>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n</ion-grid>\n  \n  <app-explore-container name=\"Timer\"></app-explore-container>\n</ion-content>\n\n\n";
+    __webpack_exports__["default"] = "<ion-content [fullscreen]=\"true\" (click)=\"clickTimer()\">\n\n  <ion-grid style=\"border-color: black;\">\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n      <br><br><ion-img [src]=\"logo\" style=\"margin-bottom: 10px;\"></ion-img>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\"><b>{{ actualUser }}</b></div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\">{{ 'TAB1.bestTime' | translate }}: {{ bestTime }}</div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"timer\">{{ currentTimeDisplay }}</div>\n        <div class=\"funfact\" *ngIf=\"showIt\">{{ scrambleTournament }}:<br>\n          <b>{{ scrambleString }}</b></div>\n        <ion-img [src]=\"hands\" *ngIf=\"showIt\"></ion-img>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col></ion-col>\n    <ion-col size=\"10\">\n      <div class=\"funfact\" *ngIf=\"showIt\">{{ funFact }}</div>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n</ion-grid>\n  \n  <app-explore-container name=\"Timer\"></app-explore-container>\n</ion-content>\n\n\n";
     /***/
   },
 
@@ -949,13 +949,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ../explore-container/explore-container.module */
     "./src/app/explore-container/explore-container.module.ts");
+    /* harmony import */
+
+
+    var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! @ngx-translate/core */
+    "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
 
     var Tab1PageModule = function Tab1PageModule() {
       _classCallCheck(this, Tab1PageModule);
     };
 
     Tab1PageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
-      imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_7__["ExploreContainerComponentModule"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild([{
+      imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _explore_container_explore_container_module__WEBPACK_IMPORTED_MODULE_7__["ExploreContainerComponentModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateModule"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild([{
         path: '',
         component: _tab1_page__WEBPACK_IMPORTED_MODULE_6__["Tab1Page"]
       }])],
@@ -980,7 +986,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "ion-content ion-toolbar {\n  --background: translucent;\n}\n\n@font-face {\n  font-family: \"Roboto Mono\";\n  src: url(\"/assets/fonts/RobotoMono-Regular.ttf\");\n}\n\n.timer {\n  font-family: \"Roboto Mono\";\n  font-size: 10vw !important;\n  width: 100%;\n  margin-top: 25px;\n  margin-bottom: 20px;\n  text-align: center;\n}\n\n.user {\n  font-size: 3.5vw !important;\n  text-align: center;\n}\n\n.funfact {\n  font-size: 3.5vw !important;\n  text-align: center;\n  padding-top: 10px;\n  padding-right: 25px;\n  padding-bottom: 25px;\n  padding-left: 25px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zaW1vbi9pb25pYy9ydWJpY291bnQvc3JjL2FwcC90YWIxL3RhYjEucGFnZS5zY3NzIiwic3JjL2FwcC90YWIxL3RhYjEucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQUE7QUNDRjs7QURFQTtFQUNFLDBCQUFBO0VBQ0EsZ0RBQUE7QUNDRjs7QURFQTtFQUNFLDBCQUFBO0VBQ0EsMEJBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxtQkFBQTtFQUNBLGtCQUFBO0FDQUY7O0FER0E7RUFDRSwyQkFBQTtFQUNBLGtCQUFBO0FDQUY7O0FER0E7RUFFRSwyQkFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxtQkFBQTtFQUNBLG9CQUFBO0VBQ0Esa0JBQUE7QUNERiIsImZpbGUiOiJzcmMvYXBwL3RhYjEvdGFiMS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudCBpb24tdG9vbGJhciB7XG4gIC0tYmFja2dyb3VuZDogdHJhbnNsdWNlbnQ7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ1JvYm90byBNb25vJztcbiAgc3JjOiB1cmwoJy9hc3NldHMvZm9udHMvUm9ib3RvTW9uby1SZWd1bGFyLnR0ZicpO1xufVxuXG4udGltZXIge1xuICBmb250LWZhbWlseTogJ1JvYm90byBNb25vJztcbiAgZm9udC1zaXplOiAxMHZ3ICFpbXBvcnRhbnQ7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW4tdG9wOiAyNXB4OyBcbiAgbWFyZ2luLWJvdHRvbTogMjBweDsgXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLnVzZXIge1xuICBmb250LXNpemU6IDMuNXZ3ICFpbXBvcnRhbnQ7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmZ1bmZhY3RcbntcbiAgZm9udC1zaXplOiAzLjV2dyAhaW1wb3J0YW50O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHBhZGRpbmctdG9wOiAxMHB4O1xuICBwYWRkaW5nLXJpZ2h0OiAyNXB4O1xuICBwYWRkaW5nLWJvdHRvbTogMjVweDtcbiAgcGFkZGluZy1sZWZ0OiAyNXB4O1xufSIsImlvbi1jb250ZW50IGlvbi10b29sYmFyIHtcbiAgLS1iYWNrZ3JvdW5kOiB0cmFuc2x1Y2VudDtcbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90byBNb25vXCI7XG4gIHNyYzogdXJsKFwiL2Fzc2V0cy9mb250cy9Sb2JvdG9Nb25vLVJlZ3VsYXIudHRmXCIpO1xufVxuLnRpbWVyIHtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvIE1vbm9cIjtcbiAgZm9udC1zaXplOiAxMHZ3ICFpbXBvcnRhbnQ7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW4tdG9wOiAyNXB4O1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi51c2VyIHtcbiAgZm9udC1zaXplOiAzLjV2dyAhaW1wb3J0YW50O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5mdW5mYWN0IHtcbiAgZm9udC1zaXplOiAzLjV2dyAhaW1wb3J0YW50O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHBhZGRpbmctdG9wOiAxMHB4O1xuICBwYWRkaW5nLXJpZ2h0OiAyNXB4O1xuICBwYWRkaW5nLWJvdHRvbTogMjVweDtcbiAgcGFkZGluZy1sZWZ0OiAyNXB4O1xufSJdfQ== */";
+    __webpack_exports__["default"] = "ion-content ion-toolbar {\n  --background: translucent;\n}\n\n@font-face {\n  font-family: \"Roboto Mono\";\n  src: url(\"/assets/fonts/RobotoMono-Regular.ttf\");\n}\n\n.timer {\n  font-family: \"Roboto Mono\";\n  font-size: 10vw !important;\n  width: 100%;\n  margin-top: 25px;\n  margin-bottom: 20px;\n  text-align: center;\n}\n\n.funfact {\n  font-size: 3.5vw !important;\n  text-align: center;\n  padding-top: 10px;\n  padding-right: 25px;\n  padding-bottom: 25px;\n  padding-left: 25px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zaW1vbi9pb25pYy9ydWJpY291bnQvc3JjL2FwcC90YWIxL3RhYjEucGFnZS5zY3NzIiwic3JjL2FwcC90YWIxL3RhYjEucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQUE7QUNDRjs7QURFQTtFQUNFLDBCQUFBO0VBQ0EsZ0RBQUE7QUNDRjs7QURFQTtFQUNFLDBCQUFBO0VBQ0EsMEJBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxtQkFBQTtFQUNBLGtCQUFBO0FDQUY7O0FER0E7RUFFRSwyQkFBQTtFQUNBLGtCQUFBO0VBQ0EsaUJBQUE7RUFDQSxtQkFBQTtFQUNBLG9CQUFBO0VBQ0Esa0JBQUE7QUNERiIsImZpbGUiOiJzcmMvYXBwL3RhYjEvdGFiMS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJpb24tY29udGVudCBpb24tdG9vbGJhciB7XG4gIC0tYmFja2dyb3VuZDogdHJhbnNsdWNlbnQ7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ1JvYm90byBNb25vJztcbiAgc3JjOiB1cmwoJy9hc3NldHMvZm9udHMvUm9ib3RvTW9uby1SZWd1bGFyLnR0ZicpO1xufVxuXG4udGltZXIge1xuICBmb250LWZhbWlseTogJ1JvYm90byBNb25vJztcbiAgZm9udC1zaXplOiAxMHZ3ICFpbXBvcnRhbnQ7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW4tdG9wOiAyNXB4OyBcbiAgbWFyZ2luLWJvdHRvbTogMjBweDsgXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmZ1bmZhY3RcbntcbiAgZm9udC1zaXplOiAzLjV2dyAhaW1wb3J0YW50O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHBhZGRpbmctdG9wOiAxMHB4O1xuICBwYWRkaW5nLXJpZ2h0OiAyNXB4O1xuICBwYWRkaW5nLWJvdHRvbTogMjVweDtcbiAgcGFkZGluZy1sZWZ0OiAyNXB4O1xufSIsImlvbi1jb250ZW50IGlvbi10b29sYmFyIHtcbiAgLS1iYWNrZ3JvdW5kOiB0cmFuc2x1Y2VudDtcbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90byBNb25vXCI7XG4gIHNyYzogdXJsKFwiL2Fzc2V0cy9mb250cy9Sb2JvdG9Nb25vLVJlZ3VsYXIudHRmXCIpO1xufVxuLnRpbWVyIHtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvIE1vbm9cIjtcbiAgZm9udC1zaXplOiAxMHZ3ICFpbXBvcnRhbnQ7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW4tdG9wOiAyNXB4O1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5mdW5mYWN0IHtcbiAgZm9udC1zaXplOiAzLjV2dyAhaW1wb3J0YW50O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHBhZGRpbmctdG9wOiAxMHB4O1xuICBwYWRkaW5nLXJpZ2h0OiAyNXB4O1xuICBwYWRkaW5nLWJvdHRvbTogMjVweDtcbiAgcGFkZGluZy1sZWZ0OiAyNXB4O1xufSJdfQ== */";
     /***/
   },
 
@@ -1033,32 +1039,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @ionic-native/insomnia/ngx */
     "./node_modules/@ionic-native/insomnia/ngx/index.js");
+    /* harmony import */
+
+
+    var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! @ngx-translate/core */
+    "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
 
     var Tab1Page = /*#__PURE__*/function () {
-      function Tab1Page(scrambler, insomnia, myFormat) {
+      function Tab1Page(scrambler, insomnia, translate, myFormat) {
         _classCallCheck(this, Tab1Page);
 
         this.scrambler = scrambler;
         this.insomnia = insomnia;
+        this.translate = translate;
         this.myFormat = myFormat;
-        this.logLevel = 0;
-        /* Local storage
-          actualUser: string
-          [username]: stringified userArray
-          changedTimes: boolean (string of '0': unchanged, '1': changed)
-        */
-        // Start localStorage variables
+        this.logLevel = 0; // End localStorage Variables
 
-        this.userObject = {
-          userName: 'User 1',
-          bestTime: '59:59.99',
-          listTimes: [],
-          sound: true,
-          darkmode: false,
-          changedTimes: true
-        };
-        this.userListAr = []; // End localStorage Variables
-
+        this.showIt = true;
         this.timesArray = [];
         this.bestTime = '-';
         this.currentTimeDisplay = '00:00.00';
@@ -1073,8 +1071,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.funFact = '';
         this.logo = '../assets/images/logo.png';
         this.hands = '../assets/images/hands.png';
-        this.funFacts = this.getFunfacts();
-        console.log('log level: ' + this.logLevel);
+        this.translate.setDefaultLang('en');
+        this.translate.use('de');
       }
 
       _createClass(Tab1Page, [{
@@ -1083,25 +1081,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.myLog('method ionViewWillEnter', 1);
           this.setNewScramble();
           this.actualUser = String(localStorage.getItem('actualUser'));
-
-          if (!this.actualUser || this.actualUser == '' || this.actualUser == 'null') {
-            this.myLog('no user found in storage, store defaul User 1: ' + JSON.stringify(this.userObject), 2);
-            this.myLog('this.userObject.userName:' + this.userObject.userName, 2);
-            this.actualUser = this.userObject.userName;
-            this.userListAr.push(this.actualUser);
-          } else {
-            this.myLog('user found: ' + this.actualUser, 2);
-            this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
-            this.userListAr = JSON.parse(localStorage.getItem('userListAr'));
-          }
-
-          this.myLog('set actual User in Storage: ' + this.actualUser, 2);
-          localStorage.setItem('actualUser', this.actualUser);
-          this.myLog('current userListAr: ' + JSON.stringify(this.userListAr), 2);
-          localStorage.setItem('userListAr', JSON.stringify(this.userListAr));
-          localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
-          this.myLog('userObject = ' + JSON.stringify(this.userObject), 2);
+          this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
+          this.translate.use(this.userObject.language);
           this.bestTime = this.userObject.bestTime;
+          this.funFacts = this.getFunfacts(this.userObject.language);
         }
       }, {
         key: "setNewScramble",
@@ -1123,6 +1106,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           if (!this.startTime) {
             // start new timer
+            this.showIt = false;
             this.insomnia.keepAwake().then(function () {
               return _this.myLog('success keep awake', 2);
             }, function () {
@@ -1149,6 +1133,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }, 10);
           } else {
             // stop timer
+            this.showIt = true;
             this.insomnia.allowSleepAgain().then(function () {
               return _this.myLog('success allow sleep again', 2);
             }, function () {
@@ -1193,10 +1178,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.myLog('refreshBestTime', 1);
 
           if (this.userObject.bestTime == '00:00,00' || this.myFormat.formateTime(this.elapsedTime) < this.userObject.bestTime) {
-            console.log('faster');
             this.bestTime = this.myFormat.formateTime(this.elapsedTime);
-          } else {
-            console.log('slower');
           }
 
           this.userObject.bestTime = this.bestTime;
@@ -1220,7 +1202,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getFunfacts",
         value: function getFunfacts() {
-          return ["God's Number shows the smallest number of moves needed to solve the 3x3x3 Rubik's Cube from any random starting position. Since July of 2010 we know that this number is 20, so every position can be solved in twenty moves or less.", "It's estimated that less than 5.8% of the world's population can solve the Rubik's Cube. Statistics show that 1 in 20 people who own a Rubik's Cube can solve a Rubik's Cube.", "In 1974, a young professor of architecture in Budapest created the apparently impossible object.", "The first Magic Cube (as it was originally known) was sold in a Budapest toy shop in 1975.", "The puzzle is made up of twenty-six miniature cubes, known as 'cubies' or 'cubelets'", "The Magic Cube was renamed Rubik's Cube in 1980.", "The Rubik's Cube won Toy of the Year in 1980 and 1981.", "Over 350 million Rubik’s Cubes have been sold worldwide – making it the bestselling toy of all time.", "A Rubik's Cube has 43,252,003,274,489,856,000 possible configurations.", "With six coloured sides, 21 pieces and 54 outer surfaces, there's a combined total of over 43 QUINTILLIOIN different possible configurations.", "If you turned Rubik's Cube once every second it would take you 1400 TRILLION YEARS to finish to go through all the configurations.", "The best speed cubers* can solve the cube in under six seconds.", "The current world record holder is Mats Valk from the Netherlands. Who completed the puzzle in 5.55 seconds.", "Some speed-cubers go for style points over raw speed.", "A three-year-old in China solved the puzzle in under two minutes.", "Legos & smartphone solve Rubik's cube faster than human record"];
+          var lang = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'en';
+
+          switch (lang) {
+            case 'de':
+              {
+                return ["Die Gotteszahl (God's Number) ist die kleinste Zahl an Rotationen, welche es braucht um einen 3x3x3 Rubik's Cube aus einer beliebigen Zufallsposition zu lösen. Seit Juli 2010 wissen wir, dass diese Zahl 20 beträgt.", "Man schätzt, dass weniger als 5.8% der Weltbevölkerung einen Rubik's Cube lösen kann.", "Statistiken zeigen, dass 1 von 20 Menschen, die einen Rubik's Cube besitzen, diese auch lösen können.", "1974 hat ein junger Architekturprofessor in Budapest ein anscheinend unmögliches Objekt geschaffen.", "Der erste Magic Cube (wie er zuerst genannt wurde) wurde 1975 in a Budapest verkauft.", "Das Rätsel setzt sich aus 26 Mini-Würfeln zusammen, die 'cubies' or 'cubelets' genannt werden.", "Der Magic Cube wurde 1980 in Rubik's Cube unbenannt.", "Der Rubik's Cube gewannt den Preis «Toy of the Year» 1980 und 1981.", "Über 350 Millionen Rubik’s Cubes wurden weltweit verkauft – er ist somit das bestverkaufte Spielzeug der Welt.", "Ein Rubik's Cube hat 43,252,003,274,489,856,000 verschiedene Stellungen.", "Mit sechs farbigen Seiten, 21 Teilen and 54 äusseren Oberflächen, gibt es über 43 QUINTILLIOIN mögliche Stellungen.", "Wird ein Rubik's Cube einmal pro Sekunde gedreht, so braucht es 1400 TRILLIONEN JAHRE bis alle Stellungen einmal erreicht wurden.", "Die besten Speed Cubers lösen den Cube durchschnittlich unter 6 Sekunden.", "Der aktuelle Weltrekordhalter is Yusheng Du aus China. Er löste den Rubik's Cube an den Wuhu Open 2018 in 3.47 Sekunden.", "Für einige Speed Cubers ist Stil wichtiger als Geschwindigkeit.", "Ein dreijähriges Kind aus China löste den Rubik's Cube unter 2 Minuten.", "Legos & smartphone lösen den Rubik's cube schneller als Menschen (Stand Mai 2020 in 1.2 Sekunden).", "IN einem 2012 erschienenen Interview mit CNN hat Rubik zugegeben, dass er über einen Monat gebraucht hatte, den ersten Cube zu lösen.", "Der 12-jährige Patrick Bossert schrieb 1981 das Buch «You Can Do the Cube» und landete damit auf der New York Times Bestseller Liste.", "Von der Serie «Rubik, the Amazing Cube» wurden 1983 Samstagmorgens jeweils 13 folgen ausgestrahlt. Der Würfel bekam Beine, Gesicht und magische Fähigkeiten.", "Zum 15-jährigen Jubiläum 1995, hat die Firma Diamond Cutters International einen voll funktionalen Rubik’s Cube aus 185 Karat Diamanten gebaut.", "Als der Kubismus in der Kunstszene bereits bekannt war, entstand mit dem Rubik's Cube eine neue Stilrichtung: der Rubik’s Kubismus.", "2006 erlebte der Rubik's Cube einen Boom, als er in «The Pursuit of Happyness» von Will Smith's gelöst wurde.", "2003 sprang der Cube-Enthusiast Dan Knights aus einem Flugzeug und löste den Würfel in 45 seconds freiem Fall bevor sich der Fallschirm öffnete.", "Jakub Kipa kann den Cube in 20.57 Sekunden lösen - nur mit seinen Füssen.", "Echte Cuber wissen, dass ein Speed Cube regelmässig geölt werden muss.", "Der Erfinder des Rubik's Cube war ein Architekturprofessor, der die Idee der dreidimensionalen Geometrie aufzeigen wollte", "Die erste Weltmeisterschaft wurde 1982 in Budapest ausgetragen. Der Gewinner Minh Thai aus den USA löste den Cube in heute sehr langsamen 22.95s.", "Über 100 kg schwer und 1.56 Meter gross ist der weltgrösste Rubik’s Cube von Tony Fisher.", "Der kleinste Cube is nur gerade 6 mm gross.", "Die «World Cube Association» ist eine non-profit Organisation, die Wettkämpfe austrägt für den Rubik's Cube und andere mechanische Rätsel, weltweit seit 2004.", "Obwohl Rubik's einen eigenen Speedcube anbietet, meiden echte Speed Cubers den Originalbrand wegen mangelnder Qualität", "Ein 22x22x22 Rubik's Cube ist das weltweit grösste Drehrätsel. Es wurde 2016 fertiggestellt und besteht aus 2691 Teilen, alle erstellt mit einem handelsüblichen 3D-Drucker."];
+                break;
+              }
+
+            default:
+              {
+                return ["God's Number shows the smallest number of moves needed to solve the 3x3x3 Rubik's Cube from any random starting position. Since July of 2010 we know that this number is 20, so every position can be solved in twenty moves or less.", "It's estimated that less than 5.8% of the world's population can solve the Rubik's Cube.", "Statistics show that 1 in 20 people who own a Rubik's Cube can solve a Rubik's Cube.", "In 1974, a young professor of architecture in Budapest created the apparently impossible object.", "The first Magic Cube (as it was originally known) was sold in a Budapest toy shop in 1975.", "The puzzle is made up of twenty-six miniature cubes, known as 'cubies' or 'cubelets'", "The Magic Cube was renamed Rubik's Cube in 1980.", "The Rubik's Cube won Toy of the Year in 1980 and 1981.", "Over 350 million Rubik’s Cubes have been sold worldwide – making it the bestselling toy of all time.", "A Rubik's Cube has 43,252,003,274,489,856,000 possible configurations.", "With six coloured sides, 21 pieces and 54 outer surfaces, there's a combined total of over 43 QUINTILLIOIN different possible configurations.", "If you turned Rubik's Cube once every second it would take you 1400 TRILLION YEARS to finish to go through all the configurations.", "The best speed cubers can solve the cube in average under six seconds.", "The current world record holder is Yusheng Du from China. He completed the puzzle at the Wuhu Open 2018 in 3.47 seconds.", "Some speed-cubers go for style points over raw speed.", "A three-year-old in China solved the puzzle in under two minutes.", "Legos & smartphone solve Rubik's cube faster than human record.", "In a 2012 interview with CNN, Rubik admitted it took him more than a month to solve the Cube when he first invented it.", "12-year-old Patrick Bossert, who authored a book, You Can Do the Cube, in 1981 and wound up on the New York Times bestsellers list.", "Rubik, the Amazing Cube aired 13 episodes on Saturday mornings in 1983. The puzzle was given legs, a face, and magical abilities.", "For the puzzle’s 15th anniversary in 1995, Diamond Cutters International created a fully-functional Rubik’s Cube made out of 185 carats of diamonds.", "With Cubism already installed in art circles, the arrival of Rubik’s Cube led to a variation: Rubik’s Cubism.", "In 2006, sales experienced an uptick after the puzzle was featured in The Pursuit of Happyness: Will Smith's character is seen solving it.", "In 2003, the Cube enthusiast Dan Knights jumped from a plane at 12,000 feet, giving him roughly 45 seconds of free fall time to solve the Cube before his parachute would have to be opened.", "Jakub Kipa can solve it in 20.57 seconds using only his feet.", "Serious Cubers know that a Rubik’s Cube that hasn’t been properly maintained is going to hamper their efforts.", "The person responsible for the construction of the Rubik’s Cube is a professor of architecture, who was trying to conceive the idea of three-dimensional geometry.", "The first World Championship was held in Budapest in 1982 and the first winner was far too slow for today’s braggers; 22.95 seconds for Minh Thai from the United States.", "Weighing about 100 kg and being 1.56 meters tall, the largest Rubik’s Cube in the world is made by Tony Fisher.", "The smallest Cube is just 6 mm for the moment and people are trying to shrink it even more.", "The World Cube Association is a non-profit organisation that regulates and holds competitions for the Rubik's Cube and other mechanical twisty puzzles all over the World since 2004.", "Even though Rubik's has its own speedcube, competitive speedcubers still don't really use Rubik's branded cubes because they don't have the best quality.", "A 22x22x22 Rubik's Cube became the world's highest order twisty puzzle, created by corenpuzzle. It was completed in mid-January 2016 and it contains 2691 functioning parts made with a consumer 3D printer."];
+                break;
+              }
+          }
         }
       }]);
 
@@ -1232,6 +1228,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         type: _services_scrambles_service__WEBPACK_IMPORTED_MODULE_3__["ScramblesService"]
       }, {
         type: _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__["Insomnia"]
+      }, {
+        type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"]
       }, {
         type: _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"]
       }];
@@ -1245,7 +1243,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./tab1.page.scss */
       "./src/app/tab1/tab1.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_scrambles_service__WEBPACK_IMPORTED_MODULE_3__["ScramblesService"], _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__["Insomnia"], _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"]])], Tab1Page);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_scrambles_service__WEBPACK_IMPORTED_MODULE_3__["ScramblesService"], _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__["Insomnia"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"], _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"]])], Tab1Page);
     /***/
   }
 }]);
