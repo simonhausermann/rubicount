@@ -1,3 +1,27 @@
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('/assets/fonts/RobotoMono-Regular.ttf');
+}
+
+.timer {
+  font-family: 'Roboto Mono';
+  font-size: 10vw !important;
+  width: 100%;
+  margin-top: 25px; 
+  margin-bottom: 20px; 
+  text-align: center;
+}
+
+.funfact
+{
+  font-size: 3.5vw !important;
+  text-align: center;
+  padding-top: 10px;
+  padding-right: 25px;
+  padding-bottom: 25px;
+  padding-left: 25px;
+}
+
 .vertical-align-content > *
 {
      display: flex!important;
@@ -10,14 +34,7 @@
   text-align: center;
 }
 
-@font-face {
-  font-family: 'Roboto';
-  src: url('/assets/fonts/Roboto-Regular.ttf');
-}
 
-* {
-  font-family: 'Roboto';
-}
 
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
@@ -120,7 +137,17 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-/*@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
+
+  /* Set text color of the entire app for iOS only */
+  .ios {
+    --ion-text-color: whitesmoke;
+  }
+
+  /* Set text color of the entire app for Material Design only */
+  .md {
+    --ion-text-color: whitesmoke;
+  }
 
   body {
     --ion-color-primary: #428cff;
@@ -251,9 +278,7 @@
     --ion-color-step-950: #f3f3f3;
 
     --ion-item-background: #1e1e1e;
-
     --ion-toolbar-background: #1f1f1f;
-
     --ion-tab-bar-background: #1f1f1f;
   } 
 
@@ -261,4 +286,4 @@
     --color: white;
   }
   
-}*/
+}

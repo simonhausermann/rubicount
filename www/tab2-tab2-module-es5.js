@@ -34480,12 +34480,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 data: myArray['y'],
                 borderWidth: 1,
                 backgroundColor: 'rgba(0, 0, 0, 0)',
-                borderColor: 'rgba(255, 0, 0, 0.2)',
-                pointBorderColor: 'rgba(255, 0, 0, 0.9)',
+                borderColor: 'rgba(54, 162 , 235, 0.2)',
+                pointBorderColor: 'rgba(54, 162, 235, 0.9)',
                 showLines: true,
                 pointRadius: 1,
                 pointStyle: 'circle',
-                spanGaps: false
+                spanGaps: false,
+                display: true
               }]
             },
             options: {
@@ -34496,6 +34497,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 yAxes: [{
                   ticks: {
                     beginAtZero: true
+                  }
+                }],
+                xAxes: [{
+                  gridLines: {
+                    drawBorder: true,
+                    display: false
                   }
                 }]
               }

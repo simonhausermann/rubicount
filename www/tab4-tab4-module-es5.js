@@ -1192,8 +1192,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       }, {
                         text: this.translate.instant('TAB4.alertSave'),
                         handler: function handler(data) {
-                          console.log(JSON.stringify(data));
-
                           if (_this2.checkUniqueUsername(data.username)) {
                             _this2.changeName(data.username);
                           } else {

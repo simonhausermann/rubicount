@@ -4,7 +4,12 @@
     <ion-row>
       <ion-col></ion-col>
       <ion-col size="11">
-      <br><br><ion-img [src]="logo" style="margin-bottom: 10px;"></ion-img>
+      <br><br>
+      <picture>
+        <source srcset="../../assets/images/logowhite.png" media="(prefers-color-scheme: dark)" />
+        <source srcset="../../assets/images/logo.png" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />
+        <img src="../../assets/images/logo.png" loading="lazy" />
+      </picture>
       </ion-col>
     <ion-col></ion-col>
   </ion-row>
@@ -16,7 +21,11 @@
         <div class="timer">{{ currentTimeDisplay }}</div>
         <div class="funfact" *ngIf="showIt">{{ scrambleTournament }}:<br>
           <b>{{ scrambleString }}</b></div>
-        <ion-img [src]="hands" *ngIf="showIt"></ion-img>
+          <picture>
+            <source srcset="../../assets/images/handswhite.png" media="(prefers-color-scheme: dark)" />
+            <source srcset="../../assets/images/hands.png" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />
+            <img src="../../assets/images/hands.png" loading="lazy"  *ngIf="showIt" />
+          </picture>
       </ion-col>
     <ion-col></ion-col>
   </ion-row>
