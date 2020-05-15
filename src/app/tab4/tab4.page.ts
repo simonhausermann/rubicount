@@ -200,7 +200,6 @@ export class Tab4Page {
         {
           text: this.translate.instant('TAB4.alertSave'),
           handler: data => {
-            console.log(JSON.stringify(data));
             if (this.checkUniqueUsername(data.username)) {
               this.changeName(data.username);
             }
