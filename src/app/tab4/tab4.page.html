@@ -14,51 +14,33 @@
       <ion-col size="11">
         <ion-list>
           <ion-item *ngFor="let item of userList; let i = index; ">
-                <ion-grid class="vertical-align-content">
-                  <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
-                  <ng-template #thenBlock>
-                  <ion-row class="ion-justify-content-center">
-                    <ion-col center text-center (click)="selectUser(item.userName)" style="vertical-align: middle;">
-                      
-                        <ion-label><b>{{ item.userName }} ({{ 'TAB3.current' | translate }})</b></ion-label>
-                        <ion-select placeholder="{{ 'TAB4.selectOne' | translate }}" value="{{ language }}" [(ngModel)]="language" (ionChange)="languageChange($event)">
-                          <ion-select-option value="en">English</ion-select-option>
-                          <ion-select-option value="de">Deutsch</ion-select-option>
-                        </ion-select>
-                      
-                    </ion-col>
-                    <ion-col center text-center class="ion-text-end">
-                      <ion-button fill="clear" (click)="changeUserName();" size="small"><ion-icon slot="start" name="create-outline"></ion-icon></ion-button>
-                    </ion-col>
-                  </ion-row>
-                  </ng-template>
-                  <ng-template #elseBlock>
-                    <ion-row class="ion-justify-content-center">
-                      <ion-col center text-center (click)="selectUser(item.userName)"  style="vertical-align: middle;">
-                        {{ item.userName }}
-                      </ion-col>
-                      <ion-col class="ion-text-end">
-                        <ion-button fill="clear" (click)="deleteUser(item.userName);" size="small"><ion-icon slot="start" name="trash-outline"></ion-icon></ion-button>
-                      </ion-col>
-                    </ion-row>
-                  </ng-template>
-                  
-                </ion-grid>
+            <div *ngIf="actualUser == item.userName then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>
+                <ion-label (click)="selectUser(item.userName)"><b>{{ item.userName }} ({{ 'TAB4.current' | translate }})</b></ion-label>
+                <ion-select placeholder="{{ 'TAB4.selectOne' | translate }}" value="{{ language }}" [(ngModel)]="language" (ionChange)="languageChange($event)">
+                  <ion-select-option value="en">English</ion-select-option>
+                  <ion-select-option value="de">Deutsch</ion-select-option>
+                </ion-select>
+                <ion-button fill="clear" (click)="changeUserName();" size="small"><ion-icon slot="start" name="create-outline"></ion-icon></ion-button>
+              </ng-template>
+              <ng-template #elseBlock>
+                <ion-label (click)="selectUser(item.userName)">{{ item.userName }}</ion-label>
+                <ion-button fill="clear" (click)="deleteUser(item.userName);" size="small"><ion-icon slot="start" name="trash-outline"></ion-icon></ion-button>
+              </ng-template>
             </ion-item>
         </ion-list>
-        
         <ion-button size="small" fill="clear" color="primary" (click)="clearUserHistory()" expand="block">{{ 'TAB4.btnClearUserHistory' | translate }}</ion-button>
         <!--ion-button color="primary" (click)="clearLocalStorage()" expand="full">{{ 'TAB4.btnClearUserAndData' | translate }}</ion-button-->
-
       </ion-col>
       <ion-col></ion-col>
     </ion-row>
     <ion-row>
       <ion-col></ion-col>
       <ion-col size="10" text-center>
-        <div style="text-align: center;"><b>credits</b><br>
-        Simon Hausermann & Daniel Schmidt<br>
-        2020 during Corona in SW Australia</div>
+        <div style="text-align: center;" class="user"><b>{{ 'TAB4.creditTitle' | translate }}</b><br>
+          {{ 'TAB4.creditNames' | translate }}<br>
+          {{ 'TAB4.creditCopyright' | translate }}
+        </div>
       </ion-col>
       <ion-col></ion-col>
     </ion-row>

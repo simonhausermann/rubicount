@@ -43,9 +43,9 @@ export class Tab2Page implements OnInit {
   public ao12Best: string;
   public ao12Worst: string;
   public countTimes: number;
+  public graphCount: number = 50;
 
   private lineChart: Chart;
-  private nrItemsInGraph: any = 10;
 
   constructor(
     private myFormat: FormatTimeService, 
@@ -73,40 +73,7 @@ export class Tab2Page implements OnInit {
     this.myLog('method ngOnInit',1);
     this.loadVars();
     this.translate.use(this.userObject.language);
-    let myArray = this.userObject.listTimes;
-    myArray.sort(this.myArrayFunctions.compareValues('timeStamp', 'asc'));
-    myArray = this.getYFromArray(myArray);
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-      type: "line",
-      data: {
-        labels: myArray['x'],
-        datasets: [{
-          data: myArray['y'],
-          borderWidth: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0)',
-          borderColor:  'rgba(255, 0, 0, 0.2)',
-          pointBorderColor:  'rgba(255, 0, 0, 0.9)',
-          showLines: true,
-          pointRadius: 1,
-          pointStyle: 'circle',
-          spanGaps: false
-        }],
-      },
-      options: {
-        legend: {
-          display: false
-        },
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true
-              }
-            }
-          ]
-        }
-      }
-    });
+    this.drawChart(50);
   }
 
   private loadVars() {
@@ -120,7 +87,6 @@ export class Tab2Page implements OnInit {
 
     let tmpYAr = [];
     let tmpXAr = [];
-    let len = myArray.length;
     myArray.forEach(function (item) {
       if (item.tryTime) tmpYAr.push(item.tryTime / 1000);
       tmpXAr.push('');
@@ -212,6 +178,47 @@ export class Tab2Page implements OnInit {
     this.countTimes = this.userObject.listTimes.length;
   }
 
+  public drawChart(showNr: number = 0) {
+    this.myLog('method drawChart',1);
+    this.graphCount = showNr;
+    let myArray = this.userObject.listTimes;
+    myArray.sort(this.myArrayFunctions.compareValues('timeStamp', 'asc'));
+    if (showNr > 0) myArray = myArray.slice(0,showNr);
+    myArray = this.getYFromArray(myArray);
+    
+    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+      type: "line",
+      data: {
+        labels: myArray['x'],
+        datasets: [{
+          data: myArray['y'],
+          borderWidth: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor:  'rgba(255, 0, 0, 0.2)',
+          pointBorderColor:  'rgba(255, 0, 0, 0.9)',
+          showLines: true,
+          pointRadius: 1,
+          pointStyle: 'circle',
+          spanGaps: false
+        }],
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
+        }
+      }
+    });
+  }
+  
   private myLog(consoleText: string, level: number) {
     if (this.logLevel >= level) {
       console.log('statistics: '+consoleText);

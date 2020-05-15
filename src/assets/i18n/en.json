@@ -4,6 +4,7 @@
     },
     "TAB2": {
         "title": "Statistics",
+        "graphShows": "Graph",
         "personalTitle": "Personal",
         "personalBest": "Best (PB)",
         "personalAverage": "Average",
@@ -14,8 +15,8 @@
         "ao5Best": "Best",
         "ao5Worst": "Worst",
         "ao12Title": "Average of 12",
-        "ao12Ao5": "Ao12",
-        "ao125Best": "Best",
+        "ao12Ao12": "Ao12",
+        "ao12Best": "Best",
         "ao12Worst": "Worst"
     },
     "TAB3": {
@@ -32,7 +33,20 @@
         "current": "current",
         "selectOne": "select",
         "btnClearUserHistory": "Clear user history",
-        "btnClearUserAndData": "Clear users and data"
+        "btnClearUserAndData": "Clear users and data",
+        "creditTitle": "Credits",
+        "creditNames": "Simon Hausermann & Daniel Schmidt",
+        "creditCopyright": "2020 during Corona in SW Australia",
+        "alertConfirm": "Confirm!",
+        "alertQuestion": "Do you really want to delete all times of user",
+        "alertCancel": "cancel",
+        "alertSave": "SAVE",
+        "alertDelete": "DELETE",
+        "alertChangeTitle": "Change username",
+        "alertChangeEnter": "Enter new username",
+        "alertChangeUsername": "Username",
+        "alertChangePlaceholder": "Superman",
+        "alertQuestionUser": "Do you really want to delete user"
     },
     "TABS": {
         "btnTimer": "Timer",

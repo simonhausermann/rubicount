@@ -7,18 +7,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!--ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Statistics</ion-title>
-    </ion-toolbar>
-  </ion-header-->
-
+  
   <div class="ion-padding">
+    
     <ion-card>
+      <ion-card-content>
+        <div  style="text-align: center;">{{ 'TAB2.graphShows' | translate }}: 
+          <a (click)="drawChart(5)" [class.bold]="graphCount == 5">Ao5</a> | 
+          <a (click)="drawChart(12)" [class.bold]="graphCount == 12">Ao12</a> | 
+          <a (click)="drawChart(50)" [class.bold]="graphCount == 50">50</a> | 
+          <a (click)="drawChart(0)" [class.bold]="graphCount == 0">all</a></div>
+      </ion-card-content>
       <ion-card-content>
         <canvas #lineCanvas></canvas>
       </ion-card-content>
-      <ion-card-header></ion-card-header>
       <ion-card-content>
         <b>{{ 'TAB2.personalTitle' | translate }}</b>
         <ion-grid>

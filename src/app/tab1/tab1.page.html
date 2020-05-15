@@ -11,19 +11,19 @@
     <ion-row>
       <ion-col></ion-col>
       <ion-col size="11">
-        <div class="ion-text-center" class="user"><b>{{ actualUser }}</b></div>
-        <div class="ion-text-center" class="user">{{ 'TAB1.bestTime' | translate }}: {{ bestTime }}</div>
+        <div class="ion-text-center" class="user" *ngIf="showIt"><b>{{ actualUser }}</b></div><div class="user"  *ngIf="!showIt">&nbsp;</div>
+        <div class="ion-text-center" class="user" *ngIf="showIt">{{ 'TAB1.bestTime' | translate }}: {{ bestTime }}</div><div class="user"  *ngIf="!showIt">&nbsp;</div>
         <div class="timer">{{ currentTimeDisplay }}</div>
-        <div class="funfact">{{ scrambleTournament }}:<br>
+        <div class="funfact" *ngIf="showIt">{{ scrambleTournament }}:<br>
           <b>{{ scrambleString }}</b></div>
-        <ion-img [src]="hands"></ion-img>
+        <ion-img [src]="hands" *ngIf="showIt"></ion-img>
       </ion-col>
     <ion-col></ion-col>
   </ion-row>
   <ion-row>
     <ion-col></ion-col>
     <ion-col size="10">
-      <div class="funfact">{{ funFact }}</div>
+      <div class="funfact" *ngIf="showIt">{{ funFact }}</div>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>

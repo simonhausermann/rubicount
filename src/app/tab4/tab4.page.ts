@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class Tab4Page {
 
-  private logLevel: number = 2;
+  private logLevel: number = 0;
 
   // Start localStorage variables
   private userObject: {
@@ -44,7 +44,7 @@ export class Tab4Page {
     this.sound = this.userObject.sound;
     this.darkmode = this.userObject.darkmode;
     
-    if (!this.userObject.language) {
+    if (!this.userObject.hasOwnProperty('language')) {
       this.userObject.language = 'en';
       this.saveUser();
     }
@@ -97,18 +97,18 @@ export class Tab4Page {
   async clearUserHistory() {
     this.myLog('method clearUserHistory',1);
     const alert = await this.alertCtrl.create({
-      header: 'Confirm!',
-      message: 'Do you really want to delete all times of user '+this.actualUser,
+      header: this.translate.instant('TAB4.alertConfirm'),
+      message: this.translate.instant('TAB4.alertQuestion')+' '+this.actualUser,
       buttons: [
         {
-          text: 'Cancel',
+          text: this.translate.instant('TAB4.alertCancel'),
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
             // cancel
           }
         }, {
-          text: 'Delete',
+          text: this.translate.instant('TAB4.alertDelete'),
           handler: () => {
             this.userObject.listTimes = [];
             this.saveUser();
@@ -181,25 +181,26 @@ export class Tab4Page {
     this.myLog('method changeUserName',1);
 
     const prompt = await this.alertCtrl.create({
-      header: 'Change username',
-      message: "Enter new username",
+      header: this.translate.instant('TAB4.alertChangeTitle'),
+      message: this.translate.instant('TAB4.alertChangeEnter'),
       inputs: [
         {
           name: 'username',
           type: 'text',
-          placeholder: 'Superman'
+          placeholder: this.translate.instant('TAB4.alertChangePlaceholder')
         },
       ],
       buttons: [
         {
-          text: 'Cancel',
+          text: this.translate.instant('TAB4.alertCancel'),
           handler: data => {
-            console.log('Cancel clicked');
+            // Cancel clicked
           }
         },
         {
-          text: 'Save',
+          text: this.translate.instant('TAB4.alertSave'),
           handler: data => {
+            console.log(JSON.stringify(data));
             if (this.checkUniqueUsername(data.username)) {
               this.changeName(data.username);
             }
@@ -231,24 +232,22 @@ export class Tab4Page {
     localStorage.removeItem(this.actualUser);
     this.actualUser = newName;
     localStorage.setItem('actualUser',this.actualUser);
-
-    
   }
 
   async deleteUser(deleteName) {
     const alert = await this.alertCtrl.create({
-      header: 'Confirm!',
-      message: 'Do you really want to delete user '+deleteName,
+      header: this.translate.instant('TAB4.alertConfirm'),
+      message: this.translate.instant('TAB4.alertQuestionUser')+' '+deleteName,
       buttons: [
         {
-          text: 'Cancel',
+          text: this.translate.instant('TAB4.alertCancel'),
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
             // cancel
           }
         }, {
-          text: 'Delete',
+          text: this.translate.instant('TAB4.alertDelete'),
           handler: () => {
             this.reallyDeleteUser(deleteName);
           }
@@ -267,8 +266,8 @@ export class Tab4Page {
         tmpAr.push(item);
       }
     });
-    
     this.userList = tmpAr;
+    localStorage.setItem('userList',JSON.stringify(this.userList));
   }
 
   private saveUser() {
