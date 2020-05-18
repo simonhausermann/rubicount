@@ -19,8 +19,14 @@
         <div class="ion-text-center" class="user" *ngIf="showIt"><b>{{ actualUser }}</b></div><div class="user"  *ngIf="!showIt">&nbsp;</div>
         <div class="ion-text-center" class="user" *ngIf="showIt">{{ 'TAB1.bestTime' | translate }}: {{ bestTime }}</div><div class="user"  *ngIf="!showIt">&nbsp;</div>
         <div class="timer">{{ currentTimeDisplay }}</div>
-        <div class="funfact" *ngIf="showIt">{{ scrambleTournament }}:<br>
-          <b>{{ scrambleString }}</b></div>
+        <div class="smallCenter" *ngIf="showIt && finishedTry; else elseBlock">
+          <ion-button *ngIf="showIt && !plus2; else elsePlus2" class="click-block" style="--box-shadow:none;" size="small" color="light" (click)="tryPlusTwo();$event.stopPropagation()">  +2  </ion-button>
+          <ng-template #elsePlus2><ion-button class="click-block" style="--box-shadow:none;" size="small" color="warning" (click)="tryPlusTwo();$event.stopPropagation()">  +2  </ion-button></ng-template>
+          <!--ion-button class="click-block" size="small" color="light" (click)="tryDNF()">DNF</ion-button-->
+          <ion-button class="click-block" style="--box-shadow:none;" size="small" color="light" (click)="tryDelete();$event.stopPropagation()">Delete</ion-button></div>
+          <ng-template #elseBlock><div class="smallCenter">&nbsp;</div></ng-template>
+        <div class="smallCenter" *ngIf="showIt">{{ scrambleTournament }}<br>
+        {{ scrambleString }}</div>
           <picture>
             <source srcset="../../assets/images/handswhite.png" media="(prefers-color-scheme: dark)" />
             <source srcset="../../assets/images/hands.png" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)" />

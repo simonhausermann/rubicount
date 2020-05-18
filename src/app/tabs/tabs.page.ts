@@ -31,6 +31,7 @@ export class TabsPage {
   constructor(private translate: TranslateService) {
     this.actualUser = localStorage.getItem('actualUser');
     this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
+    this.userList = JSON.parse(localStorage.getItem('userList'));
     
     if (!this.userObject || !this.userObject.hasOwnProperty('userName')) {
       this.userObject = { 

@@ -36,6 +36,7 @@ export class Tab1Page {
   public timesArray: Array<Object> = [];
   public bestTime: any = '-';
   public currentTimeDisplay: any = '00:00.00';
+  public finishedTry: boolean = false;
 
   public scrambleTournament: string = '';
   public scrambleString: string = '';
@@ -45,6 +46,7 @@ export class Tab1Page {
   private elapsedTime: any; // ms after startTime
   private sleepModeFunction: any = false;
   private maxRunningTime = 1200000;
+  public plus2 = false;
 
   private sound: string;
   private darkmode: string;
@@ -91,6 +93,7 @@ export class Tab1Page {
     */
     if (!this.startTime) { // start new timer
       this.showIt = false;
+      this.plus2 = false;
       this.insomnia.keepAwake().then(
         () => this.myLog('success keep awake',2),
         () => this.myLog('error keep awake',2)
@@ -120,6 +123,7 @@ export class Tab1Page {
     }
     else { // stop timer
       this.showIt = true;
+      this.finishedTry = true;
       this.insomnia.allowSleepAgain().then(
         () => this.myLog('success allow sleep again',2),
         () => this.myLog('error allow sleep again',2)
@@ -147,8 +151,9 @@ export class Tab1Page {
     this.storeAllValues();
   }
 
-  private addTimeToResults() {
+  private addTimeToResults(replace: boolean = false) {
     this.myLog('method addTimeToResults',1);
+    if (replace) this.userObject.listTimes.pop();
     this.userObject.listTimes.push({
       timeStamp: this.startTime + this.elapsedTime,
       tryTime: this.elapsedTime
@@ -169,6 +174,29 @@ export class Tab1Page {
     this.myLog('method storeAllValues: ',1);
     this.userObject.changedTimes = true;
     localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
+  }
+  
+  public tryPlusTwo() {
+    if (!this.plus2) {
+      this.elapsedTime = this.elapsedTime + 2000;
+      this.plus2 = true;
+    } else {
+      this.elapsedTime = this.elapsedTime - 2000;
+      this.plus2 = false;
+    }
+    this.addTimeToResults(true);
+    this.refreshBestTime();
+    this.storeAllValues();
+    this.currentTimeDisplay = this.myFormat.formateTime(this.elapsedTime);
+  }
+
+  public tryDelete() {
+    this.myLog('method tryDelete',1);
+    this.userObject.listTimes.pop();
+    this.refreshBestTime();
+    this.storeAllValues();
+    this.currentTimeDisplay = '00:00.00';
+    this.finishedTry = false;
   }
 
   private myLog(consoleText: string, level: number) {    

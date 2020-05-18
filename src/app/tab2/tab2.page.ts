@@ -87,10 +87,13 @@ export class Tab2Page implements OnInit {
 
     let tmpYAr = [];
     let tmpXAr = [];
-    myArray.forEach(function (item) {
-      if (item.tryTime) tmpYAr.push(item.tryTime / 1000);
+    for (let i = 0; i < myArray.length; i++) {
+      if (myArray[i].tryTime > 0) {
+        tmpYAr.push(myArray[i].tryTime / 1000);
+      }
       tmpXAr.push('');
-    });
+    }
+    
     let tmpAr = [];
     tmpAr['x'] = tmpXAr;
     tmpAr['y'] = tmpYAr;
@@ -179,37 +182,107 @@ export class Tab2Page implements OnInit {
   }
 
   public drawChart(showNr: number = 0) {
-    this.myLog('method drawChart',1);
+    this.myLog('method drawChart - showNr: '+showNr,1);
     this.graphCount = showNr;
     let myArray = this.userObject.listTimes;
     myArray.sort(this.myArrayFunctions.compareValues('timeStamp', 'asc'));
-    if (showNr > 0) myArray = myArray.slice(0,showNr);
+    if (showNr > 0) myArray = myArray.slice(myArray.length - showNr, myArray.length);
     myArray = this.getYFromArray(myArray);
-    
+
+    let firstArray: any = [];
+    let secondArray: any = [];
+    let tryArray = [];
+    let worstBestArray = [];
+    let bestFound: boolean = false;
+    let worstFound: boolean = false;
+    // firstArray = myArray;
+    if (showNr==5) {
+      for (let i = 0; i < myArray['y'].length; i++) {
+        //this.myLog('compare '+this.ao5Best+' with '+this.myFormat.formateTime(myArray['y'][i]*1000),0);
+        if (!bestFound && this.ao5Best == this.myFormat.formateTime(myArray['y'][i]*1000)) {
+          worstBestArray[i] = myArray['y'][i];
+          tryArray[i] = null;
+          bestFound = true;
+        } else if (!worstFound && this.ao5Worst == this.myFormat.formateTime(myArray['y'][i]*1000)) {
+          worstBestArray[i] = myArray['y'][i]
+          tryArray[i] = null;
+          worstFound = true;
+        } else {
+          tryArray[i] = myArray['y'][i];
+          worstBestArray[i] = null;
+        }
+      }
+      firstArray['y'] = tryArray;
+      secondArray['y'] = worstBestArray;
+    } else if (showNr == 12) {
+      for (let i = 0; i < myArray['x'].length; i++) {
+        if (!bestFound && this.ao12Best == this.myFormat.formateTime(myArray['y'][i]*1000)) {
+          worstBestArray[i] = myArray['y'][i];
+          tryArray[i] = null;
+          bestFound = true;
+        } else if (!worstFound && this.ao12Worst == this.myFormat.formateTime(myArray['y'][i]*1000)) {
+          worstBestArray[i] = myArray['y'][i]
+          tryArray[i] = null;
+          worstFound = true;
+        } else {
+          tryArray[i] = myArray['y'][i];
+          worstBestArray[i] = null;
+        }
+      }
+      firstArray['y'] = tryArray;
+      secondArray['y'] = worstBestArray;
+    } else {
+      firstArray['y'] = myArray['y'];
+    }
+
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: "line",
       data: {
         labels: myArray['x'],
-        datasets: [{
+        datasets: [/*{
           data: myArray['y'],
+          borderWidth: 0,
+          borderColor:  'rgba(0, 0 , 0, 0.5)',
+          pointBorderColor:  'rgba(255, 20, 10, 0.9)',
+          showLines: true,
+          pointRadius: 0,
+          pointStyle: 'circle',
+          spanGaps: true,
+          display: true
+        },*/
+        {
+          data: firstArray['y'],
           borderWidth: 1,
           backgroundColor: 'rgba(0, 0, 0, 0)',
-          borderColor:  'rgba(54, 162 , 235, 0.2)',
-          pointBorderColor:  'rgba(54, 162, 235, 0.9)',
-          showLines: true,
+          borderColor:  'rgba(255, 20 , 10, 0.5)',
+          pointBorderColor:  'rgba(255, 20, 10, 0.9)',
           pointRadius: 1,
           pointStyle: 'circle',
+          spanGaps: true,
+          display: false
+        },
+        {
+          data: secondArray['y'],
+          borderWidth: 1,
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          borderColor:  'rgba(0, 0 , 0, 0)',
+          pointBorderColor:  'rgba(54, 162, 235, 0.9)',
+          pointRadius: 2,
+          pointStyle: 'circle',
           spanGaps: false,
-          display: true
+          display: false
         }],
       },
       options: {
+        spanGaps: false,
+        showLines: true,
         legend: {
           display: false
         },
         scales: {
           yAxes: [{ ticks: { beginAtZero: true } }],
           xAxes: [{
+              display: false,
               gridLines: {
                 drawBorder: true,
                 display: false
@@ -218,6 +291,7 @@ export class Tab2Page implements OnInit {
         }
       }
     });
+    //this.lineChart.update();
   }
   
   private myLog(consoleText: string, level: number) {

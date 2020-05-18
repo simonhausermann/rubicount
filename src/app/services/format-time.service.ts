@@ -8,6 +8,7 @@ export class FormatTimeService {
   constructor() { }
 
   public formateTime(timeInMs) {
+    
     if (!isNaN(timeInMs)) {
       let timeAr: any = { m: '00', s: '00', hs: '00'}
       timeAr.m = Math.floor((timeInMs % (1000 * 60 * 60)) / (1000 * 60));
