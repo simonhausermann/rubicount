@@ -1023,19 +1023,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! @ionic-native/social-sharing/ngx */
+    "./node_modules/@ionic-native/social-sharing/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_screenshot_ngx__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! @ionic-native/screenshot/ngx */
+    "./node_modules/@ionic-native/screenshot/ngx/index.js");
+    /* harmony import */
+
+
+    var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! @ngx-translate/core */
     "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
     /* harmony import */
 
 
-    var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! @ngx-translate/http-loader */
     "./node_modules/@ngx-translate/http-loader/fesm2015/ngx-translate-http-loader.js");
     /* harmony import */
 
 
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/fesm2015/http.js"); //import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -1045,7 +1057,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     function HttpLoaderFactory(http) {
-      return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_9__["TranslateHttpLoader"](http);
+      return new _ngx_translate_http_loader__WEBPACK_IMPORTED_MODULE_11__["TranslateHttpLoader"](http);
     }
 
     var AppModule = function AppModule() {
@@ -1055,16 +1067,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       declarations: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]],
       entryComponents: [],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateModule"].forRoot({
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClientModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__["TranslateModule"].forRoot({
         loader: {
-          provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_8__["TranslateLoader"],
+          provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_10__["TranslateLoader"],
           useFactory: HttpLoaderFactory,
-          deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClient"]]
+          deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_12__["HttpClient"]]
         }
       })],
       providers: [
       /*StatusBar,*/
-      _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_7__["Insomnia"], {
+      _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_7__["Insomnia"], _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_8__["SocialSharing"], _ionic_native_screenshot_ngx__WEBPACK_IMPORTED_MODULE_9__["Screenshot"], {
         provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"],
         useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
       }],

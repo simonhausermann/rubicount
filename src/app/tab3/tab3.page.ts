@@ -178,7 +178,7 @@ export class Tab3Page {
               }
               this.calculateNewBestTime();
               localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
-              this.displayTimes(this.showItemsStep); }
+              this.displayTimes(this.showItemsStep);}
           }
         }
       ]

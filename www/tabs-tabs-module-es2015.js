@@ -3078,6 +3078,7 @@ let TabsPage = class TabsPage {
         this.userList = [];
         this.actualUser = localStorage.getItem('actualUser');
         this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
+        this.userList = JSON.parse(localStorage.getItem('userList'));
         if (!this.userObject || !this.userObject.hasOwnProperty('userName')) {
             this.userObject = {
                 userName: 'User 1',

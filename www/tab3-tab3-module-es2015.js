@@ -221,27 +221,12 @@ let Tab3Page = class Tab3Page {
                 header: 'Import multiple times',
                 message: "List of times (split by space, you can copy from text list or excel) format MM:SS.00",
                 inputs: [
-                    {
-                        name: 'date',
-                        type: 'date',
-                        placeholder: 'DD.MM.YYYY'
-                    },
-                    {
-                        name: 'times',
-                        type: 'text',
-                        placeholder: '15:13.11 16:12.33 ...'
-                    },
+                    { name: 'date', type: 'date', placeholder: 'DD.MM.YYYY' },
+                    { name: 'times', type: 'text', placeholder: '15:13.11 16:12.33 ...' }
                 ],
                 buttons: [
-                    {
-                        text: 'Cancel',
-                        handler: data => {
-                            this.myLog('Cancel clicked', 2);
-                        }
-                    },
-                    {
-                        text: 'Save',
-                        handler: data => {
+                    { text: 'Cancel', handler: data => { this.myLog('Cancel clicked', 2); } },
+                    { text: 'Save', handler: data => {
                             let myArray;
                             myArray = data.times.split(' ');
                             let tryTimestamp;

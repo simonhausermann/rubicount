@@ -3,6 +3,8 @@ import { FormatTimeService } from '../services/format-time.service';
 import { ScramblesService } from '../services/scrambles.service';
 import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { TranslateService } from '@ngx-translate/core';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Screenshot } from '@ionic-native/screenshot/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -53,6 +55,7 @@ export class Tab1Page {
 
   private funFacts: Array<string>;
   public funFact: string = '';
+  public firstShow: boolean = true;
 
   public logo: string = '../assets/images/logo.png';
   public hands: string = '../assets/images/hands.png';
@@ -61,10 +64,17 @@ export class Tab1Page {
     private scrambler: ScramblesService, 
     private insomnia: Insomnia, 
     public translate: TranslateService,
+    private socialSharing: SocialSharing,
+    private screenshot: Screenshot,
     private myFormat: FormatTimeService) {
       this.translate.setDefaultLang('en');
       this.translate.use('de');
     }
+
+  ngOnInit() {
+    this.myLog('method ngOnInit',1);
+
+  }
 
   ionViewWillEnter() {
     this.myLog('method ionViewWillEnter',1);
@@ -74,9 +84,29 @@ export class Tab1Page {
     this.actualUser = String(localStorage.getItem('actualUser'));
     this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
 
+    if (this.userObject.listTimes.length > 0) this.firstShow = false;
     this.translate.use(this.userObject.language);
     this.bestTime = this.userObject.bestTime;
     this.funFacts = this.getFunfacts(this.userObject.language);
+  }
+
+  public sendShare() {
+
+    this.showIt = false;
+    this.ngOnInit();
+
+    this.screenshot.URI(80).then((res) => {
+      this.socialSharing.share(this.translate.instant('SHARE.solvedIn')+' '+this.currentTimeDisplay, null, res.URI, null).then(() => {},
+        () => { 
+          this.myLog('SocialSharing failed',1);
+        });
+      },
+      () => {
+      this.myLog('Screenshot failed',1);
+    });
+
+    this.showIt = true;
+    this.ngOnInit();
   }
 
   private setNewScramble() {
@@ -91,6 +121,7 @@ export class Tab1Page {
       if timer is not running, start timer. If timer is running, 
       stopp it an call function to process result.
     */
+    this.firstShow = false;
     if (!this.startTime) { // start new timer
       this.showIt = false;
       this.plus2 = false;
@@ -164,10 +195,14 @@ export class Tab1Page {
   private refreshBestTime() {
     this.myLog('refreshBestTime',1);
     
-    if (this.userObject.bestTime == '00:00,00' || this.myFormat.formateTime(this.elapsedTime) < this.userObject.bestTime) {
-      this.bestTime = this.myFormat.formateTime(this.elapsedTime);
+    this.userObject.bestTime = this.myFormat.formateTime(0);
+    if (this.userObject.listTimes.length > 0) {
+      console.log('yes');
+      let best = 999999999;
+      this.userObject.listTimes.forEach(function (item) { if (item.tryTime < best) best = item.tryTime; });
+      this.userObject.bestTime = this.myFormat.formateTime(best);
     }
-    this.userObject.bestTime = this.bestTime;
+    this.bestTime = this.userObject.bestTime;
   }
 
   private storeAllValues() {
@@ -193,9 +228,9 @@ export class Tab1Page {
   public tryDelete() {
     this.myLog('method tryDelete',1);
     this.userObject.listTimes.pop();
+    this.currentTimeDisplay = this.myFormat.formateTime(0);
     this.refreshBestTime();
     this.storeAllValues();
-    this.currentTimeDisplay = '00:00.00';
     this.finishedTry = false;
   }
 
@@ -212,7 +247,7 @@ export class Tab1Page {
         return [ 
           "Die Gotteszahl (God's Number) ist die kleinste Zahl an Rotationen, welche es braucht um einen 3x3x3 Rubik's Cube aus einer beliebigen Zufallsposition zu lösen. Seit Juli 2010 wissen wir, dass diese Zahl 20 beträgt.",
           "Man schätzt, dass weniger als 5.8% der Weltbevölkerung einen Rubik's Cube lösen kann.",
-          "Statistiken zeigen, dass 1 von 20 Menschen, die einen Rubik's Cube besitzen, diese auch lösen können.",
+          "Statistiken zeigen, dass 1 von 20 Menschen, die einen Rubik's Cube besitzen, diesen auch lösen können.",
           "1974 hat ein junger Architekturprofessor in Budapest ein anscheinend unmögliches Objekt geschaffen.",
           "Der erste Magic Cube (wie er zuerst genannt wurde) wurde 1975 in a Budapest verkauft.",
           "Das Rätsel setzt sich aus 26 Mini-Würfeln zusammen, die 'cubies' or 'cubelets' genannt werden.",
@@ -220,11 +255,11 @@ export class Tab1Page {
           "Der Rubik's Cube gewannt den Preis «Toy of the Year» 1980 und 1981.",
           "Über 350 Millionen Rubik’s Cubes wurden weltweit verkauft – er ist somit das bestverkaufte Spielzeug der Welt.",
           "Ein Rubik's Cube hat 43,252,003,274,489,856,000 verschiedene Stellungen.",
-          "Mit sechs farbigen Seiten, 21 Teilen and 54 äusseren Oberflächen, gibt es über 43 QUINTILLIOIN mögliche Stellungen.",
+          "Mit sechs farbigen Seiten, 21 Teilen and 54 äusseren Oberflächen, gibt es über 43 QUINTILLIONEN mögliche Stellungen.",
           "Wird ein Rubik's Cube einmal pro Sekunde gedreht, so braucht es 1400 TRILLIONEN JAHRE bis alle Stellungen einmal erreicht wurden.",
           "Die besten Speed Cubers lösen den Cube durchschnittlich unter 6 Sekunden.",
           "Der aktuelle Weltrekordhalter is Yusheng Du aus China. Er löste den Rubik's Cube an den Wuhu Open 2018 in 3.47 Sekunden.",
-          "Für einige Speed Cubers ist Stil wichtiger als Geschwindigkeit.",
+          "Für einige Speed Cuber ist Stil wichtiger als Geschwindigkeit.",
           "Ein dreijähriges Kind aus China löste den Rubik's Cube unter 2 Minuten.",
           "Legos & smartphone lösen den Rubik's cube schneller als Menschen (Stand Mai 2020 in 1.2 Sekunden).",
           "IN einem 2012 erschienenen Interview mit CNN hat Rubik zugegeben, dass er über einen Monat gebraucht hatte, den ersten Cube zu lösen.",
@@ -258,7 +293,7 @@ export class Tab1Page {
           "The Rubik's Cube won Toy of the Year in 1980 and 1981.",
           "Over 350 million Rubik’s Cubes have been sold worldwide – making it the bestselling toy of all time.",
           "A Rubik's Cube has 43,252,003,274,489,856,000 possible configurations.",
-          "With six coloured sides, 21 pieces and 54 outer surfaces, there's a combined total of over 43 QUINTILLIOIN different possible configurations.",
+          "With six coloured sides, 21 pieces and 54 outer surfaces, there's a combined total of over 43 QUINTILLIONS different possible configurations.",
           "If you turned Rubik's Cube once every second it would take you 1400 TRILLION YEARS to finish to go through all the configurations.",
           "The best speed cubers can solve the cube in average under six seconds.",
           "The current world record holder is Yusheng Du from China. He completed the puzzle at the Wuhu Open 2018 in 3.47 seconds.",

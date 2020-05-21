@@ -13,7 +13,7 @@ export class TabsPage {
   // Start localStorage variables
   private userObject: {
     userName: string, 
-    bestTime: string, 
+    bestTime: string,
     listTimes: Array<any>,
     language: string,
     sound: boolean,

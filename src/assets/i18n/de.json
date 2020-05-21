@@ -1,6 +1,9 @@
 {
     "TAB1": {
-        "bestTime": "Bestzeit"
+        "bestTime": "Bestzeit",
+        "btnDelete": "löschen",
+        "btnShare": "teilen",
+        "firstStart": "> Irgendwo Klicken zum Starten und Stoppen <"
     },
     "TAB2": {
         "title": "Statistik",
@@ -53,5 +56,8 @@
         "btnStatistics": "Statistik",
         "btnTimes": "Zeiten",
         "btnUsers": "Benutzer"
+    },
+    "SHARE": {
+        "solvedIn": "Rubiks Cube gelöst in"
     }
 }

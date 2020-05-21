@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-content [fullscreen]=\"true\" (click)=\"clickTimer()\">\n\n  <ion-grid style=\"border-color: black;\">\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n      <br><br>\n      <picture>\n        <source srcset=\"../../assets/images/logowhite.png\" media=\"(prefers-color-scheme: dark)\" />\n        <source srcset=\"../../assets/images/logo.png\" media=\"(prefers-color-scheme: light), (prefers-color-scheme: no-preference)\" />\n        <img src=\"../../assets/images/logo.png\" loading=\"lazy\" />\n      </picture>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\"><b>{{ actualUser }}</b></div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\">{{ 'TAB1.bestTime' | translate }}: {{ bestTime }}</div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"timer\">{{ currentTimeDisplay }}</div>\n        <div class=\"funfact\" *ngIf=\"showIt\">{{ scrambleTournament }}:<br>\n          <b>{{ scrambleString }}</b></div>\n          <picture>\n            <source srcset=\"../../assets/images/handswhite.png\" media=\"(prefers-color-scheme: dark)\" />\n            <source srcset=\"../../assets/images/hands.png\" media=\"(prefers-color-scheme: light), (prefers-color-scheme: no-preference)\" />\n            <img src=\"../../assets/images/hands.png\" loading=\"lazy\"  *ngIf=\"showIt\" />\n          </picture>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col></ion-col>\n    <ion-col size=\"10\">\n      <div class=\"funfact\" *ngIf=\"showIt\">{{ funFact }}</div>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n</ion-grid>\n  \n  <app-explore-container name=\"Timer\"></app-explore-container>\n</ion-content>\n\n\n";
+    __webpack_exports__["default"] = "<ion-content [fullscreen]=\"true\" (click)=\"clickTimer()\">\n\n  <ion-grid style=\"border-color: black;\">\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n      <br><br>\n      <picture>\n        <source srcset=\"../../assets/images/logowhite.png\" media=\"(prefers-color-scheme: dark)\" />\n        <source srcset=\"../../assets/images/logo.png\" media=\"(prefers-color-scheme: light), (prefers-color-scheme: no-preference)\" />\n        <img src=\"../../assets/images/logo.png\" loading=\"lazy\" />\n      </picture>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\"><b>{{ actualUser }}</b></div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\">{{ 'TAB1.bestTime' | translate }}: {{ bestTime }}</div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"timer\">{{ currentTimeDisplay }}</div>\n        <div class=\"smallCenter\" *ngIf=\"showIt && finishedTry; else elseBlock\">\n          <ion-button *ngIf=\"showIt && !plus2; else elsePlus2\" class=\"click-block\" style=\"--box-shadow:none;\" size=\"small\" color=\"light\" (click)=\"tryPlusTwo();$event.stopPropagation()\">  +2  </ion-button>\n          <ng-template #elsePlus2><ion-button class=\"click-block\" style=\"--box-shadow:none;\" size=\"small\" color=\"warning\" (click)=\"tryPlusTwo();$event.stopPropagation()\">  +2  </ion-button></ng-template>\n          <!--ion-button class=\"click-block\" size=\"small\" color=\"light\" (click)=\"tryDNF()\">DNF</ion-button-->\n          <ion-button class=\"click-block\" style=\"--box-shadow:none;\" size=\"small\" color=\"light\" (click)=\"tryDelete();$event.stopPropagation()\">{{ 'TAB1.btnDelete' | translate }}</ion-button>\n          <ion-button class=\"click-block\" style=\"--box-shadow:none;\" size=\"small\" color=\"light\" (click)=\"sendShare(); $event.stopPropagation()\">{{ 'TAB1.btnShare' | translate }}</ion-button>\n        </div>\n        <ng-template #elseBlock><div class=\"smallCenter\">&nbsp;</div></ng-template>\n        <div class=\"smallCenter\" *ngIf=\"firstShow\"><ion-text color=\"danger\"><b>{{ 'TAB1.firstStart' | translate }}</b></ion-text></div>\n        <div class=\"smallCenter\" *ngIf=\"showIt\">{{ scrambleTournament }}<br>\n        {{ scrambleString }}</div>\n          <picture>\n            <source srcset=\"../../assets/images/handswhite.png\" media=\"(prefers-color-scheme: dark)\" />\n            <source srcset=\"../../assets/images/hands.png\" media=\"(prefers-color-scheme: light), (prefers-color-scheme: no-preference)\" />\n            <img src=\"../../assets/images/hands.png\" loading=\"lazy\"  *ngIf=\"showIt\" />\n          </picture>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col></ion-col>\n    <ion-col size=\"10\">\n      <div class=\"funfact\" *ngIf=\"showIt\">{{ funFact }}</div>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n</ion-grid>\n  \n  <app-explore-container name=\"Timer\"></app-explore-container>\n</ion-content>\n\n\n";
     /***/
   },
 
@@ -1045,14 +1045,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! @ngx-translate/core */
     "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
+    /* harmony import */
+
+
+    var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! @ionic-native/social-sharing/ngx */
+    "./node_modules/@ionic-native/social-sharing/ngx/index.js");
+    /* harmony import */
+
+
+    var _ionic_native_screenshot_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! @ionic-native/screenshot/ngx */
+    "./node_modules/@ionic-native/screenshot/ngx/index.js");
 
     var Tab1Page = /*#__PURE__*/function () {
-      function Tab1Page(scrambler, insomnia, translate, myFormat) {
+      function Tab1Page(scrambler, insomnia, translate, socialSharing, screenshot, myFormat) {
         _classCallCheck(this, Tab1Page);
 
         this.scrambler = scrambler;
         this.insomnia = insomnia;
         this.translate = translate;
+        this.socialSharing = socialSharing;
+        this.screenshot = screenshot;
         this.myFormat = myFormat;
         this.logLevel = 0; // End localStorage Variables
 
@@ -1060,6 +1074,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.timesArray = [];
         this.bestTime = '-';
         this.currentTimeDisplay = '00:00.00';
+        this.finishedTry = false;
         this.scrambleTournament = '';
         this.scrambleString = '';
         this.startTime = false; // timer start
@@ -1068,7 +1083,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.sleepModeFunction = false;
         this.maxRunningTime = 1200000;
+        this.plus2 = false;
         this.funFact = '';
+        this.firstShow = true;
         this.logo = '../assets/images/logo.png';
         this.hands = '../assets/images/hands.png';
         this.translate.setDefaultLang('en');
@@ -1076,15 +1093,38 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       _createClass(Tab1Page, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.myLog('method ngOnInit', 1);
+        }
+      }, {
         key: "ionViewWillEnter",
         value: function ionViewWillEnter() {
           this.myLog('method ionViewWillEnter', 1);
           this.setNewScramble();
           this.actualUser = String(localStorage.getItem('actualUser'));
           this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
+          if (this.userObject.listTimes.length > 0) this.firstShow = false;
           this.translate.use(this.userObject.language);
           this.bestTime = this.userObject.bestTime;
           this.funFacts = this.getFunfacts(this.userObject.language);
+        }
+      }, {
+        key: "sendShare",
+        value: function sendShare() {
+          var _this = this;
+
+          this.showIt = false;
+          this.ngOnInit();
+          this.screenshot.URI(80).then(function (res) {
+            _this.socialSharing.share(_this.translate.instant('SHARE.solvedIn') + ' ' + _this.currentTimeDisplay, null, res.URI, null).then(function () {}, function () {
+              _this.myLog('SocialSharing failed', 1);
+            });
+          }, function () {
+            _this.myLog('Screenshot failed', 1);
+          });
+          this.showIt = true;
+          this.ngOnInit();
         }
       }, {
         key: "setNewScramble",
@@ -1096,7 +1136,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "clickTimer",
         value: function clickTimer() {
-          var _this = this;
+          var _this2 = this;
 
           this.myLog('method clickTimer', 1);
           /*
@@ -1104,40 +1144,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             stopp it an call function to process result.
           */
 
+          this.firstShow = false;
+
           if (!this.startTime) {
             // start new timer
             this.showIt = false;
+            this.plus2 = false;
             this.insomnia.keepAwake().then(function () {
-              return _this.myLog('success keep awake', 2);
+              return _this2.myLog('success keep awake', 2);
             }, function () {
-              return _this.myLog('error keep awake', 2);
+              return _this2.myLog('error keep awake', 2);
             });
             this.startTime = new Date().getTime();
             this.funFact = '';
             var countDownDate = new Date();
             this.sleepModeFunction = setInterval(function () {
-              _this.insomnia.allowSleepAgain().then(function () {
-                return _this.myLog('success allow sleep again', 2);
+              _this2.insomnia.allowSleepAgain().then(function () {
+                return _this2.myLog('success allow sleep again', 2);
               }, function () {
-                return _this.myLog('error allow sleep again', 2);
+                return _this2.myLog('error allow sleep again', 2);
               });
 
-              _this.clickTimer();
+              _this2.clickTimer();
             }, this.maxRunningTime + 1000);
             this.overallTimerFunc = setInterval(function () {
               var now = new Date().getTime(); // Find the distance between now an the count down date
 
-              _this.elapsedTime = now - _this.startTime; // Time calculations for hours, minutes and seconds
+              _this2.elapsedTime = now - _this2.startTime; // Time calculations for hours, minutes and seconds
 
-              _this.currentTimeDisplay = _this.myFormat.formateTime(_this.elapsedTime);
+              _this2.currentTimeDisplay = _this2.myFormat.formateTime(_this2.elapsedTime);
             }, 10);
           } else {
             // stop timer
             this.showIt = true;
+            this.finishedTry = true;
             this.insomnia.allowSleepAgain().then(function () {
-              return _this.myLog('success allow sleep again', 2);
+              return _this2.myLog('success allow sleep again', 2);
             }, function () {
-              return _this.myLog('error allow sleep again', 2);
+              return _this2.myLog('error allow sleep again', 2);
             });
             clearInterval(this.overallTimerFunc);
             clearInterval(this.sleepModeFunction);
@@ -1165,7 +1209,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addTimeToResults",
         value: function addTimeToResults() {
+          var replace = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
           this.myLog('method addTimeToResults', 1);
+          if (replace) this.userObject.listTimes.pop();
           this.userObject.listTimes.push({
             timeStamp: this.startTime + this.elapsedTime,
             tryTime: this.elapsedTime
@@ -1176,12 +1222,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "refreshBestTime",
         value: function refreshBestTime() {
           this.myLog('refreshBestTime', 1);
+          this.userObject.bestTime = this.myFormat.formateTime(0);
 
-          if (this.userObject.bestTime == '00:00,00' || this.myFormat.formateTime(this.elapsedTime) < this.userObject.bestTime) {
-            this.bestTime = this.myFormat.formateTime(this.elapsedTime);
+          if (this.userObject.listTimes.length > 0) {
+            console.log('yes');
+            var best = 999999999;
+            this.userObject.listTimes.forEach(function (item) {
+              if (item.tryTime < best) best = item.tryTime;
+            });
+            this.userObject.bestTime = this.myFormat.formateTime(best);
           }
 
-          this.userObject.bestTime = this.bestTime;
+          this.bestTime = this.userObject.bestTime;
         }
       }, {
         key: "storeAllValues",
@@ -1189,6 +1241,32 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.myLog('method storeAllValues: ', 1);
           this.userObject.changedTimes = true;
           localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
+        }
+      }, {
+        key: "tryPlusTwo",
+        value: function tryPlusTwo() {
+          if (!this.plus2) {
+            this.elapsedTime = this.elapsedTime + 2000;
+            this.plus2 = true;
+          } else {
+            this.elapsedTime = this.elapsedTime - 2000;
+            this.plus2 = false;
+          }
+
+          this.addTimeToResults(true);
+          this.refreshBestTime();
+          this.storeAllValues();
+          this.currentTimeDisplay = this.myFormat.formateTime(this.elapsedTime);
+        }
+      }, {
+        key: "tryDelete",
+        value: function tryDelete() {
+          this.myLog('method tryDelete', 1);
+          this.userObject.listTimes.pop();
+          this.currentTimeDisplay = this.myFormat.formateTime(0);
+          this.refreshBestTime();
+          this.storeAllValues();
+          this.finishedTry = false;
         }
       }, {
         key: "myLog",
@@ -1207,13 +1285,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           switch (lang) {
             case 'de':
               {
-                return ["Die Gotteszahl (God's Number) ist die kleinste Zahl an Rotationen, welche es braucht um einen 3x3x3 Rubik's Cube aus einer beliebigen Zufallsposition zu lösen. Seit Juli 2010 wissen wir, dass diese Zahl 20 beträgt.", "Man schätzt, dass weniger als 5.8% der Weltbevölkerung einen Rubik's Cube lösen kann.", "Statistiken zeigen, dass 1 von 20 Menschen, die einen Rubik's Cube besitzen, diese auch lösen können.", "1974 hat ein junger Architekturprofessor in Budapest ein anscheinend unmögliches Objekt geschaffen.", "Der erste Magic Cube (wie er zuerst genannt wurde) wurde 1975 in a Budapest verkauft.", "Das Rätsel setzt sich aus 26 Mini-Würfeln zusammen, die 'cubies' or 'cubelets' genannt werden.", "Der Magic Cube wurde 1980 in Rubik's Cube unbenannt.", "Der Rubik's Cube gewannt den Preis «Toy of the Year» 1980 und 1981.", "Über 350 Millionen Rubik’s Cubes wurden weltweit verkauft – er ist somit das bestverkaufte Spielzeug der Welt.", "Ein Rubik's Cube hat 43,252,003,274,489,856,000 verschiedene Stellungen.", "Mit sechs farbigen Seiten, 21 Teilen and 54 äusseren Oberflächen, gibt es über 43 QUINTILLIOIN mögliche Stellungen.", "Wird ein Rubik's Cube einmal pro Sekunde gedreht, so braucht es 1400 TRILLIONEN JAHRE bis alle Stellungen einmal erreicht wurden.", "Die besten Speed Cubers lösen den Cube durchschnittlich unter 6 Sekunden.", "Der aktuelle Weltrekordhalter is Yusheng Du aus China. Er löste den Rubik's Cube an den Wuhu Open 2018 in 3.47 Sekunden.", "Für einige Speed Cubers ist Stil wichtiger als Geschwindigkeit.", "Ein dreijähriges Kind aus China löste den Rubik's Cube unter 2 Minuten.", "Legos & smartphone lösen den Rubik's cube schneller als Menschen (Stand Mai 2020 in 1.2 Sekunden).", "IN einem 2012 erschienenen Interview mit CNN hat Rubik zugegeben, dass er über einen Monat gebraucht hatte, den ersten Cube zu lösen.", "Der 12-jährige Patrick Bossert schrieb 1981 das Buch «You Can Do the Cube» und landete damit auf der New York Times Bestseller Liste.", "Von der Serie «Rubik, the Amazing Cube» wurden 1983 Samstagmorgens jeweils 13 folgen ausgestrahlt. Der Würfel bekam Beine, Gesicht und magische Fähigkeiten.", "Zum 15-jährigen Jubiläum 1995, hat die Firma Diamond Cutters International einen voll funktionalen Rubik’s Cube aus 185 Karat Diamanten gebaut.", "Als der Kubismus in der Kunstszene bereits bekannt war, entstand mit dem Rubik's Cube eine neue Stilrichtung: der Rubik’s Kubismus.", "2006 erlebte der Rubik's Cube einen Boom, als er in «The Pursuit of Happyness» von Will Smith's gelöst wurde.", "2003 sprang der Cube-Enthusiast Dan Knights aus einem Flugzeug und löste den Würfel in 45 seconds freiem Fall bevor sich der Fallschirm öffnete.", "Jakub Kipa kann den Cube in 20.57 Sekunden lösen - nur mit seinen Füssen.", "Echte Cuber wissen, dass ein Speed Cube regelmässig geölt werden muss.", "Der Erfinder des Rubik's Cube war ein Architekturprofessor, der die Idee der dreidimensionalen Geometrie aufzeigen wollte", "Die erste Weltmeisterschaft wurde 1982 in Budapest ausgetragen. Der Gewinner Minh Thai aus den USA löste den Cube in heute sehr langsamen 22.95s.", "Über 100 kg schwer und 1.56 Meter gross ist der weltgrösste Rubik’s Cube von Tony Fisher.", "Der kleinste Cube is nur gerade 6 mm gross.", "Die «World Cube Association» ist eine non-profit Organisation, die Wettkämpfe austrägt für den Rubik's Cube und andere mechanische Rätsel, weltweit seit 2004.", "Obwohl Rubik's einen eigenen Speedcube anbietet, meiden echte Speed Cubers den Originalbrand wegen mangelnder Qualität", "Ein 22x22x22 Rubik's Cube ist das weltweit grösste Drehrätsel. Es wurde 2016 fertiggestellt und besteht aus 2691 Teilen, alle erstellt mit einem handelsüblichen 3D-Drucker."];
+                return ["Die Gotteszahl (God's Number) ist die kleinste Zahl an Rotationen, welche es braucht um einen 3x3x3 Rubik's Cube aus einer beliebigen Zufallsposition zu lösen. Seit Juli 2010 wissen wir, dass diese Zahl 20 beträgt.", "Man schätzt, dass weniger als 5.8% der Weltbevölkerung einen Rubik's Cube lösen kann.", "Statistiken zeigen, dass 1 von 20 Menschen, die einen Rubik's Cube besitzen, diesen auch lösen können.", "1974 hat ein junger Architekturprofessor in Budapest ein anscheinend unmögliches Objekt geschaffen.", "Der erste Magic Cube (wie er zuerst genannt wurde) wurde 1975 in a Budapest verkauft.", "Das Rätsel setzt sich aus 26 Mini-Würfeln zusammen, die 'cubies' or 'cubelets' genannt werden.", "Der Magic Cube wurde 1980 in Rubik's Cube unbenannt.", "Der Rubik's Cube gewannt den Preis «Toy of the Year» 1980 und 1981.", "Über 350 Millionen Rubik’s Cubes wurden weltweit verkauft – er ist somit das bestverkaufte Spielzeug der Welt.", "Ein Rubik's Cube hat 43,252,003,274,489,856,000 verschiedene Stellungen.", "Mit sechs farbigen Seiten, 21 Teilen and 54 äusseren Oberflächen, gibt es über 43 QUINTILLIONEN mögliche Stellungen.", "Wird ein Rubik's Cube einmal pro Sekunde gedreht, so braucht es 1400 TRILLIONEN JAHRE bis alle Stellungen einmal erreicht wurden.", "Die besten Speed Cubers lösen den Cube durchschnittlich unter 6 Sekunden.", "Der aktuelle Weltrekordhalter is Yusheng Du aus China. Er löste den Rubik's Cube an den Wuhu Open 2018 in 3.47 Sekunden.", "Für einige Speed Cuber ist Stil wichtiger als Geschwindigkeit.", "Ein dreijähriges Kind aus China löste den Rubik's Cube unter 2 Minuten.", "Legos & smartphone lösen den Rubik's cube schneller als Menschen (Stand Mai 2020 in 1.2 Sekunden).", "IN einem 2012 erschienenen Interview mit CNN hat Rubik zugegeben, dass er über einen Monat gebraucht hatte, den ersten Cube zu lösen.", "Der 12-jährige Patrick Bossert schrieb 1981 das Buch «You Can Do the Cube» und landete damit auf der New York Times Bestseller Liste.", "Von der Serie «Rubik, the Amazing Cube» wurden 1983 Samstagmorgens jeweils 13 folgen ausgestrahlt. Der Würfel bekam Beine, Gesicht und magische Fähigkeiten.", "Zum 15-jährigen Jubiläum 1995, hat die Firma Diamond Cutters International einen voll funktionalen Rubik’s Cube aus 185 Karat Diamanten gebaut.", "Als der Kubismus in der Kunstszene bereits bekannt war, entstand mit dem Rubik's Cube eine neue Stilrichtung: der Rubik’s Kubismus.", "2006 erlebte der Rubik's Cube einen Boom, als er in «The Pursuit of Happyness» von Will Smith's gelöst wurde.", "2003 sprang der Cube-Enthusiast Dan Knights aus einem Flugzeug und löste den Würfel in 45 seconds freiem Fall bevor sich der Fallschirm öffnete.", "Jakub Kipa kann den Cube in 20.57 Sekunden lösen - nur mit seinen Füssen.", "Echte Cuber wissen, dass ein Speed Cube regelmässig geölt werden muss.", "Der Erfinder des Rubik's Cube war ein Architekturprofessor, der die Idee der dreidimensionalen Geometrie aufzeigen wollte", "Die erste Weltmeisterschaft wurde 1982 in Budapest ausgetragen. Der Gewinner Minh Thai aus den USA löste den Cube in heute sehr langsamen 22.95s.", "Über 100 kg schwer und 1.56 Meter gross ist der weltgrösste Rubik’s Cube von Tony Fisher.", "Der kleinste Cube is nur gerade 6 mm gross.", "Die «World Cube Association» ist eine non-profit Organisation, die Wettkämpfe austrägt für den Rubik's Cube und andere mechanische Rätsel, weltweit seit 2004.", "Obwohl Rubik's einen eigenen Speedcube anbietet, meiden echte Speed Cubers den Originalbrand wegen mangelnder Qualität", "Ein 22x22x22 Rubik's Cube ist das weltweit grösste Drehrätsel. Es wurde 2016 fertiggestellt und besteht aus 2691 Teilen, alle erstellt mit einem handelsüblichen 3D-Drucker."];
                 break;
               }
 
             default:
               {
-                return ["God's Number shows the smallest number of moves needed to solve the 3x3x3 Rubik's Cube from any random starting position. Since July of 2010 we know that this number is 20, so every position can be solved in twenty moves or less.", "It's estimated that less than 5.8% of the world's population can solve the Rubik's Cube.", "Statistics show that 1 in 20 people who own a Rubik's Cube can solve a Rubik's Cube.", "In 1974, a young professor of architecture in Budapest created the apparently impossible object.", "The first Magic Cube (as it was originally known) was sold in a Budapest toy shop in 1975.", "The puzzle is made up of twenty-six miniature cubes, known as 'cubies' or 'cubelets'", "The Magic Cube was renamed Rubik's Cube in 1980.", "The Rubik's Cube won Toy of the Year in 1980 and 1981.", "Over 350 million Rubik’s Cubes have been sold worldwide – making it the bestselling toy of all time.", "A Rubik's Cube has 43,252,003,274,489,856,000 possible configurations.", "With six coloured sides, 21 pieces and 54 outer surfaces, there's a combined total of over 43 QUINTILLIOIN different possible configurations.", "If you turned Rubik's Cube once every second it would take you 1400 TRILLION YEARS to finish to go through all the configurations.", "The best speed cubers can solve the cube in average under six seconds.", "The current world record holder is Yusheng Du from China. He completed the puzzle at the Wuhu Open 2018 in 3.47 seconds.", "Some speed-cubers go for style points over raw speed.", "A three-year-old in China solved the puzzle in under two minutes.", "Legos & smartphone solve Rubik's cube faster than human record.", "In a 2012 interview with CNN, Rubik admitted it took him more than a month to solve the Cube when he first invented it.", "12-year-old Patrick Bossert, who authored a book, You Can Do the Cube, in 1981 and wound up on the New York Times bestsellers list.", "Rubik, the Amazing Cube aired 13 episodes on Saturday mornings in 1983. The puzzle was given legs, a face, and magical abilities.", "For the puzzle’s 15th anniversary in 1995, Diamond Cutters International created a fully-functional Rubik’s Cube made out of 185 carats of diamonds.", "With Cubism already installed in art circles, the arrival of Rubik’s Cube led to a variation: Rubik’s Cubism.", "In 2006, sales experienced an uptick after the puzzle was featured in The Pursuit of Happyness: Will Smith's character is seen solving it.", "In 2003, the Cube enthusiast Dan Knights jumped from a plane at 12,000 feet, giving him roughly 45 seconds of free fall time to solve the Cube before his parachute would have to be opened.", "Jakub Kipa can solve it in 20.57 seconds using only his feet.", "Serious Cubers know that a Rubik’s Cube that hasn’t been properly maintained is going to hamper their efforts.", "The person responsible for the construction of the Rubik’s Cube is a professor of architecture, who was trying to conceive the idea of three-dimensional geometry.", "The first World Championship was held in Budapest in 1982 and the first winner was far too slow for today’s braggers; 22.95 seconds for Minh Thai from the United States.", "Weighing about 100 kg and being 1.56 meters tall, the largest Rubik’s Cube in the world is made by Tony Fisher.", "The smallest Cube is just 6 mm for the moment and people are trying to shrink it even more.", "The World Cube Association is a non-profit organisation that regulates and holds competitions for the Rubik's Cube and other mechanical twisty puzzles all over the World since 2004.", "Even though Rubik's has its own speedcube, competitive speedcubers still don't really use Rubik's branded cubes because they don't have the best quality.", "A 22x22x22 Rubik's Cube became the world's highest order twisty puzzle, created by corenpuzzle. It was completed in mid-January 2016 and it contains 2691 functioning parts made with a consumer 3D printer."];
+                return ["God's Number shows the smallest number of moves needed to solve the 3x3x3 Rubik's Cube from any random starting position. Since July of 2010 we know that this number is 20, so every position can be solved in twenty moves or less.", "It's estimated that less than 5.8% of the world's population can solve the Rubik's Cube.", "Statistics show that 1 in 20 people who own a Rubik's Cube can solve a Rubik's Cube.", "In 1974, a young professor of architecture in Budapest created the apparently impossible object.", "The first Magic Cube (as it was originally known) was sold in a Budapest toy shop in 1975.", "The puzzle is made up of twenty-six miniature cubes, known as 'cubies' or 'cubelets'", "The Magic Cube was renamed Rubik's Cube in 1980.", "The Rubik's Cube won Toy of the Year in 1980 and 1981.", "Over 350 million Rubik’s Cubes have been sold worldwide – making it the bestselling toy of all time.", "A Rubik's Cube has 43,252,003,274,489,856,000 possible configurations.", "With six coloured sides, 21 pieces and 54 outer surfaces, there's a combined total of over 43 QUINTILLIONS different possible configurations.", "If you turned Rubik's Cube once every second it would take you 1400 TRILLION YEARS to finish to go through all the configurations.", "The best speed cubers can solve the cube in average under six seconds.", "The current world record holder is Yusheng Du from China. He completed the puzzle at the Wuhu Open 2018 in 3.47 seconds.", "Some speed-cubers go for style points over raw speed.", "A three-year-old in China solved the puzzle in under two minutes.", "Legos & smartphone solve Rubik's cube faster than human record.", "In a 2012 interview with CNN, Rubik admitted it took him more than a month to solve the Cube when he first invented it.", "12-year-old Patrick Bossert, who authored a book, You Can Do the Cube, in 1981 and wound up on the New York Times bestsellers list.", "Rubik, the Amazing Cube aired 13 episodes on Saturday mornings in 1983. The puzzle was given legs, a face, and magical abilities.", "For the puzzle’s 15th anniversary in 1995, Diamond Cutters International created a fully-functional Rubik’s Cube made out of 185 carats of diamonds.", "With Cubism already installed in art circles, the arrival of Rubik’s Cube led to a variation: Rubik’s Cubism.", "In 2006, sales experienced an uptick after the puzzle was featured in The Pursuit of Happyness: Will Smith's character is seen solving it.", "In 2003, the Cube enthusiast Dan Knights jumped from a plane at 12,000 feet, giving him roughly 45 seconds of free fall time to solve the Cube before his parachute would have to be opened.", "Jakub Kipa can solve it in 20.57 seconds using only his feet.", "Serious Cubers know that a Rubik’s Cube that hasn’t been properly maintained is going to hamper their efforts.", "The person responsible for the construction of the Rubik’s Cube is a professor of architecture, who was trying to conceive the idea of three-dimensional geometry.", "The first World Championship was held in Budapest in 1982 and the first winner was far too slow for today’s braggers; 22.95 seconds for Minh Thai from the United States.", "Weighing about 100 kg and being 1.56 meters tall, the largest Rubik’s Cube in the world is made by Tony Fisher.", "The smallest Cube is just 6 mm for the moment and people are trying to shrink it even more.", "The World Cube Association is a non-profit organisation that regulates and holds competitions for the Rubik's Cube and other mechanical twisty puzzles all over the World since 2004.", "Even though Rubik's has its own speedcube, competitive speedcubers still don't really use Rubik's branded cubes because they don't have the best quality.", "A 22x22x22 Rubik's Cube became the world's highest order twisty puzzle, created by corenpuzzle. It was completed in mid-January 2016 and it contains 2691 functioning parts made with a consumer 3D printer."];
                 break;
               }
           }
@@ -1231,6 +1309,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"]
       }, {
+        type: _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__["SocialSharing"]
+      }, {
+        type: _ionic_native_screenshot_ngx__WEBPACK_IMPORTED_MODULE_7__["Screenshot"]
+      }, {
         type: _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"]
       }];
     };
@@ -1243,7 +1325,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./tab1.page.scss */
       "./src/app/tab1/tab1.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_scrambles_service__WEBPACK_IMPORTED_MODULE_3__["ScramblesService"], _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__["Insomnia"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"], _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"]])], Tab1Page);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_scrambles_service__WEBPACK_IMPORTED_MODULE_3__["ScramblesService"], _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__["Insomnia"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"], _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__["SocialSharing"], _ionic_native_screenshot_ngx__WEBPACK_IMPORTED_MODULE_7__["Screenshot"], _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"]])], Tab1Page);
     /***/
   }
 }]);

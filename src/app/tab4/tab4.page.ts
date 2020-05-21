@@ -15,7 +15,7 @@ export class Tab4Page {
   // Start localStorage variables
   private userObject: {
     userName: string, 
-    bestTime: string, 
+    bestTime: string,
     listTimes: Array<any>,
     language: string,
     sound: boolean,
@@ -92,6 +92,7 @@ export class Tab4Page {
     this.myLog('event: '+JSON.stringify(event),2);
     this.userObject.language = this.language;
     this.saveUser();
+    this.ngOnInit();
   }
 
   async clearUserHistory() {
@@ -273,6 +274,7 @@ export class Tab4Page {
     this.myLog('method saveUser',1);
     this.userObject.language = this.language;
     localStorage.setItem(this.actualUser,JSON.stringify(this.userObject));
+    localStorage.setItem('actualUser',this.actualUser);
   }
 
   private myLog(consoleText: string, level: number) {

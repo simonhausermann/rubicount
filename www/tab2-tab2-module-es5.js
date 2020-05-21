@@ -34349,10 +34349,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.myLog('method getYFromArray', 1);
           var tmpYAr = [];
           var tmpXAr = [];
-          myArray.forEach(function (item) {
-            if (item.tryTime) tmpYAr.push(item.tryTime / 1000);
+
+          for (var i = 0; i < myArray.length; i++) {
+            if (myArray[i].tryTime > 0) {
+              tmpYAr.push(myArray[i].tryTime / 1000);
+            }
+
             tmpXAr.push('');
-          });
+          }
+
           var tmpAr = [];
           tmpAr['x'] = tmpXAr;
           tmpAr['y'] = tmpYAr;
@@ -34466,30 +34471,89 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "drawChart",
         value: function drawChart() {
           var showNr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-          this.myLog('method drawChart', 1);
+          this.myLog('method drawChart - showNr: ' + showNr, 1);
           this.graphCount = showNr;
           var myArray = this.userObject.listTimes;
           myArray.sort(this.myArrayFunctions.compareValues('timeStamp', 'asc'));
-          if (showNr > 0) myArray = myArray.slice(0, showNr);
+          if (showNr > 0) myArray = myArray.slice(myArray.length - showNr, myArray.length);
           myArray = this.getYFromArray(myArray);
+          var firstArray = [];
+          var secondArray = [];
+          var tryArray = [];
+          var worstBestArray = [];
+          var bestFound = false;
+          var worstFound = false; // firstArray = myArray;
+
+          if (showNr == 5) {
+            for (var i = 0; i < myArray['y'].length; i++) {
+              //this.myLog('compare '+this.ao5Best+' with '+this.myFormat.formateTime(myArray['y'][i]*1000),0);
+              if (!bestFound && this.ao5Best == this.myFormat.formateTime(myArray['y'][i] * 1000)) {
+                worstBestArray[i] = myArray['y'][i];
+                tryArray[i] = null;
+                bestFound = true;
+              } else if (!worstFound && this.ao5Worst == this.myFormat.formateTime(myArray['y'][i] * 1000)) {
+                worstBestArray[i] = myArray['y'][i];
+                tryArray[i] = null;
+                worstFound = true;
+              } else {
+                tryArray[i] = myArray['y'][i];
+                worstBestArray[i] = null;
+              }
+            }
+
+            firstArray['y'] = tryArray;
+            secondArray['y'] = worstBestArray;
+          } else if (showNr == 12) {
+            for (var _i = 0; _i < myArray['x'].length; _i++) {
+              if (!bestFound && this.ao12Best == this.myFormat.formateTime(myArray['y'][_i] * 1000)) {
+                worstBestArray[_i] = myArray['y'][_i];
+                tryArray[_i] = null;
+                bestFound = true;
+              } else if (!worstFound && this.ao12Worst == this.myFormat.formateTime(myArray['y'][_i] * 1000)) {
+                worstBestArray[_i] = myArray['y'][_i];
+                tryArray[_i] = null;
+                worstFound = true;
+              } else {
+                tryArray[_i] = myArray['y'][_i];
+                worstBestArray[_i] = null;
+              }
+            }
+
+            firstArray['y'] = tryArray;
+            secondArray['y'] = worstBestArray;
+          } else {
+            firstArray['y'] = myArray['y'];
+          }
+
           this.lineChart = new chart_js__WEBPACK_IMPORTED_MODULE_2__["Chart"](this.lineCanvas.nativeElement, {
             type: "line",
             data: {
               labels: myArray['x'],
               datasets: [{
-                data: myArray['y'],
+                data: firstArray['y'],
                 borderWidth: 1,
                 backgroundColor: 'rgba(0, 0, 0, 0)',
-                borderColor: 'rgba(54, 162 , 235, 0.2)',
-                pointBorderColor: 'rgba(54, 162, 235, 0.9)',
-                showLines: true,
+                borderColor: 'rgba(255, 20 , 10, 0.5)',
+                pointBorderColor: 'rgba(255, 20, 10, 0.9)',
                 pointRadius: 1,
                 pointStyle: 'circle',
+                spanGaps: true,
+                display: false
+              }, {
+                data: secondArray['y'],
+                borderWidth: 1,
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                borderColor: 'rgba(0, 0 , 0, 0)',
+                pointBorderColor: 'rgba(54, 162, 235, 0.9)',
+                pointRadius: 2,
+                pointStyle: 'circle',
                 spanGaps: false,
-                display: true
+                display: false
               }]
             },
             options: {
+              spanGaps: false,
+              showLines: true,
               legend: {
                 display: false
               },
@@ -34500,6 +34564,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   }
                 }],
                 xAxes: [{
+                  display: false,
                   gridLines: {
                     drawBorder: true,
                     display: false
@@ -34507,7 +34572,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }]
               }
             }
-          });
+          }); //this.lineChart.update();
         }
       }, {
         key: "myLog",

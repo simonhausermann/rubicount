@@ -23,8 +23,11 @@
           <ion-button *ngIf="showIt && !plus2; else elsePlus2" class="click-block" style="--box-shadow:none;" size="small" color="light" (click)="tryPlusTwo();$event.stopPropagation()">  +2  </ion-button>
           <ng-template #elsePlus2><ion-button class="click-block" style="--box-shadow:none;" size="small" color="warning" (click)="tryPlusTwo();$event.stopPropagation()">  +2  </ion-button></ng-template>
           <!--ion-button class="click-block" size="small" color="light" (click)="tryDNF()">DNF</ion-button-->
-          <ion-button class="click-block" style="--box-shadow:none;" size="small" color="light" (click)="tryDelete();$event.stopPropagation()">Delete</ion-button></div>
-          <ng-template #elseBlock><div class="smallCenter">&nbsp;</div></ng-template>
+          <ion-button class="click-block" style="--box-shadow:none;" size="small" color="light" (click)="tryDelete();$event.stopPropagation()">{{ 'TAB1.btnDelete' | translate }}</ion-button>
+          <ion-button class="click-block" style="--box-shadow:none;" size="small" color="light" (click)="sendShare(); $event.stopPropagation()">{{ 'TAB1.btnShare' | translate }}</ion-button>
+        </div>
+        <ng-template #elseBlock><div class="smallCenter">&nbsp;</div></ng-template>
+        <div class="smallCenter" *ngIf="firstShow"><ion-text color="danger"><b>{{ 'TAB1.firstStart' | translate }}</b></ion-text></div>
         <div class="smallCenter" *ngIf="showIt">{{ scrambleTournament }}<br>
         {{ scrambleString }}</div>
           <picture>

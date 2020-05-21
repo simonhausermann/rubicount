@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { Insomnia } from '@ionic-native/insomnia/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Screenshot } from '@ionic-native/screenshot/ngx';
 
 import { TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -41,6 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     /*StatusBar,*/
     Insomnia,
+    SocialSharing,
+    Screenshot,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]

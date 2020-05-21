@@ -1,6 +1,9 @@
 {
     "TAB1": {
-        "bestTime": "Personal best"
+        "bestTime": "Personal best",
+        "btnDelete": "delete",
+        "btnShare": "share",
+        "firstStart": "> Click anywhere to start and stop <"
     },
     "TAB2": {
         "title": "Statistics",
@@ -53,5 +56,8 @@
         "btnStatistics": "Statistics",
         "btnTimes": "Times",
         "btnUsers": "Users"
+    },
+    "SHARE": {
+        "solvedIn": "Solved Rubiks Cube in"
     }
 }

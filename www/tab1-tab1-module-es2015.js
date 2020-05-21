@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-content [fullscreen]=\"true\" (click)=\"clickTimer()\">\n\n  <ion-grid style=\"border-color: black;\">\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n      <br><br>\n      <picture>\n        <source srcset=\"../../assets/images/logowhite.png\" media=\"(prefers-color-scheme: dark)\" />\n        <source srcset=\"../../assets/images/logo.png\" media=\"(prefers-color-scheme: light), (prefers-color-scheme: no-preference)\" />\n        <img src=\"../../assets/images/logo.png\" loading=\"lazy\" />\n      </picture>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\"><b>{{ actualUser }}</b></div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\">{{ 'TAB1.bestTime' | translate }}: {{ bestTime }}</div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"timer\">{{ currentTimeDisplay }}</div>\n        <div class=\"funfact\" *ngIf=\"showIt\">{{ scrambleTournament }}:<br>\n          <b>{{ scrambleString }}</b></div>\n          <picture>\n            <source srcset=\"../../assets/images/handswhite.png\" media=\"(prefers-color-scheme: dark)\" />\n            <source srcset=\"../../assets/images/hands.png\" media=\"(prefers-color-scheme: light), (prefers-color-scheme: no-preference)\" />\n            <img src=\"../../assets/images/hands.png\" loading=\"lazy\"  *ngIf=\"showIt\" />\n          </picture>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col></ion-col>\n    <ion-col size=\"10\">\n      <div class=\"funfact\" *ngIf=\"showIt\">{{ funFact }}</div>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n</ion-grid>\n  \n  <app-explore-container name=\"Timer\"></app-explore-container>\n</ion-content>\n\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-content [fullscreen]=\"true\" (click)=\"clickTimer()\">\n\n  <ion-grid style=\"border-color: black;\">\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n      <br><br>\n      <picture>\n        <source srcset=\"../../assets/images/logowhite.png\" media=\"(prefers-color-scheme: dark)\" />\n        <source srcset=\"../../assets/images/logo.png\" media=\"(prefers-color-scheme: light), (prefers-color-scheme: no-preference)\" />\n        <img src=\"../../assets/images/logo.png\" loading=\"lazy\" />\n      </picture>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n    <ion-row>\n      <ion-col></ion-col>\n      <ion-col size=\"11\">\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\"><b>{{ actualUser }}</b></div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"ion-text-center\" class=\"user\" *ngIf=\"showIt\">{{ 'TAB1.bestTime' | translate }}: {{ bestTime }}</div><div class=\"user\"  *ngIf=\"!showIt\">&nbsp;</div>\n        <div class=\"timer\">{{ currentTimeDisplay }}</div>\n        <div class=\"smallCenter\" *ngIf=\"showIt && finishedTry; else elseBlock\">\n          <ion-button *ngIf=\"showIt && !plus2; else elsePlus2\" class=\"click-block\" style=\"--box-shadow:none;\" size=\"small\" color=\"light\" (click)=\"tryPlusTwo();$event.stopPropagation()\">  +2  </ion-button>\n          <ng-template #elsePlus2><ion-button class=\"click-block\" style=\"--box-shadow:none;\" size=\"small\" color=\"warning\" (click)=\"tryPlusTwo();$event.stopPropagation()\">  +2  </ion-button></ng-template>\n          <!--ion-button class=\"click-block\" size=\"small\" color=\"light\" (click)=\"tryDNF()\">DNF</ion-button-->\n          <ion-button class=\"click-block\" style=\"--box-shadow:none;\" size=\"small\" color=\"light\" (click)=\"tryDelete();$event.stopPropagation()\">{{ 'TAB1.btnDelete' | translate }}</ion-button>\n          <ion-button class=\"click-block\" style=\"--box-shadow:none;\" size=\"small\" color=\"light\" (click)=\"sendShare(); $event.stopPropagation()\">{{ 'TAB1.btnShare' | translate }}</ion-button>\n        </div>\n        <ng-template #elseBlock><div class=\"smallCenter\">&nbsp;</div></ng-template>\n        <div class=\"smallCenter\" *ngIf=\"firstShow\"><ion-text color=\"danger\"><b>{{ 'TAB1.firstStart' | translate }}</b></ion-text></div>\n        <div class=\"smallCenter\" *ngIf=\"showIt\">{{ scrambleTournament }}<br>\n        {{ scrambleString }}</div>\n          <picture>\n            <source srcset=\"../../assets/images/handswhite.png\" media=\"(prefers-color-scheme: dark)\" />\n            <source srcset=\"../../assets/images/hands.png\" media=\"(prefers-color-scheme: light), (prefers-color-scheme: no-preference)\" />\n            <img src=\"../../assets/images/hands.png\" loading=\"lazy\"  *ngIf=\"showIt\" />\n          </picture>\n      </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <ion-row>\n    <ion-col></ion-col>\n    <ion-col size=\"10\">\n      <div class=\"funfact\" *ngIf=\"showIt\">{{ funFact }}</div>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n</ion-grid>\n  \n  <app-explore-container name=\"Timer\"></app-explore-container>\n</ion-content>\n\n\n");
 
 /***/ }),
 
@@ -392,6 +392,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_scrambles_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/scrambles.service */ "./src/app/services/scrambles.service.ts");
 /* harmony import */ var _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/insomnia/ngx */ "./node_modules/@ionic-native/insomnia/ngx/index.js");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngx-translate/core */ "./node_modules/@ngx-translate/core/fesm2015/ngx-translate-core.js");
+/* harmony import */ var _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/social-sharing/ngx */ "./node_modules/@ionic-native/social-sharing/ngx/index.js");
+/* harmony import */ var _ionic_native_screenshot_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/screenshot/ngx */ "./node_modules/@ionic-native/screenshot/ngx/index.js");
+
+
 
 
 
@@ -399,10 +403,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let Tab1Page = class Tab1Page {
-    constructor(scrambler, insomnia, translate, myFormat) {
+    constructor(scrambler, insomnia, translate, socialSharing, screenshot, myFormat) {
         this.scrambler = scrambler;
         this.insomnia = insomnia;
         this.translate = translate;
+        this.socialSharing = socialSharing;
+        this.screenshot = screenshot;
         this.myFormat = myFormat;
         this.logLevel = 0;
         // End localStorage Variables
@@ -410,26 +416,47 @@ let Tab1Page = class Tab1Page {
         this.timesArray = [];
         this.bestTime = '-';
         this.currentTimeDisplay = '00:00.00';
+        this.finishedTry = false;
         this.scrambleTournament = '';
         this.scrambleString = '';
         this.startTime = false; // timer start
         this.overallTimerFunc = false; // running timer function
         this.sleepModeFunction = false;
         this.maxRunningTime = 1200000;
+        this.plus2 = false;
         this.funFact = '';
+        this.firstShow = true;
         this.logo = '../assets/images/logo.png';
         this.hands = '../assets/images/hands.png';
         this.translate.setDefaultLang('en');
         this.translate.use('de');
+    }
+    ngOnInit() {
+        this.myLog('method ngOnInit', 1);
     }
     ionViewWillEnter() {
         this.myLog('method ionViewWillEnter', 1);
         this.setNewScramble();
         this.actualUser = String(localStorage.getItem('actualUser'));
         this.userObject = JSON.parse(localStorage.getItem(this.actualUser));
+        if (this.userObject.listTimes.length > 0)
+            this.firstShow = false;
         this.translate.use(this.userObject.language);
         this.bestTime = this.userObject.bestTime;
         this.funFacts = this.getFunfacts(this.userObject.language);
+    }
+    sendShare() {
+        this.showIt = false;
+        this.ngOnInit();
+        this.screenshot.URI(80).then((res) => {
+            this.socialSharing.share(this.translate.instant('SHARE.solvedIn') + ' ' + this.currentTimeDisplay, null, res.URI, null).then(() => { }, () => {
+                this.myLog('SocialSharing failed', 1);
+            });
+        }, () => {
+            this.myLog('Screenshot failed', 1);
+        });
+        this.showIt = true;
+        this.ngOnInit();
     }
     setNewScramble() {
         let randIndex = Math.floor(Math.random() * this.scrambler.scrambles.length);
@@ -442,8 +469,10 @@ let Tab1Page = class Tab1Page {
           if timer is not running, start timer. If timer is running,
           stopp it an call function to process result.
         */
+        this.firstShow = false;
         if (!this.startTime) { // start new timer
             this.showIt = false;
+            this.plus2 = false;
             this.insomnia.keepAwake().then(() => this.myLog('success keep awake', 2), () => this.myLog('error keep awake', 2));
             this.startTime = new Date().getTime();
             this.funFact = '';
@@ -462,6 +491,7 @@ let Tab1Page = class Tab1Page {
         }
         else { // stop timer
             this.showIt = true;
+            this.finishedTry = true;
             this.insomnia.allowSleepAgain().then(() => this.myLog('success allow sleep again', 2), () => this.myLog('error allow sleep again', 2));
             clearInterval(this.overallTimerFunc);
             clearInterval(this.sleepModeFunction);
@@ -483,8 +513,10 @@ let Tab1Page = class Tab1Page {
         this.refreshBestTime();
         this.storeAllValues();
     }
-    addTimeToResults() {
+    addTimeToResults(replace = false) {
         this.myLog('method addTimeToResults', 1);
+        if (replace)
+            this.userObject.listTimes.pop();
         this.userObject.listTimes.push({
             timeStamp: this.startTime + this.elapsedTime,
             tryTime: this.elapsedTime
@@ -493,15 +525,42 @@ let Tab1Page = class Tab1Page {
     }
     refreshBestTime() {
         this.myLog('refreshBestTime', 1);
-        if (this.userObject.bestTime == '00:00,00' || this.myFormat.formateTime(this.elapsedTime) < this.userObject.bestTime) {
-            this.bestTime = this.myFormat.formateTime(this.elapsedTime);
+        this.userObject.bestTime = this.myFormat.formateTime(0);
+        if (this.userObject.listTimes.length > 0) {
+            console.log('yes');
+            let best = 999999999;
+            this.userObject.listTimes.forEach(function (item) { if (item.tryTime < best)
+                best = item.tryTime; });
+            this.userObject.bestTime = this.myFormat.formateTime(best);
         }
-        this.userObject.bestTime = this.bestTime;
+        this.bestTime = this.userObject.bestTime;
     }
     storeAllValues() {
         this.myLog('method storeAllValues: ', 1);
         this.userObject.changedTimes = true;
         localStorage.setItem(this.actualUser, JSON.stringify(this.userObject));
+    }
+    tryPlusTwo() {
+        if (!this.plus2) {
+            this.elapsedTime = this.elapsedTime + 2000;
+            this.plus2 = true;
+        }
+        else {
+            this.elapsedTime = this.elapsedTime - 2000;
+            this.plus2 = false;
+        }
+        this.addTimeToResults(true);
+        this.refreshBestTime();
+        this.storeAllValues();
+        this.currentTimeDisplay = this.myFormat.formateTime(this.elapsedTime);
+    }
+    tryDelete() {
+        this.myLog('method tryDelete', 1);
+        this.userObject.listTimes.pop();
+        this.currentTimeDisplay = this.myFormat.formateTime(0);
+        this.refreshBestTime();
+        this.storeAllValues();
+        this.finishedTry = false;
     }
     myLog(consoleText, level) {
         if (this.logLevel >= level) {
@@ -515,7 +574,7 @@ let Tab1Page = class Tab1Page {
                 return [
                     "Die Gotteszahl (God's Number) ist die kleinste Zahl an Rotationen, welche es braucht um einen 3x3x3 Rubik's Cube aus einer beliebigen Zufallsposition zu lösen. Seit Juli 2010 wissen wir, dass diese Zahl 20 beträgt.",
                     "Man schätzt, dass weniger als 5.8% der Weltbevölkerung einen Rubik's Cube lösen kann.",
-                    "Statistiken zeigen, dass 1 von 20 Menschen, die einen Rubik's Cube besitzen, diese auch lösen können.",
+                    "Statistiken zeigen, dass 1 von 20 Menschen, die einen Rubik's Cube besitzen, diesen auch lösen können.",
                     "1974 hat ein junger Architekturprofessor in Budapest ein anscheinend unmögliches Objekt geschaffen.",
                     "Der erste Magic Cube (wie er zuerst genannt wurde) wurde 1975 in a Budapest verkauft.",
                     "Das Rätsel setzt sich aus 26 Mini-Würfeln zusammen, die 'cubies' or 'cubelets' genannt werden.",
@@ -523,11 +582,11 @@ let Tab1Page = class Tab1Page {
                     "Der Rubik's Cube gewannt den Preis «Toy of the Year» 1980 und 1981.",
                     "Über 350 Millionen Rubik’s Cubes wurden weltweit verkauft – er ist somit das bestverkaufte Spielzeug der Welt.",
                     "Ein Rubik's Cube hat 43,252,003,274,489,856,000 verschiedene Stellungen.",
-                    "Mit sechs farbigen Seiten, 21 Teilen and 54 äusseren Oberflächen, gibt es über 43 QUINTILLIOIN mögliche Stellungen.",
+                    "Mit sechs farbigen Seiten, 21 Teilen and 54 äusseren Oberflächen, gibt es über 43 QUINTILLIONEN mögliche Stellungen.",
                     "Wird ein Rubik's Cube einmal pro Sekunde gedreht, so braucht es 1400 TRILLIONEN JAHRE bis alle Stellungen einmal erreicht wurden.",
                     "Die besten Speed Cubers lösen den Cube durchschnittlich unter 6 Sekunden.",
                     "Der aktuelle Weltrekordhalter is Yusheng Du aus China. Er löste den Rubik's Cube an den Wuhu Open 2018 in 3.47 Sekunden.",
-                    "Für einige Speed Cubers ist Stil wichtiger als Geschwindigkeit.",
+                    "Für einige Speed Cuber ist Stil wichtiger als Geschwindigkeit.",
                     "Ein dreijähriges Kind aus China löste den Rubik's Cube unter 2 Minuten.",
                     "Legos & smartphone lösen den Rubik's cube schneller als Menschen (Stand Mai 2020 in 1.2 Sekunden).",
                     "IN einem 2012 erschienenen Interview mit CNN hat Rubik zugegeben, dass er über einen Monat gebraucht hatte, den ersten Cube zu lösen.",
@@ -561,7 +620,7 @@ let Tab1Page = class Tab1Page {
                     "The Rubik's Cube won Toy of the Year in 1980 and 1981.",
                     "Over 350 million Rubik’s Cubes have been sold worldwide – making it the bestselling toy of all time.",
                     "A Rubik's Cube has 43,252,003,274,489,856,000 possible configurations.",
-                    "With six coloured sides, 21 pieces and 54 outer surfaces, there's a combined total of over 43 QUINTILLIOIN different possible configurations.",
+                    "With six coloured sides, 21 pieces and 54 outer surfaces, there's a combined total of over 43 QUINTILLIONS different possible configurations.",
                     "If you turned Rubik's Cube once every second it would take you 1400 TRILLION YEARS to finish to go through all the configurations.",
                     "The best speed cubers can solve the cube in average under six seconds.",
                     "The current world record holder is Yusheng Du from China. He completed the puzzle at the Wuhu Open 2018 in 3.47 seconds.",
@@ -594,6 +653,8 @@ Tab1Page.ctorParameters = () => [
     { type: _services_scrambles_service__WEBPACK_IMPORTED_MODULE_3__["ScramblesService"] },
     { type: _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__["Insomnia"] },
     { type: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"] },
+    { type: _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__["SocialSharing"] },
+    { type: _ionic_native_screenshot_ngx__WEBPACK_IMPORTED_MODULE_7__["Screenshot"] },
     { type: _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"] }
 ];
 Tab1Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -605,6 +666,8 @@ Tab1Page = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_scrambles_service__WEBPACK_IMPORTED_MODULE_3__["ScramblesService"],
         _ionic_native_insomnia_ngx__WEBPACK_IMPORTED_MODULE_4__["Insomnia"],
         _ngx_translate_core__WEBPACK_IMPORTED_MODULE_5__["TranslateService"],
+        _ionic_native_social_sharing_ngx__WEBPACK_IMPORTED_MODULE_6__["SocialSharing"],
+        _ionic_native_screenshot_ngx__WEBPACK_IMPORTED_MODULE_7__["Screenshot"],
         _services_format_time_service__WEBPACK_IMPORTED_MODULE_2__["FormatTimeService"]])
 ], Tab1Page);
 
